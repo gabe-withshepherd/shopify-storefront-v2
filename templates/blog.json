@@ -1,0 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "blog-template",
+      "disabled": true,
+      "settings": {
+        "blog_show_tag_filter": false,
+        "blog_show_rss": false,
+        "blog_show_tags": false,
+        "blog_show_date": true,
+        "blog_show_comments": true,
+        "blog_show_author": false,
+        "blog_show_excerpt": false,
+        "blog_image_size": "natural"
+      }
+    },
+    "a62f34eb-56cc-4dc7-bca8-c21dde472ad3": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17283795419453__a62f34eb-56cc-4dc7-bca8-c21dde472ad3-1685888796821ee64b-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Our Mission"
+          }
+        },
+        "template--17283795419453__a62f34eb-56cc-4dc7-bca8-c21dde472ad3-1685888796821ee64b-1": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Gabe and I started 7Pacific to inspire athletic confidence through lightweight, breathable athleticwear.</p><p>We both played college sports before meeting in Miami through the ecommerce world. We immediately shared an interest in exercise – not just gym work, but real, functional exercise in Miami's beautiful weather. Think volleyball, biking, triathlons, running, and rowing. We became fast friends.</p><p>We soon realized that we sweated, a lot. We're talking <em>\"it looks like you just got out of the shower\"</em> amounts of sweat, even after short workouts. We complained that our cotton and poly workout shirts got wet, heavy, and smelly, making it hard to push all the way through our workouts, and we suspected that others had the same problem.</p><p>We tested our hypothesis on Facebook. When we ran ads for lightweight, breathable athleticwear, they outperformed the rest, so we had a signal. But how would we create a lightweight, breathable shirt with a premium, Lulu-style fit? </p><p>Merino wool became our secret weapon. We discovered that its unique combination of temperature regulation (keeps you cool in the heat and warm in the cold), sustainability, and odor resistance made it the ideal workout material. There was one problem - Merino wool was perceived as a scratchy material best suited for hiking base layers. We had to redefine Merino's reputation, starting with the fitness community.</p><p>After six months of nonstop development, our side hustle has become a reality with our Tailwind 1.0 in long and short sleeves. We're incredibly proud of its quality, fit, and genuine performance under extreme heat and cold. </p><p>Best of all, we're thrilled at the opportunity to help other athletes feel confident and lightweight as they push their limits. Here's to enjoying some tailwinds together.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--17283795419453__a62f34eb-56cc-4dc7-bca8-c21dde472ad3-1685888796821ee64b-0",
+        "template--17283795419453__a62f34eb-56cc-4dc7-bca8-c21dde472ad3-1685888796821ee64b-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "align_text": "left",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "cc73562c-31e9-4c7b-9579-311cc600ec01": {
+      "type": "blog-posts",
+      "settings": {
+        "title": "Blog posts",
+        "blog": "materials-and-your-favorite-workout-shirt",
+        "post_limit": 3,
+        "blog_show_tags": true,
+        "blog_show_date": true,
+        "blog_show_comments": false,
+        "blog_show_author": false,
+        "view_all": true,
+        "blog_image_size": "wide",
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "a62f34eb-56cc-4dc7-bca8-c21dde472ad3",
+    "cc73562c-31e9-4c7b-9579-311cc600ec01"
+  ]
+}

@@ -1,0 +1,59 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {}
+    },
+    "6a66a6a4-d336-4fbc-a463-f77121ed1aa9": {
+      "type": "background-image-text",
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "image": "shopify://shop_images/IMG_0582_photoutils.com.jpg",
+        "layout": "left",
+        "height": 650,
+        "framed": false,
+        "parallax": false,
+        "parallax_direction": "top"
+      }
+    },
+    "a2ecd18f-d21f-4fe3-b896-63c158878c32": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17283795812669__a2ecd18f-d21f-4fe3-b896-63c158878c32-16861873551a626e22-1": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<h1>Our Mission</h1><p>Gabe and Frank started 7Pacific to inspire athletic confidence through lightweight, breathable athleticwear. We both played college sports before meeting in Miami through the ecommerce world. We immediately shared an interest in exercise – not just gym work, but real, functional exercise in Miami's beautiful weather. Think volleyball, biking, triathlons, running, and rowing. We became fast friends.</p><p>We soon realized that we sweated, a lot. We're talking <em>\"it looks like you just got out of the shower\"</em> amounts of sweat, even after short workouts. We complained that our cotton and poly workout shirts got wet, heavy, and smelly, making it hard to push all the way through our workouts, and we suspected that others had the same problem.</p><p>We tested our hypothesis on Facebook. When we ran ads for lightweight, breathable athleticwear, they outperformed the rest, so we had a signal. But how would we create a lightweight, breathable shirt with a premium, Lulu-style fit? </p><p>Merino wool became our secret weapon. We discovered that its unique combination of temperature regulation (keeps you cool in the heat and warm in the cold), sustainability, and odor resistance made it the ideal workout material. There was one problem - Merino wool was perceived as a scratchy material best suited for hiking base layers. We had to redefine Merino's reputation, starting with the fitness community.</p><p>After six months of nonstop development, our side hustle has become a reality with our Tailwind in long and short sleeves. We're incredibly proud of its quality, fit, and genuine performance under extreme heat and cold. Best of all, we're thrilled at the opportunity to help other athletes feel confident and lightweight as they push their limits. </p><p>Here's to helping athletes worldwide feel the tailwinds that we're after every day.</p><p><em>-Gabe Dalessandro and Frank Kosarek</em></p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--17283795812669__a2ecd18f-d21f-4fe3-b896-63c158878c32-16861873551a626e22-1"
+      ],
+      "settings": {
+        "align_text": "left",
+        "narrow_column": true,
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "6a66a6a4-d336-4fbc-a463-f77121ed1aa9",
+    "a2ecd18f-d21f-4fe3-b896-63c158878c32"
+  ]
+}

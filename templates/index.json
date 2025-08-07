@@ -1,0 +1,70 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "slideshow_i9rTTA": {
+      "type": "slideshow",
+      "blocks": {
+        "image_r6XCDn": {
+          "type": "image",
+          "settings": {
+            "top_subheading": "",
+            "title": "",
+            "title_size": 47,
+            "subheading": "",
+            "link": "",
+            "link_text": "OWN THE START",
+            "link_2": "",
+            "link_text_2": "",
+            "color_accent": "#cb5c28",
+            "text_align": "vertical-bottom horizontal-center",
+            "image": "shopify://shop_images/Group_18.png",
+            "parallax_direction": "top",
+            "overlay_opacity": 6
+          }
+        }
+      },
+      "block_order": [
+        "image_r6XCDn"
+      ],
+      "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
+      "settings": {
+        "section_height": "550px",
+        "mobile_height": "auto",
+        "parallax": false,
+        "style": "dots",
+        "autoplay": false,
+        "autoplay_speed": 7,
+        "lazyload_images": false
+      }
+    },
+    "summer_25_collection_fe9dMF": {
+      "type": "summer-25-collection",
+      "name": "Summer '25 Collection",
+      "settings": {
+        "custom_grid_collection": "summer-25"
+      }
+    },
+    "black_text_image_split_PNHLiU": {
+      "type": "black-text-image-split",
+      "name": "Black Text and Image",
+      "settings": {
+        "image": "shopify://shop_images/med_ball_throw.png",
+        "background_image": "shopify://shop_images/Rectangle_47.png",
+        "background_video": "shopify://files/videos/202306071552 copy.mp4"
+      }
+    }
+  },
+  "order": [
+    "slideshow_i9rTTA",
+    "summer_25_collection_fe9dMF",
+    "black_text_image_split_PNHLiU"
+  ]
+}

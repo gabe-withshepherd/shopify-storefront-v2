@@ -1,0 +1,121 @@
+<section class="summer-25-collection">
+  <div class="page-width">
+    <div class="summer-25-header">
+      <h2 class="summer-25-title">SUMMER ‘25 COLLECTION</h2>
+      <p class="summer-25-subtext">Ultra-Light. Breathable. Ready To Train. Click in to see why.</p>
+    </div>
+
+    <div class="summer-25-grid">
+      {% comment %} {% assign selected_collection = collections[section.settings.custom_grid_collection] %} {% endcomment %}
+      {% assign product = all_products['men-s-performance-pilot-6-short'] %}
+      {% assign option_value = product.options_with_values[0] %}
+      {% for value in option_value.values %}
+        <p>{{ value }}</p>
+      {% endfor %}
+
+      {% comment %}
+        {% for product in selected_collection.products %}
+          <div class="summer-25-product-card">
+            <a href="{{ product.url }}">
+              <img
+                src="{{ product.featured_image | image_url }}"
+                width="400"
+                height="600"
+                loading="lazy"
+              >
+              <div class="summer-25-product-title">{{ product.title }} | MINT</div>
+              <div class="summer-25-product-price">{{ product.price | money }}</div>
+            </a>
+          </div>
+        {% endfor %}
+      {% endcomment %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .summer-25-collection {
+    padding: 1rem 0.5rem;
+    font-family: 'Barlow', sans-serif;
+    /* background: #fff; */
+  }
+
+  .summer-25-header {
+    text-align: left;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .summer-25-title {
+    font-size: 2rem;
+    font-weight: 40;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .summer-25-subtext {
+    font-size: 1.1rem;
+  }
+
+  .summer-25-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .summer-25-product-card {
+    text-align: center;
+    width: 400;
+    height: 400;
+  }
+
+  .summer-25-product-image {
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 1rem;
+  }
+
+  .summer-25-product-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+  }
+
+  .summer-25-product-price {
+    font-size: 0.9rem;
+    color: #888;
+  }
+
+  @media screen and (max-width: 768px) {
+    .summer-25-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .summer-25-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Summer '25 Collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "custom_grid_collection",
+      "label": "Choose Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Summer '25 Collection",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,221 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "collection-header": {
+      "type": "collection-header",
+      "settings": {
+        "enable": false,
+        "collection_image_enable": false,
+        "parallax": true,
+        "parallax_direction": "top"
+      }
+    },
+    "promo-grid": {
+      "type": "promo-grid",
+      "blocks": {
+        "advanced": {
+          "type": "advanced",
+          "settings": {
+            "subheading": "",
+            "heading": "The Tailwind in Short and Long-Sleeve",
+            "textarea": "",
+            "cta_text1": "Shop The Collection",
+            "cta_link1": "shopify://products/the-activeshirt®-7pacific",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify://shop_images/7Pacific_May_11_2023-1193.jpg",
+            "video_url": "",
+            "width": "100",
+            "height": 560,
+            "text_size": 85,
+            "text_align": "vertical-center horizontal-center",
+            "color_accent": "#126e8f",
+            "boxed": false,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "advanced"
+      ],
+      "settings": {
+        "full_width": false,
+        "gutter_size": 20,
+        "space_above": true,
+        "space_below": false
+      }
+    },
+    "main-collection": {
+      "type": "main-collection",
+      "blocks": {
+        "collection_description": {
+          "type": "collection_description",
+          "settings": {}
+        },
+        "subcollections": {
+          "type": "subcollections",
+          "settings": {
+            "subcollections_per_row": 5
+          }
+        },
+        "product_grid": {
+          "type": "product_grid",
+          "settings": {
+            "enable_collection_count": false,
+            "per_row": 2,
+            "rows_per_page": 10,
+            "mobile_flush_grid": false
+          }
+        }
+      },
+      "block_order": [
+        "collection_description",
+        "subcollections",
+        "product_grid"
+      ],
+      "settings": {
+        "enable_sidebar": false,
+        "collapsed": false,
+        "filter_style": "drawer",
+        "enable_color_swatches": false,
+        "enable_sort": false
+      }
+    },
+    "672a0364-3a7d-4b43-81f8-c0cf740a34c1": {
+      "type": "background-image-text",
+      "custom_css": [],
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "<h1>Fabric that keeps you cool</h1><p>Our merino wool naturally wicks sweat and breathes. In fact, it can hold up to four times its weight in water before feeling damp. All of that means more reps, faster sprints, and less fatigue. </p>",
+        "button_label": "",
+        "button_link": "",
+        "image": "shopify://shop_images/custom_content_1.jpg",
+        "layout": "right",
+        "height": 550,
+        "framed": false,
+        "parallax": true,
+        "parallax_direction": "top"
+      }
+    },
+    "246c5b81-5d96-43b6-97cf-cf5f28b89450": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17283795517757__246c5b81-5d96-43b6-97cf-cf5f28b89450-1686400596638a66d8-0": {
+          "type": "heading",
+          "settings": {
+            "title": ""
+          }
+        },
+        "template--17283795517757__246c5b81-5d96-43b6-97cf-cf5f28b89450-1686400596638a66d8-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "enlarge_text": false,
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17283795517757__246c5b81-5d96-43b6-97cf-cf5f28b89450-1686400596638a66d8-0",
+        "template--17283795517757__246c5b81-5d96-43b6-97cf-cf5f28b89450-1686400596638a66d8-1"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "fe2fefea-f22e-4f1d-a0d2-d2ae1ba6bd79": {
+      "type": "background-image-text",
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "<h1>Timeless Style</h1><p>The Tailwind doesn't only help you perform at your athletic peak. We carefully engineered the fit & seams to make you look your best. You'll want to wear it before, during, and after your workout.</p>",
+        "button_label": "",
+        "button_link": "",
+        "image": "shopify://shop_images/buster_style.jpg",
+        "layout": "right",
+        "height": 550,
+        "framed": false,
+        "parallax": true,
+        "parallax_direction": "top"
+      }
+    },
+    "7aa40739-3091-422b-9a0f-8405c5466d58": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17283795517757__7aa40739-3091-422b-9a0f-8405c5466d58-1686400596638a66d8-0": {
+          "type": "heading",
+          "settings": {
+            "title": ""
+          }
+        },
+        "template--17283795517757__7aa40739-3091-422b-9a0f-8405c5466d58-1686400596638a66d8-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "enlarge_text": false,
+            "text": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--17283795517757__7aa40739-3091-422b-9a0f-8405c5466d58-1686400596638a66d8-0",
+        "template--17283795517757__7aa40739-3091-422b-9a0f-8405c5466d58-1686400596638a66d8-1"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": false,
+        "divider": false
+      }
+    },
+    "0c8744c2-d4f5-4f66-aee1-1fb9df7c8d9e": {
+      "type": "background-image-text",
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "<h2>Designed for Athletes</h2><p>We contoured the Tailwind to the exact positions where athletes generate heat. Its mesh paneling allows maximum air flow so you can push through your toughest training sessions, no matter the temperature outside.</p>",
+        "button_label": "",
+        "button_link": "",
+        "image": "shopify://shop_images/juan_rear_athlete.jpg",
+        "layout": "left",
+        "height": 550,
+        "framed": false,
+        "parallax": true,
+        "parallax_direction": "top"
+      }
+    },
+    "5ff245d0-176e-4679-a361-21c30c87b341": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Tailwind ® Fall & Winter 23 Collection",
+        "home_featured_products": "tailwind-1-0-®-fall-winter-23-collection",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": true,
+        "view_all": true,
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "collection-header",
+    "promo-grid",
+    "main-collection",
+    "672a0364-3a7d-4b43-81f8-c0cf740a34c1",
+    "246c5b81-5d96-43b6-97cf-cf5f28b89450",
+    "fe2fefea-f22e-4f1d-a0d2-d2ae1ba6bd79",
+    "7aa40739-3091-422b-9a0f-8405c5466d58",
+    "0c8744c2-d4f5-4f66-aee1-1fb9df7c8d9e",
+    "5ff245d0-176e-4679-a361-21c30c87b341"
+  ]
+}

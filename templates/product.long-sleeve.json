@@ -1,0 +1,220 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_labels": true,
+            "picker_type": "button",
+            "product_dynamic_variants_enable": true,
+            "color_swatches": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "is_tab": true
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": false,
+            "surface_pickup_enable": false
+          }
+        }
+      },
+      "block_order": [
+        "price",
+        "variant_picker",
+        "description",
+        "separator",
+        "buy_buttons"
+      ],
+      "settings": {
+        "sku_enable": false,
+        "image_position": "left",
+        "image_size": "large",
+        "product_zoom_enable": true,
+        "thumbnail_position": "below",
+        "thumbnail_height": "flexible",
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
+    "sub": {
+      "type": "product-full-width",
+      "disabled": true,
+      "settings": {
+        "max_width": true
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "disabled": true,
+      "settings": {
+        "product_recommendations_heading": "You may also like",
+        "related_count": 5
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "disabled": true,
+      "settings": {
+        "recent_count": 5
+      }
+    },
+    "collection-return": {
+      "type": "collection-return",
+      "disabled": true,
+      "settings": {}
+    },
+    "84192693-d189-4603-9339-7429881640cd": {
+      "type": "rich-text",
+      "blocks": {
+        "template--17283795943741__84192693-d189-4603-9339-7429881640cd-16861087556419f587-0": {
+          "type": "heading",
+          "settings": {
+            "title": "Experience A Shirt Like No Other"
+          }
+        },
+        "template--17283795943741__84192693-d189-4603-9339-7429881640cd-16861087556419f587-1": {
+          "type": "text",
+          "settings": {
+            "enlarge_text": true,
+            "text": "<p>Feel lightweight and breathable during your entire workout. With innovative and proprietary fabrics, custom fits specifically for athletes, and the mesh paneling in the critical areas, you will be able to conquer any workout and never have to worry about the performance of the shirt inhibiting you from reaching your goals.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--17283795943741__84192693-d189-4603-9339-7429881640cd-16861087556419f587-0",
+        "template--17283795943741__84192693-d189-4603-9339-7429881640cd-16861087556419f587-1"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "075690b2-5aed-434c-81d3-f777efcd33a5": {
+      "type": "hero-video",
+      "settings": {
+        "title": "Feel Light, During Any Workout",
+        "title_size": 54,
+        "subheading": "Our fabric will never feel heavy, no matter how much you sweat",
+        "link_text": "",
+        "link": "",
+        "color_accent": "rgba(0,0,0,0)",
+        "text_align": "vertical-center horizontal-center",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/6eb5b1a0a43043e380a63fbd1b471c9e.mp4",
+        "overlay_opacity": 0,
+        "section_height": "550px",
+        "mobile_height": "auto"
+      }
+    },
+    "b2be99dd-e2ef-403e-a4d7-3bbc478b86d3": {
+      "type": "text-and-image",
+      "settings": {
+        "image": "shopify://shop_images/juan_celebrating.jpg",
+        "image2": "shopify://shop_images/Screen_Shot_2023-06-05_at_3.55.50_PM.png",
+        "subtitle": "",
+        "title": "The Shirt Works Harder The More You Sweat",
+        "text": "<p>Pair large text with an image to tell a story, explain a detail about your product, or describe a new promotion.</p>",
+        "button_label": "buy now",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "layout": "right",
+        "divider": false
+      }
+    },
+    "77270b3a-0c34-4516-b34a-21a794d3c4d1": {
+      "type": "advanced-content",
+      "blocks": {
+        "template--19385675284797__77270b3a-0c34-4516-b34a-21a794d3c4d1-16861639940ba48fed-1": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2>Versatile and fitted Sleeves</h2><p>With athletes top of mind, we made sleeves that can stretch, mold to your arm and provide cooling properties so when reach your peak, the shirt will always help you reach new heights.</p>",
+            "width": "100%",
+            "alignment": "center"
+          }
+        },
+        "template--19385675284797__77270b3a-0c34-4516-b34a-21a794d3c4d1-16861639940ba48fed-0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/7Pacific_May_11_2023-2374.jpg",
+            "link": "",
+            "width": "50%",
+            "alignment": "center"
+          }
+        },
+        "4de2a400-4ccf-4447-b5f9-7b3d129bc789": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/7Pacific_May_11_2023-1206.jpg",
+            "link": "",
+            "width": "50%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "template--19385675284797__77270b3a-0c34-4516-b34a-21a794d3c4d1-16861639940ba48fed-1",
+        "template--19385675284797__77270b3a-0c34-4516-b34a-21a794d3c4d1-16861639940ba48fed-0",
+        "4de2a400-4ccf-4447-b5f9-7b3d129bc789"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "413decef-6442-451a-8325-ed4fa0c45ed3": {
+      "type": "blog-posts",
+      "settings": {
+        "title": "See Why Our Products Are Unmatched By Checking Out Our Blog",
+        "blog": "materials-and-your-favorite-workout-shirt",
+        "post_limit": 3,
+        "blog_show_tags": false,
+        "blog_show_date": true,
+        "blog_show_comments": false,
+        "blog_show_author": false,
+        "view_all": true,
+        "blog_image_size": "wide",
+        "divider": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sub",
+    "product-recommendations",
+    "recently-viewed",
+    "collection-return",
+    "84192693-d189-4603-9339-7429881640cd",
+    "075690b2-5aed-434c-81d3-f777efcd33a5",
+    "b2be99dd-e2ef-403e-a4d7-3bbc478b86d3",
+    "77270b3a-0c34-4516-b34a-21a794d3c4d1",
+    "413decef-6442-451a-8325-ed4fa0c45ed3"
+  ]
+}
