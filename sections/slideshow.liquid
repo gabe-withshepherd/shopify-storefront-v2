@@ -32,8 +32,6 @@
             >
               <path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/>
             </svg>
-            <!-- <span class="icon__fallback-text">{{ 'sections.slideshow.play_slideshow' | t }}</span> -->
-            <span class="icon__fallback-text">Press me2</span>
           </span>
         </button>
       {%- endif -%}
@@ -284,6 +282,7 @@
                                   class="btn{% if block.settings.color_accent contains 'rgba(0,0,0,0)' %} btn--inverse{% endif %}"
                                 >
                                   {{ block.settings.link_text }}
+                                  {% comment %} OWN THE START {% endcomment %}
                                 </a>
                               {%- endif -%}
                               {%- if block.settings.link_text_2 != blank -%}
@@ -545,7 +544,7 @@
           "id": "parallax_direction",
           "label": "t:sections.background-image-text.settings.parallax_direction.label",
           "info": "Only applied when parallax is enabled in this section.",
-          "default" : "top",
+          "default": "top",
           "options": [
             {
               "value": "top",

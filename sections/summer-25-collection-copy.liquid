@@ -1,0 +1,263 @@
+<section class="summer-25-collection">
+  <div class="page-width">
+    <div class="summer-25-header">
+      <h2 class="summer-25-title">SUMMER '25 COLLECTION</h2>
+      <p class="summer-25-subtext">Ultra-Light. Breathable. Ready To Train. Click in to see why.</p>
+    </div>
+
+    <div class="product-grid">
+      {% comment %} {% assign selected_collection = collections[section.settings.custom_grid_collection] %} {% endcomment %}
+      {% assign product = all_products['men-s-performance-pilot-6-short'] %}
+      {% assign color_index = null %}
+
+      {% comment %} <pre>{{ product.options_with_values | json }}</pre> {% endcomment %}
+
+      {% for option in product.options_with_values %}
+        {% if option.name == 'Color' %}
+          {% assign color_index = forloop.index0 %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign shown_colors = '' %}
+
+      {% for variant in product.variants %}
+        {% assign color = variant.options[color_index] %}
+        {% unless shown_colors contains color %}
+          {% assign shown_colors = shown_colors | append: color | append: ',' %}
+
+          <div class="product-cell" data-product-id="{{ product.id }}" data-current-image="0">
+            <div class="product-image-container">
+              <img
+                src="{{ variant.featured_image | image_url }}"
+                alt="{{ product.title }} - {{ color }}"
+                class="product-image active"
+                width="400"
+                height="600"
+              >
+
+              {% if product.images.size > 1 %}
+                {% for image in product.images %}
+                  {% if forloop.index0 > 0 %}
+                    <img
+                      src="{{ image | image_url }}"
+                      alt="Product image {{ forloop.index }}"
+                      class="product-image"
+                      width="400"
+                      height="600"
+                    >
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+
+              <!-- Navigation Arrows -->
+              <div class="image-navigation">
+                <button class="nav-arrow nav-prev" aria-label="Previous image">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="nav-arrow nav-next" aria-label="Next image">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="product-info">
+              <h3 class="product-title">{{ product.title }} - {{ color }}</h3>
+              <p class="product-price">{{ variant.price | money }}</p>
+            </div>
+          </div>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .summer-25-collection {
+    padding: 1rem 0.5rem;
+    font-family: 'Barlow', sans-serif;
+  }
+
+  .summer-25-header {
+    text-align: left;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .summer-25-title {
+    font-size: 2rem;
+    font-weight: 40;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .summer-25-subtext {
+    font-size: 1.1rem;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .product-cell {
+    text-align: left;
+    position: relative;
+    outline: 1px solid black;
+    overflow: hidden;
+  }
+
+  .product-image-container {
+    position: relative;
+    overflow: hidden;
+    max-height: 479px;
+  }
+
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .product-image.active {
+    opacity: 1;
+    position: relative;
+  }
+
+  .product-info {
+    width: 100%;
+    height: 100%;
+    padding-left: 5px;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Navigation Arrows */
+  .image-navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  .product-cell:hover .image-navigation {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-arrow {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333;
+  }
+
+  .nav-arrow:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+
+  .nav-arrow:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 2fr;
+    }
+
+    .nav-arrow {
+      width: 35px;
+      height: 35px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productCells = document.querySelectorAll('.product-cell');
+
+    productCells.forEach((cell) => {
+      const images = cell.querySelectorAll('.product-image');
+      const prevBtn = cell.querySelector('.nav-prev');
+      const nextBtn = cell.querySelector('.nav-next');
+      const colorOptions = cell.querySelectorAll('.color-option');
+      let currentImageIndex = 0;
+
+      // Image navigation
+      if (images.length > 1) {
+        function showImage(index) {
+          images.forEach((img, i) => {
+            img.classList.toggle('active', i === index);
+          });
+          currentImageIndex = index;
+
+          // Update button states
+          if (prevBtn) prevBtn.disabled = index === 0;
+          if (nextBtn) nextBtn.disabled = index === images.length - 1;
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentImageIndex > 0) {
+              showImage(currentImageIndex - 1);
+            }
+          });
+        }
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (currentImageIndex < images.length - 1) {
+              showImage(currentImageIndex + 1);
+            }
+          });
+        }
+      }
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Summer '25 Collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "custom_grid_collection",
+      "label": "Choose Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Summer '25 Collection",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

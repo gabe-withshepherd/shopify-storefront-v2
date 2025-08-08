@@ -1,34 +1,77 @@
 <section class="summer-25-collection">
   <div class="page-width">
     <div class="summer-25-header">
-      <h2 class="summer-25-title">SUMMER ‘25 COLLECTION</h2>
+      <h2 class="summer-25-title">SUMMER '25 COLLECTION</h2>
       <p class="summer-25-subtext">Ultra-Light. Breathable. Ready To Train. Click in to see why.</p>
     </div>
 
-    <div class="summer-25-grid">
+    <div class="product-grid">
       {% comment %} {% assign selected_collection = collections[section.settings.custom_grid_collection] %} {% endcomment %}
       {% assign product = all_products['men-s-performance-pilot-6-short'] %}
-      {% assign option_value = product.options_with_values[0] %}
-      {% for value in option_value.values %}
-        <p>{{ value }}</p>
+      {% assign color_index = null %}
+
+      {% comment %} <pre>{{ product.options_with_values | json }}</pre> {% endcomment %}
+
+      {% for option in product.options_with_values %}
+        {% if option.name == 'Color' %}
+          {% assign color_index = forloop.index0 %}
+        {% endif %}
       {% endfor %}
 
-      {% comment %}
-        {% for product in selected_collection.products %}
-          <div class="summer-25-product-card">
-            <a href="{{ product.url }}">
+      {% assign shown_colors = '' %}
+
+      {% for variant in product.variants %}
+        {% assign color = variant.options[color_index] %}
+        {% unless shown_colors contains color %}
+          {% assign shown_colors = shown_colors | append: color | append: ',' %}
+
+          <div class="product-cell" data-product-handle="{{ product.handle }}">
+            <div class="product-image-container">
               <img
-                src="{{ product.featured_image | image_url }}"
+                src="{{ variant.featured_image | image_url }}"
+                alt="{{ product.title }} - {{ color }}"
+                class="product-image"
                 width="400"
                 height="600"
-                loading="lazy"
               >
-              <div class="summer-25-product-title">{{ product.title }} | MINT</div>
-              <div class="summer-25-product-price">{{ product.price | money }}</div>
-            </a>
+              {% if product.images.size > 1 %}
+                <img
+                  src="{{ product.images[0] | image_url }}"
+                  alt="Hover image"
+                  class="product-image-hover"
+                  width="400"
+                  height="600"
+                >
+              {% endif %}
+
+              <!-- Color Swatches Container -->
+              <div class="color-swatches-container">
+                {% assign all_colors = '' %}
+                {% for v in product.variants %}
+                  {% assign variant_color = v.options[color_index] %}
+                  {% unless all_colors contains variant_color %}
+                    {% assign all_colors = all_colors | append: variant_color | append: ',' %}
+                    <div class="color-swatch-container">
+                      <div class="color-swatch-tooltip">{{ variant_color }}</div>
+                      <a
+                        href="{{ product.url }}?variant={{ v.id }}"
+                        class="color-swatch"
+                        data-color="{{ variant_color }}"
+                      >
+                      </a>
+                    </div>
+                  {% endunless %}
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="product-info">
+              <h3 class="product-title">{{ product.title }} - {{ color }}</h3>
+              <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
+            </div>
           </div>
-        {% endfor %}
-      {% endcomment %}
+        {% endunless %}
+      {% endfor %}
     </div>
   </div>
 </section>
@@ -37,7 +80,6 @@
   .summer-25-collection {
     padding: 1rem 0.5rem;
     font-family: 'Barlow', sans-serif;
-    /* background: #fff; */
   }
 
   .summer-25-header {
@@ -48,7 +90,7 @@
 
   .summer-25-title {
     font-size: 2rem;
-    font-weight: 40;
+    font-weight: 400;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
   }
@@ -57,49 +99,233 @@
     font-size: 1.1rem;
   }
 
-  .summer-25-grid {
+  .product-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 0.5rem;
   }
 
-  .summer-25-product-card {
-    text-align: center;
-    width: 400;
-    height: 400;
+  .product-cell {
+    text-align: left;
+    position: relative;
+    outline: 1px solid black;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
   }
 
-  .summer-25-product-image {
+  .product-cell:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .product-image {
     width: 100%;
-    max-width: 100%;
     object-fit: cover;
-    border: 1px solid #e5e5e5;
-    margin-bottom: 1rem;
+    transition: opacity 0.3s ease;
   }
 
-  .summer-25-product-title {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 0.25rem;
+  .product-title {
+    padding: 0;
+    padding-top: 6px;
+    margin-bottom: 0;
+    font-weight: 550;
   }
 
-  .summer-25-product-price {
-    font-size: 0.9rem;
-    color: #888;
+  .product-price {
+    padding: 0;
+    margin-bottom: 8px;
+    font-size: 0.8rem;
   }
 
-  @media screen and (max-width: 768px) {
-    .summer-25-grid {
-      grid-template-columns: 1fr 1fr;
+  .product-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+    padding-left: 5px;
+  }
+
+  .product-image-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-cell:hover .product-image-hover {
+    opacity: 1;
+  }
+
+  /* Color Swatches Styles */
+  .color-swatches-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 10px;
+    display: flex;
+    justify-content: flex-start;
+    transform: translateY(110%);
+    transition: transform 0.2s ease;
+  }
+
+  .product-cell:hover .color-swatches-container {
+    transform: translateY(-10%);
+  }
+
+  .color-swatch-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cascadeIn 0.2s ease forwards;
+  }
+
+  /* I have 5 here because I will have at most 5 colors */
+  .color-swatch-container:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .color-swatch-container:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .color-swatch-container:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .color-swatch-container:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .color-swatch-container:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes cascadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  @media screen and (max-width: 480px) {
-    .summer-25-grid {
-      grid-template-columns: 1fr;
+  /* Tooltip Styles */
+  .color-swatch-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #666;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    margin-bottom: 5px;
+    z-index: 10;
+  }
+
+  .color-swatch-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: #666;
+  }
+
+  .color-swatch-container:hover .color-swatch-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .color-swatch {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    transition: transform 0.2s ease;
+  }
+
+  @media (max-width: 768px) {
+    .product-grid {
+      grid-template-columns: 2fr;
+    }
+
+    .color-swatches-container {
+      padding: 6px;
+      gap: 4px;
     }
   }
 </style>
+
+<script>
+  document.querySelectorAll('.color-swatch').forEach((swatch) => {
+    const color = swatch.dataset.color;
+    if (color === 'Mountain Mist') {
+      console.log('Mountain Mist');
+      swatch.style.backgroundColor = '#6A7E8D';
+    }
+    if (color === 'Midnight') {
+      swatch.style.backgroundColor = '#101820';
+    }
+    if (color === 'Mint') {
+      swatch.style.backgroundColor = '#B4C8C2';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    // Add click handler for product cells
+    const productCells = document.querySelectorAll('.product-cell');
+
+    productCells.forEach((cell) => {
+      cell.addEventListener('click', function (e) {
+        // Don't navigate if clicking on a color swatch (let the swatch handle navigation)
+        if (e.target.closest('.color-swatch')) {
+          return;
+        }
+
+        const productHandle = this.dataset.productHandle;
+        if (productHandle) {
+          window.location.href = `/products/${productHandle}`;
+        }
+      });
+
+      // Add hover event to trigger color swatch animations
+      const colorSwatchesContainer = cell.querySelector('.color-swatches-container');
+      const colorSwatchContainers = cell.querySelectorAll('.color-swatch-container');
+
+      cell.addEventListener('mouseenter', function () {
+        // Reset animations
+        colorSwatchContainers.forEach((container) => {
+          container.style.animation = 'none';
+          container.offsetHeight; // Trigger reflow
+          container.style.animation = null;
+        });
+      });
+    });
+  });
+</script>
 
 {% schema %}
 {

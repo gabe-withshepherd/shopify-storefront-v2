@@ -1,0 +1,40 @@
+<section class="summer-25-collection">
+  <div class="page-width">
+    <div class="custom-hero-image">
+      <h1>Custom Hero Image</h1>
+    </div>
+  </div>
+</section>
+
+<style>
+  .custom-hero-image {
+    background-image: url({{ section.settings.custom_hero_image | image_url: width: 1920 }});
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Custom Hero Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "custom_hero_image",
+      "label": "Choose Hero Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Hero Image",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
