@@ -9,6 +9,29 @@
  */
 {
   "sections": {
+    "custom_hero_image_kKQLfE": {
+      "type": "custom-hero-image",
+      "name": "Custom Hero Image",
+      "settings": {
+        "custom_hero_image": "shopify://shop_images/CleanShot_2025-06-26_at_22.10.41_2x_0911b881-2aa4-49a7-a71d-22248a593724.jpg"
+      }
+    },
+    "summer_25_collection_fe9dMF": {
+      "type": "summer-25-collection",
+      "name": "Summer '25 Collection",
+      "settings": {
+        "custom_grid_collection": "summer-25"
+      }
+    },
+    "black_text_image_split_PNHLiU": {
+      "type": "black-text-image-split",
+      "name": "Black Text and Image",
+      "settings": {
+        "image": "shopify://shop_images/med_ball_throw.png",
+        "background_image": "shopify://shop_images/Rectangle_47.png",
+        "background_video": "shopify://files/videos/202306071552 copy.mp4"
+      }
+    },
     "slideshow_i9rTTA": {
       "type": "slideshow",
       "blocks": {
@@ -44,27 +67,12 @@
         "autoplay_speed": 7,
         "lazyload_images": false
       }
-    },
-    "summer_25_collection_fe9dMF": {
-      "type": "summer-25-collection",
-      "name": "Summer '25 Collection",
-      "settings": {
-        "custom_grid_collection": "summer-25"
-      }
-    },
-    "black_text_image_split_PNHLiU": {
-      "type": "black-text-image-split",
-      "name": "Black Text and Image",
-      "settings": {
-        "image": "shopify://shop_images/med_ball_throw.png",
-        "background_image": "shopify://shop_images/Rectangle_47.png",
-        "background_video": "shopify://files/videos/202306071552 copy.mp4"
-      }
     }
   },
   "order": [
-    "slideshow_i9rTTA",
+    "custom_hero_image_kKQLfE",
     "summer_25_collection_fe9dMF",
-    "black_text_image_split_PNHLiU"
+    "black_text_image_split_PNHLiU",
+    "slideshow_i9rTTA"
   ]
 }

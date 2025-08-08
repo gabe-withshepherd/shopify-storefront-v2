@@ -1,24 +1,144 @@
-<section class="summer-25-collection">
-  <div class="page-width">
-    <div class="custom-hero-image">
-      <h1>Custom Hero Image</h1>
+<section id="CustomHero-{{ section.id }}" class="custom-hero-section">
+  <div
+    class="custom-hero-image{% if section.settings.custom_hero_image != blank %} has-ratio{% else %} custom-hero-image--fallback{% endif %}"
+    style="background-image: url('{{ section.settings.custom_hero_image | image_url }}');{% if section.settings.custom_hero_image != blank %} padding-bottom: {{ 100 | divided_by: section.settings.custom_hero_image.aspect_ratio }}%;{% endif %}"
+  >
+    <div class="custom-hero-content">
+      <div class="intro-badge"><em>INTRODUCING</em></div>
+      <img
+        src="https://cdn.shopify.com/s/files/1/0686/3988/3581/files/white_logo.svg?v=1754627217"
+        class="product-image"
+        width="400"
+        height="600"
+      >
+      {% comment %}
+        {% if section.settings.intro_image != blank %}
+          {{
+            section.settings.intro_image
+            | image_url: width: 800
+            | image_tag: class: 'intro-image', alt: 'Introducing graphic'
+          }}
+        {% endif %}
+      {% endcomment %}
+      <a href="#" class="hero-cta">OWN THE START</a>
     </div>
   </div>
 </section>
 
 <style>
+  /* Initial state before animation */
+  .custom-hero-section .custom-hero-image {
+    width: 100%;
+    opacity: 0;
+    transform: scale(1.04);
+    transform-origin: center center;
+    will-change: opacity, transform;
+  }
+
+  /* Triggered state */
+  .custom-hero-section.is-ready .custom-hero-image {
+    animation: heroFadeInScale-{{ section.id }} 800ms ease-out forwards;
+  }
+
+  @keyframes heroFadeInScale-{{ section.id }} {
+    0% {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   .custom-hero-image {
-    background-image: url({{ section.settings.custom_hero_image | image_url: width: 1920 }});
+    position: relative;
+    width: 100%;
     background-size: cover;
     background-position: center;
-    height: 100vh;
-    width: 100%;
+    background-repeat: no-repeat;
+  }
+
+  /* When we know the image ratio, we use padding-bottom to create the correct height */
+  .custom-hero-image.has-ratio {
+    height: 0;
+  }
+
+  /* Fallback height only when no image is set */
+  .custom-hero-image--fallback {
+    min-height: 60vh;
+  }
+
+  .custom-hero-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    color: white;
+    justify-content: flex-start;
+    padding-top: 32px;
+    gap: 12px;
+  }
+
+  .intro-badge {
+    background: #f2f2f2;
+    color: #333;
+    margin-top: 100px;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    line-height: 1;
+    letter-spacing: 0.04em;
+  }
+
+  .intro-badge em {
+    font-style: italic;
+  }
+
+  .intro-image {
+    width: min(90%, 340px);
+    height: auto;
+    display: block;
+  }
+
+  .hero-cta {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff7a00;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
   }
 </style>
+
+<script>
+  (function () {
+    var section = document.getElementById('CustomHero-{{ section.id }}');
+    if (!section) return;
+    var markReady = function () {
+      section.classList.add('is-ready');
+    };
+
+    var bgUrl = '{{ section.settings.custom_hero_image | image_url }}';
+    if (bgUrl) {
+      var preloader = new Image();
+      preloader.onload = markReady;
+      preloader.onerror = markReady;
+      preloader.src = bgUrl;
+    } else {
+      markReady();
+    }
+  })();
+</script>
 
 {% schema %}
 {
@@ -28,6 +148,11 @@
       "type": "image_picker",
       "id": "custom_hero_image",
       "label": "Choose Hero Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "intro_image",
+      "label": "Intro Overlay Image"
     }
   ],
   "presets": [
