@@ -23,6 +23,13 @@
         "custom_grid_collection": "summer-25"
       }
     },
+    "core_values_homepage_PmmBmy": {
+      "type": "core-values-homepage",
+      "name": "Core Values Homepage",
+      "settings": {
+        "image": "shopify://shop_images/core_values_picture.png"
+      }
+    },
     "black_text_image_split_PNHLiU": {
       "type": "black-text-image-split",
       "name": "Black Text and Image",
@@ -57,6 +64,7 @@
       "block_order": [
         "image_r6XCDn"
       ],
+      "disabled": true,
       "name": "t:sections.slideshow.presets.hero_optional_slideshow.name",
       "settings": {
         "section_height": "550px",
@@ -72,6 +80,7 @@
   "order": [
     "custom_hero_image_kKQLfE",
     "summer_25_collection_fe9dMF",
+    "core_values_homepage_PmmBmy",
     "black_text_image_split_PNHLiU",
     "slideshow_i9rTTA"
   ]
