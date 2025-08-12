@@ -4,23 +4,23 @@
     style="background-image: url('{{ section.settings.custom_hero_image | image_url }}');{% if section.settings.custom_hero_image != blank %} padding-bottom: {{ 100 | divided_by: section.settings.custom_hero_image.aspect_ratio }}%;{% endif %}"
   >
     <div class="custom-hero-content">
-      <div class="intro-badge"><em>INTRODUCING</em></div>
-      <img
-        src="https://cdn.shopify.com/s/files/1/0686/3988/3581/files/white_logo.svg?v=1754627217"
-        class="product-image"
-        width="400"
-        height="600"
-      >
-      {% comment %}
-        {% if section.settings.intro_image != blank %}
-          {{
-            section.settings.intro_image
-            | image_url: width: 800
-            | image_tag: class: 'intro-image', alt: 'Introducing graphic'
-          }}
-        {% endif %}
-      {% endcomment %}
-      <a href="#" class="hero-cta">OWN THE START</a>
+      <div class="intro-content">
+        <div class="intro-badge">
+          <em class="intro-badge-text">INTRODUCING</em>
+        </div>
+        <img
+          src="https://cdn.shopify.com/s/files/1/0686/3988/3581/files/white_logo2.svg?v=1754627217"
+          class="intro-logo-image"
+          width="400"
+          height="600"
+        >
+        <div class="intro-text">DISCIPLINE LOOKS GOOD NOW</div>
+      </div>
+
+      <button class="hero-cta" onclick="window.location.href='/pages/membership'">
+        OWN THE START
+        {% render 'custom-icons', icon: 'chevron-right' %}
+      </button>
     </div>
   </div>
 </section>
@@ -31,7 +31,6 @@
     width: 100%;
     opacity: 0;
     transform: scale(1.04);
-    transform-origin: center center;
     will-change: opacity, transform;
   }
 
@@ -78,45 +77,107 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* justify-content: flex-start; */
+    justify-content: space-between;
+    gap: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .intro-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    padding-top: 32px;
-    gap: 12px;
+    gap: clamp(10px, 2vw, 30px);
+    padding-top: clamp(5%, 8vh, 10%);
+    padding-left: clamp(2em, 5vw, 4em);
+    padding-right: clamp(2em, 5vw, 4em);
+    flex: 1;
   }
 
   .intro-badge {
-    background: #f2f2f2;
-    color: #333;
-    margin-top: 100px;
-    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: clamp(6px, 1.5vw, 12px) clamp(8px, 2vw, 12px);
     border-radius: 4px;
-    font-size: 12px;
+    font-size: clamp(12px, 2.5vw, 16px);
     line-height: 1;
     letter-spacing: 0.04em;
   }
 
-  .intro-badge em {
+  .intro-badge-text {
+    color: #fff;
     font-style: italic;
   }
 
-  .intro-image {
-    width: min(90%, 340px);
+  .intro-logo-image {
+    width: clamp(90vw, 90vw, 90vw);
     height: auto;
+    padding: 0;
+    margin: 0;
     display: block;
   }
 
-  .hero-cta {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #ff7a00;
-    color: #fff;
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 4px;
-    font-weight: 600;
+  .intro-text {
+    font-size: clamp(24px, 6vw, 80px);
+    font-weight: 400;
     letter-spacing: 0.03em;
     text-transform: uppercase;
+    color: #fff;
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    background: #cb5c28;
+    color: #fff;
+    text-decoration: none;
+    gap: 0.25rem;
+    padding: clamp(8px, .9vw, 12px);
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: clamp(14px, 3vw, 1.2rem);
+    letter-spacing: 0.03em;
+    margin-bottom: 10px;
+    transition: background 0.3s ease;
+  }
+
+  .icon {
+    display: block;
+    border-color: none;
+    background-color: transparent;
+    stroke: currentColor; /* Match icon color to button text color */
+    fill: transparent;
+    transition: transform 0.3s ease; /* Add transition for movement */
+  }
+
+  .hero-cta:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  .hero-cta:hover .icon {
+    transform: translateX(3px) scale(1.1); /* Move icon slightly to the right and enlarge on hover */
+  }
+
+  /* Mobile-specific adjustments */
+  @media (max-width: 768px) {
+    .intro-content {
+      padding-top: 10%;
+      padding-left: 2em;
+      padding-right: 2em;
+      gap: 15px;
+    }
+
+    .intro-text {
+      font-size: clamp(12px, 8vw, 26px);
+      line-height: 1.2;
+    }
+
+    .intro-logo-image {
+      width: clamp(80vw, 80vw, 80vw);
+    }
+
   }
 </style>
 
@@ -148,11 +209,6 @@
       "type": "image_picker",
       "id": "custom_hero_image",
       "label": "Choose Hero Image"
-    },
-    {
-      "type": "image_picker",
-      "id": "intro_image",
-      "label": "Intro Overlay Image"
     }
   ],
   "presets": [
