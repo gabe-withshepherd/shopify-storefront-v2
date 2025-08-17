@@ -85,6 +85,7 @@
     <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}">
   {%- endif -%}
 
+  <script src="{{ 'color-map.js' | asset_url }}" defer="defer"></script>
   <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
   {%- if request.page_type contains 'customers/' -%}

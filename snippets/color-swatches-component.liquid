@@ -1,0 +1,146 @@
+{% comment %}
+  Color Swatch Component
+  
+  Parameters:
+  - product: Required - The product object
+  - color_index: Required - The index of the color option in the product options
+  - current_color: Optional - The currently selected color (for active state)
+{% endcomment %}
+
+{% assign color_index = color_index | default: 0 %}
+
+<div class="color-swatches-container">
+  {% assign all_colors = '' %}
+  {% for variant in product.variants %}
+    {% assign variant_color = variant.options[color_index] %}
+    {% unless all_colors contains variant_color %}
+      {% assign all_colors = all_colors | append: variant_color | append: ',' %}
+      <div class="color-swatch-container">
+        <div class="color-swatch-tooltip">{{ variant_color }}</div>
+        <a
+          href="{{ product.url }}?variant={{ variant.id }}"
+          class="color-swatch-custom {% if variant_color == current_color %}active{% endif %}"
+          data-color="{{ variant_color }}"
+        >
+        </a>
+      </div>
+    {% endunless %}
+  {% endfor %}
+</div>
+
+<style>
+  /* Color Swatches Styles */
+  .color-swatches-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 6px 16px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 6px;
+    transform: translateY(110%);
+    transition: transform 0.2s ease;
+  }
+
+  .product-cell:hover .color-swatches-container {
+    transform: translateY(-10%);
+  }
+
+  .color-swatch-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cascadeIn 0.2s ease forwards;
+  }
+
+  .color-swatch-container:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .color-swatch-container:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .color-swatch-container:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .color-swatch-container:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+  .color-swatch-container:nth-child(5) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes cascadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Tooltip Styles */
+  .color-swatch-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #666;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    margin-bottom: 8px;
+    z-index: 10;
+  }
+
+  .color-swatch-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #666;
+  }
+
+  .color-swatch-container:hover .color-swatch-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .color-swatch-custom {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: transparent;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .color-swatch-custom:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  }
+
+  .color-swatch-custom.active {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  }
+
+  @media (max-width: 768px) {
+    .color-swatches-container {
+      padding: 6px;
+      gap: 4px;
+    }
+  }
+</style>
