@@ -1,0 +1,399 @@
+{% comment %}
+  Custom product section for AIRRAIL™ 6" Performance Shorts
+  Matches the design from assets/product page.png
+{% endcomment %}
+
+{% assign product = all_products['airrail-6-performance-shorts'] %}
+
+<div class="custom-product-shorts">
+  <div class="page-width">
+    <div class="product-layout">
+      <!-- Product Details Left Side -->
+      <div class="product-details">
+        <h1 class="product-title">{{ product.title }}</h1>
+
+        <div class="product-price">
+          <span class="price">{{ product.price | money }}</span>
+        </div>
+
+        <div class="product-description">
+          {{ product.description }}
+        </div>
+
+        <!-- Color Selector -->
+        {% assign color_option = product.options_by_name['Color'] %}
+        {% if color_option %}
+        <div class="color-selector">
+          <label class="option-label">COLOR</label>
+          <div class="color-swatches">
+            {% for color in color_option.values %}
+              <input type="radio" id="color-{{ color | handleize }}" name="color" value="{{ color | handleize }}" {% if forloop.first %}checked{% endif %}>
+              <label for="color-{{ color | handleize }}" class="color-swatch color-{{ color | handleize }}" data-color="{{ color | handleize }}"></label>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Size Selector -->
+        {% assign size_option = product.options_by_name['Size'] %}
+        {% if size_option %}
+        <div class="size-selector">
+          <div class="size-header">
+            <label class="option-label">SIZE</label>
+            <a href="#" class="size-guide">SIZE GUIDE</a>
+          </div>
+          <div class="size-options">
+            {% for size in size_option.values %}
+              <input type="radio" id="size-{{ size | handleize }}" name="size" value="{{ size }}" {% if forloop.index == 2 %}checked{% endif %}>
+              <label for="size-{{ size | handleize }}" class="size-option">{{ size }}</label>
+            {% endfor %}
+          </div>
+        </div>
+        {% endif %}
+
+        <!-- Add to Cart Button -->
+        <div class="add-to-cart-section">
+          {% form 'product', product %}
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            <button type="submit" class="btn-add-to-cart" id="addToCartBtn">
+              ADD TO CART
+            </button>
+          {% endform %}
+        </div>
+      </div>
+
+      <!-- Product Image Right Side -->
+      <div class="product-image">
+        {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | img_url: '800x800' }}"
+          alt="{{ product.featured_image.alt | default: product.title }}"
+          class="main-product-image"
+          width="100%"
+          height="100%"
+        >
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .custom-product-shorts {
+    padding: 60px 0;
+    background-color: #f5f5f5;
+  }
+
+  .product-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 80px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .product-details {
+    background: white;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .product-title {
+    font-family: var(--typeHeaderPrimary);
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    color: #000;
+    letter-spacing: 0.02em;
+  }
+
+  .product-price {
+    margin-bottom: 20px;
+  }
+
+  .price {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  .product-description {
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  .product-description p {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #333;
+    font-weight: 400;
+  }
+
+  .option-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: #000;
+  }
+
+  .color-selector {
+    margin-bottom: 24px;
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 8px;
+  }
+
+  .color-swatches input[type='radio'] {
+    display: none;
+  }
+
+  .color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 0 1px #ddd;
+  }
+
+  .color-sage {
+    background-color: #a8c5a5;
+  }
+
+  .color-gray {
+    background-color: #8a8a8a;
+  }
+
+  .color-black {
+    background-color: #2c2c2c;
+  }
+
+  .color-swatches input[type='radio']:checked + .color-swatch {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 3px #000;
+  }
+
+  .size-selector {
+    margin-bottom: 32px;
+  }
+
+  .size-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .size-guide {
+    font-size: 12px;
+    color: #000;
+    text-decoration: underline;
+    font-weight: 400;
+  }
+
+  .size-options {
+    display: flex;
+    gap: 8px;
+  }
+
+  .size-options input[type='radio'] {
+    display: none;
+  }
+
+  .size-option {
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 48px;
+    text-align: center;
+  }
+
+  .size-option:hover {
+    border-color: #000;
+  }
+
+  .size-options input[type='radio']:checked + .size-option {
+    background: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .add-to-cart-section {
+    margin-top: 32px;
+  }
+
+  .btn-add-to-cart {
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #a8c5a5;
+    color: #fff;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btn-add-to-cart:hover {
+    background-color: #96b593;
+  }
+
+  .btn-add-to-cart:disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .product-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main-product-image {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .product-layout {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .product-details {
+      padding-right: 0;
+      order: 2;
+    }
+
+    .product-image {
+      order: 1;
+    }
+
+    .product-title {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productVariants = {{ product.variants | json }};
+    const colorSwatches = document.querySelectorAll('.color-swatch');
+    const sizeOptions = document.querySelectorAll('input[name="size"]');
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    const variantIdInput = document.querySelector('input[name="id"]');
+
+    let selectedColor = null;
+    let selectedSize = null;
+
+    // Initialize selected values
+    const checkedColor = document.querySelector('input[name="color"]:checked');
+    const checkedSize = document.querySelector('input[name="size"]:checked');
+    
+    if (checkedColor) selectedColor = checkedColor.value;
+    if (checkedSize) selectedSize = checkedSize.value;
+
+    // Color swatch functionality
+    colorSwatches.forEach((swatch) => {
+      swatch.addEventListener('click', function () {
+        selectedColor = this.dataset.color;
+        updateVariant();
+        updateAddToCartColor(selectedColor);
+      });
+    });
+
+    // Size option functionality
+    sizeOptions.forEach((option) => {
+      option.addEventListener('change', function () {
+        selectedSize = this.value;
+        updateVariant();
+      });
+    });
+
+    function updateVariant() {
+      if (!selectedColor || !selectedSize) return;
+
+      const variant = productVariants.find(v => {
+        return v.option1?.toLowerCase() === selectedColor && v.option2?.toLowerCase() === selectedSize.toLowerCase();
+      });
+
+      if (variant && variantIdInput) {
+        variantIdInput.value = variant.id;
+        
+        // Update button based on availability
+        if (variant.available) {
+          addToCartBtn.disabled = false;
+          addToCartBtn.textContent = 'ADD TO CART';
+        } else {
+          addToCartBtn.disabled = true;
+          addToCartBtn.textContent = 'SOLD OUT';
+        }
+      }
+    }
+
+    function updateAddToCartColor(color) {
+      const colorMap = {
+        sage: '#a8c5a5',
+        gray: '#8a8a8a',
+        black: '#2c2c2c',
+      };
+
+      const defaultColor = '#a8c5a5';
+      const buttonColor = colorMap[color] || defaultColor;
+      
+      addToCartBtn.style.backgroundColor = buttonColor;
+
+      // Update hover color
+      const hoverColorMap = {
+        sage: '#96b593',
+        gray: '#7a7a7a',
+        black: '#1c1c1c',
+      };
+
+      const hoverColor = hoverColorMap[color] || '#96b593';
+
+      addToCartBtn.onmouseenter = function () {
+        if (!this.disabled) {
+          this.style.backgroundColor = hoverColor;
+        }
+      };
+
+      addToCartBtn.onmouseleave = function () {
+        this.style.backgroundColor = buttonColor;
+      };
+    }
+
+    // Initialize
+    updateVariant();
+    updateAddToCartColor(selectedColor || 'sage');
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Custom Product Shorts",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Product Settings"
+    }
+  ]
+}
+{% endschema %}
