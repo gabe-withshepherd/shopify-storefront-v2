@@ -23,18 +23,18 @@
         "250e6701-9acf-4b4b-96b4-917b6121b420": {
           "type": "logo_social",
           "settings": {
-            "logo": "shopify://shop_images/D9-7P-BR-Artwork-V5-040324_7Pacific_Logo_Light_Bg.png",
-            "desktop_logo_height": 21,
-            "container_width": 29
+            "logo": "shopify://shop_images/white_logo2.svg",
+            "desktop_logo_height": 47,
+            "container_width": 47
           }
         },
         "newsletter_LY8rmz": {
           "type": "newsletter",
           "settings": {
             "show_footer_title": true,
-            "title": "Sign up and save",
-            "text": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>",
-            "container_width": 36
+            "title": "Join The Membership",
+            "text": "<p>Join the membership to get access to upcoming events, special apps, motivating content, and exclusive discounts. </p>",
+            "container_width": 51
           }
         }
       },
@@ -47,7 +47,7 @@
         "show_currency_selector": false,
         "show_currency_flags": false,
         "show_payment_icons": false,
-        "show_copyright": true,
+        "show_copyright": false,
         "copyright_text": ""
       }
     }

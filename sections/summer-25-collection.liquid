@@ -6,7 +6,9 @@
     </div>
 
     <div class="product-grid">
-      {% assign products = 'men-s-performance-pilot-6-short,tracefiber-performance-tech-tee' | split: ',' %}
+      {% assign products = 'airrail-6-performance-shorts,tracefiber-performance-tech-tee,motionframe-running-hat'
+        | split: ','
+      %}
 
       {% for product_handle in products %}
         {% assign product = all_products[product_handle] %}
