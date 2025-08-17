@@ -72,10 +72,11 @@
     bottom: 0;
     left: 0;
     display: flex;
-    gap: 30px;
+    gap: 40px;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-top: 60px;
     padding-left: 40px;
     padding-right: 40px;
   }
@@ -111,24 +112,19 @@
     margin: 0;
     display: block;
   }
-
   .intro-text {
-    font-size: clamp(24px, 6vw, 80px);
+    font-size: clamp(14px, 6vw, 60px);
     font-weight: 400;
     letter-spacing: 0.03em;
     text-transform: uppercase;
     color: #fff;
-  }
-
-  /* Custom styling for the hero CTA button */
-  .hero-cta-custom {
-    margin-bottom: 14px;
+    white-space: nowrap;
   }
 
   /* Mobile-specific adjustments */
   @media (max-width: 768px) {
     .custom-hero-content {
-      gap: 50px;
+      gap: 1.9em;
     }
 
     .intro-content {
@@ -142,7 +138,7 @@
     }
 
     .intro-logo-image {
-      width: clamp(80vw, 80vw, 80vw);
+      width: clamp(95vw, 95vw, 95vw);
     }
 
     .hero-cta-custom {
@@ -155,16 +151,14 @@
   /* Extra small screens */
   @media (max-width: 480px) {
     .custom-hero-content {
-      gap: 10px;
+      gap: 8px;
     }
 
     .intro-text {
-      font-size: 18px;
+      font-size: 14px;
     }
 
     .hero-cta-custom {
-      margin-bottom: 4px;
-      padding: 2px 4px;
       font-size: 12px;
     }
   }

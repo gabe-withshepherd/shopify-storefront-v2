@@ -6,71 +6,72 @@
     </div>
 
     <div class="product-grid">
-      {% comment %} {% assign selected_collection = collections[section.settings.custom_grid_collection] %} {% endcomment %}
-      {% assign product = all_products['men-s-performance-pilot-6-short'] %}
-      {% assign color_index = null %}
+      {% assign products = 'men-s-performance-pilot-6-short,tracefiber-performance-tech-tee' | split: ',' %}
 
-      {% comment %} <pre>{{ product.options_with_values | json }}</pre> {% endcomment %}
+      {% for product_handle in products %}
+        {% assign product = all_products[product_handle] %}
+        {% assign color_index = null %}
 
-      {% for option in product.options_with_values %}
-        {% if option.name == 'Color' %}
-          {% assign color_index = forloop.index0 %}
-        {% endif %}
-      {% endfor %}
+        {% for option in product.options_with_values %}
+          {% if option.name == 'Color' %}
+            {% assign color_index = forloop.index0 %}
+          {% endif %}
+        {% endfor %}
 
-      {% assign shown_colors = '' %}
+        {% assign shown_colors = '' %}
 
-      {% for variant in product.variants %}
-        {% assign color = variant.options[color_index] %}
-        {% unless shown_colors contains color %}
-          {% assign shown_colors = shown_colors | append: color | append: ',' %}
+        {% for variant in product.variants %}
+          {% assign color = variant.options[color_index] %}
+          {% unless shown_colors contains color %}
+            {% assign shown_colors = shown_colors | append: color | append: ',' %}
 
-          <div class="product-cell" data-product-handle="{{ product.handle }}">
-            <div class="product-image-container">
-              <img
-                src="{{ variant.featured_image | image_url }}"
-                alt="{{ product.title }} - {{ color }}"
-                class="product-image"
-                width="400"
-                height="600"
-              >
-              {% if product.images.size > 1 %}
+            <div class="product-cell" data-product-handle="{{ product.handle }}">
+              <div class="product-image-container">
                 <img
-                  src="{{ product.images[0] | image_url }}"
-                  alt="Hover image"
-                  class="product-image-hover"
+                  src="{{ variant.featured_image | image_url }}"
+                  alt="{{ product.title }} - {{ color }}"
+                  class="product-image"
                   width="400"
                   height="600"
                 >
-              {% endif %}
+                {% if product.images.size > 1 %}
+                  <img
+                    src="{{ product.images[0] | image_url }}"
+                    alt="Hover image"
+                    class="product-image-hover"
+                    width="400"
+                    height="600"
+                  >
+                {% endif %}
 
-              <!-- Color Swatches Container -->
-              <div class="color-swatches-container">
-                {% assign all_colors = '' %}
-                {% for v in product.variants %}
-                  {% assign variant_color = v.options[color_index] %}
-                  {% unless all_colors contains variant_color %}
-                    {% assign all_colors = all_colors | append: variant_color | append: ',' %}
-                    <div class="color-swatch-container">
-                      <div class="color-swatch-tooltip">{{ variant_color }}</div>
-                      <a
-                        href="{{ product.url }}?variant={{ v.id }}"
-                        class="color-swatch"
-                        data-color="{{ variant_color }}"
-                      >
-                      </a>
-                    </div>
-                  {% endunless %}
-                {% endfor %}
+                <!-- Color Swatches Container -->
+                <div class="color-swatches-container">
+                  {% assign all_colors = '' %}
+                  {% for v in product.variants %}
+                    {% assign variant_color = v.options[color_index] %}
+                    {% unless all_colors contains variant_color %}
+                      {% assign all_colors = all_colors | append: variant_color | append: ',' %}
+                      <div class="color-swatch-container">
+                        <div class="color-swatch-tooltip">{{ variant_color }}</div>
+                        <a
+                          href="{{ product.url }}?variant={{ v.id }}"
+                          class="color-swatch-custom {% if variant_color == color %}active{% endif %} "
+                          data-color="{{ variant_color }}"
+                        >
+                        </a>
+                      </div>
+                    {% endunless %}
+                  {% endfor %}
+                </div>
+              </div>
+
+              <div class="product-info">
+                <h3 class="product-title">{{ product.title }} - {{ color }}</h3>
+                <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
               </div>
             </div>
-
-            <div class="product-info">
-              <h3 class="product-title">{{ product.title }} - {{ color }}</h3>
-              <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
-            </div>
-          </div>
-        {% endunless %}
+          {% endunless %}
+        {% endfor %}
       {% endfor %}
     </div>
   </div>
@@ -172,9 +173,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 0 10px;
+    padding: 6px 16px;
     display: flex;
     justify-content: flex-start;
+    gap: 6px;
     transform: translateY(110%);
     transition: transform 0.2s ease;
   }
@@ -230,13 +232,13 @@
     background-color: #666;
     color: white;
     padding: 4px 8px;
-    border-radius: 4px;
+    border-radius: 2px;
     font-size: 12px;
     white-space: nowrap;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.2s ease, visibility 0.2s ease;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     z-index: 10;
   }
 
@@ -246,7 +248,7 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    border: 4px solid transparent;
+    border: 5px solid transparent; /* Increased the border size to make the triangle longer */
     border-top-color: #666;
   }
 
@@ -255,16 +257,23 @@
     visibility: visible;
   }
 
-  .color-swatch {
+  .color-swatch-custom {
     display: inline-block;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     text-decoration: none;
-    outline: none;
-    border: none;
-    box-shadow: none;
+    border: 1px solid white;
+    border-radius: 50%;
     background: transparent;
-    transition: transform 0.2s ease;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .color-swatch-custom:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  }
+
+  .color-swatch-custom.active {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
   }
 
   @media (max-width: 768px) {
@@ -280,7 +289,7 @@
 </style>
 
 <script>
-  document.querySelectorAll('.color-swatch').forEach((swatch) => {
+  document.querySelectorAll('.color-swatch-custom').forEach((swatch) => {
     const color = swatch.dataset.color;
     if (color === 'Mountain Mist') {
       swatch.style.backgroundColor = '#6A7E8D';
@@ -300,7 +309,7 @@
     productCells.forEach((cell) => {
       cell.addEventListener('click', function (e) {
         // Don't navigate if clicking on a color swatch (let the swatch handle navigation)
-        if (e.target.closest('.color-swatch')) {
+        if (e.target.closest('.color-swatch-custom')) {
           return;
         }
 

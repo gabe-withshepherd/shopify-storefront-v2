@@ -18,48 +18,48 @@
       <div class="core-values-accordion">
         <div class="accordion-item">
           <div class="accordion-header">
-            <span class="accordion-icon">▶</span>
+            <span class="accordion-icon">//</span>
             <h3 class="accordion-title">LOVE THE JOURNEY</h3>
           </div>
           <div class="accordion-content">
             <p>
-              THE PEAK IS A MOMENT. THE CLIMB IS THE LIFE. WE THINK EVERYONE BUILDS A STRONGER VERSION OF THEMSELVES
-              WHEN YOU SWEAT TOGETHER.
+              The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves
+              when you sweat together.
             </p>
           </div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-header">
-            <span class="accordion-icon">▶</span>
+            <span class="accordion-icon">//</span>
             <h3 class="accordion-title">TRACK THE TRUTH</h3>
           </div>
           <div class="accordion-content">
             <p>
-              START POINT. END POINT. THE SPACE IN BETWEEN IS YOURS TO SHAPE. MEASURE THE WORK, WATCH THE EVOLUTION.
+              Start point. End point. The space in between is yours to shape. Measure the work, watch the evolution.
             </p>
           </div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-header">
-            <span class="accordion-icon">▶</span>
+            <span class="accordion-icon">//</span>
             <h3 class="accordion-title">PLAY THE LONG GAME</h3>
           </div>
           <div class="accordion-content">
             <p>
-              WE DON’T CHASE QUICK WINS. WE BUILD THINGS THAT OUTLAST THE SEASON. PATIENCE IS THE LOUDEST STATEMENT.
+              We don’t chase quick wins. We build things that outlast the season. Patience is the loudest statement.
             </p>
           </div>
         </div>
 
         <div class="accordion-item">
           <div class="accordion-header">
-            <span class="accordion-icon">▶</span>
+            <span class="accordion-icon">//</span>
             <h3 class="accordion-title">NO LOSSES, ONLY LESSONS</h3>
           </div>
           <div class="accordion-content">
-            <p>WHEN SOMETHING DOESN’T WORK OUT, WE FIGURE OUT WHY AND COME BACK MORE EXPERIENCED.</p>
+            <p>When something doesn’t work out, we figure out why and come back more experienced.</p>
           </div>
         </div>
       </div>
@@ -118,15 +118,42 @@
   }
 
   .core-values-accordion {
+    background-color: red;
     width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
+    /* transform: translateZ(0); */
+  }
+
+  /* Ensure consistent spacing and prevent layout shift */
+  .core-values-accordion:hover .accordion-item:not(:hover) {
+    flex: 0.5;
+    /* transition: flex 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
+    transition: flex 0.35s ease-in-out;
+  }
+
+  /* Prevent content jump during transitions */
+  /* .core-values-accordion .accordion-item {
+    min-height: 80px;
+  } */
+
+  /* Smooth out rapid hover changes and prevent overshoot */
+  .accordion-item:not(:hover) .accordion-content {
+    /* transition-delay: 0s !important; */
+  }
+
+  .accordion-item:not(:hover) .accordion-content p {
+    /* transition-delay: 0s !important; */
+  }
+
+  .accordion-item:not(:hover) .accordion-header {
+    /* transition: padding-top 0.25s cubic-bezier(0.4, 0, 0.6, 1), padding-bottom 0.25s cubic-bezier(0.4, 0, 0.6, 1); */
   }
 
   .accordion-item {
+    min-height: 80px;
     border-bottom: 1px solid #000;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
     flex: 1;
     display: flex;
@@ -134,9 +161,12 @@
     justify-content: center;
     position: relative;
     z-index: 1;
-    transform-origin: center;
     background-color: transparent;
-    will-change: transform, flex;
+    /* transition: flex 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.3s ease,
+      min-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
+    /* transform-origin: center; */
+    /* will-change: flex, background-color, min-height; */
+    /* transform: translateZ(0); */
   }
 
   .accordion-item:last-child {
@@ -148,15 +178,19 @@
     align-items: center;
     padding: 1.5rem 0;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition: padding-top 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      padding-bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transform: translateZ(0); */
   }
 
   .accordion-icon {
     font-size: 1.2rem;
     margin-right: 1rem;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
     color: #000;
     font-weight: 500;
+    /* transform-origin: center; */
+    /* will-change: transform; */
   }
 
   .accordion-title {
@@ -166,29 +200,31 @@
     margin: 0;
     color: #000;
     text-transform: uppercase;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition: font-size 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), */
+    /* letter-spacing 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); */
   }
 
   .accordion-content {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.05s; */
     padding: 0;
     opacity: 0;
+    /* transform: translateZ(0); */
   }
 
   .accordion-item:hover {
     z-index: 2;
-    flex: 2.2;
-    min-height: 150px;
-    /* transform: scale(1.02); */
+    flex: 2;
+    min-height: 160px;
     background-color: rgba(0, 0, 0, 0.02);
   }
 
-  .accordion-item:hover .accordion-header {
-    padding: 2rem 0 1rem 0;
-  }
+  /* .accordion-item:hover .accordion-header {
+    padding-top: 1.8rem;
+    padding-bottom: 1rem;
+  } */
 
   /* .accordion-item:hover .accordion-title {
     font-size: 1.4rem;
@@ -196,12 +232,11 @@
   } */
 
   .accordion-item:hover .accordion-icon {
-    /* transform: rotate(90deg) scale(1.1); */
-    transform: rotate(90deg);
+    transform: rotate(180deg);
   }
 
   .accordion-item:hover .accordion-content {
-    max-height: 200px;
+    max-height: 150px;
     padding: 0 0 1.5rem 0;
     opacity: 1;
   }
@@ -214,12 +249,13 @@
     font-weight: 500;
     letter-spacing: 0.02em;
     padding-left: 2.2rem;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
-    transform: translateY(10px);
+    /* transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s, color 0.2s ease 0.05s;
+    transform: translateY(8px);
+    will-change: transform; */
   }
 
   .accordion-item:hover .accordion-content p {
-    transform: translateY(0);
+    /* transform: translateY(0); */
     color: #333;
   }
 
