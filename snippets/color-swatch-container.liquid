@@ -1,0 +1,90 @@
+{% comment %}
+  Individual Color Swatch Container Component
+
+  Parameters:
+  - variant: Required - The variant object
+  - variant_color: Required - The color name/value for this swatch
+  - current_color: Optional - The currently selected color (for active state)
+  - product: Required - The product object (for URL generation)
+{% endcomment %}
+
+<div class="color-swatch-container">
+  <div class="color-swatch-tooltip">{{ variant_color }}</div>
+  <a
+    href="{{ product.url }}?variant={{ variant.id }}"
+    class="color-swatch-custom {% if variant_color == current_color %}active{% endif %}"
+    data-color="{{ variant_color }}"
+  >
+  </a>
+</div>
+
+<style>
+  /* Individual Color Swatch Container Styles */
+  .color-swatch-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* opacity: 0; */
+    /* transform: translateY(20px);
+    animation: cascadeIn 0.2s ease forwards; */
+  }
+
+  /* Tooltip Styles */
+  .color-swatch-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #666;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    margin-bottom: 8px;
+    z-index: 10;
+  }
+
+  .color-swatch-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #666;
+  }
+
+  /* .color-swatch-container:hover .color-swatch-tooltip {
+    opacity: 1;
+    visibility: visible;
+  } */
+
+  .color-swatch-tooltip {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .color-swatch-custom {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-decoration: none;
+    border: 1px solid white;
+    border-radius: 50%;
+    background: transparent;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .color-swatch-custom:hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  }
+
+  .color-swatch-custom.active {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
+  }
+</style>

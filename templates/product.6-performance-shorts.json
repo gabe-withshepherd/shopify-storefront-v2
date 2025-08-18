@@ -9,8 +9,13 @@
  */
 {
   "sections": {
+    "custom-shorts": {
+      "type": "custom-product-shorts",
+      "settings": {}
+    },
     "main": {
       "type": "main-product",
+      "disabled": true,
       "blocks": {
         "price": {
           "type": "price",
@@ -137,6 +142,7 @@
     }
   },
   "order": [
+    "custom-shorts",
     "main",
     "sub",
     "product-recommendations",
