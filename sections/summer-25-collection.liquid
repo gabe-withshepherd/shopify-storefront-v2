@@ -55,7 +55,7 @@
               </div>
 
               <div class="product-info">
-                <h3 class="product-title">{{ product.title }} - {{ color }}</h3>
+                <div class="collection-product-title">{{ product.title }} - {{ color }}</div>
                 <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
               </div>
             </div>
@@ -115,17 +115,19 @@
     transition: opacity 0.3s ease;
   }
 
-  .product-title {
+  .collection-product-title {
     padding: 0;
-    padding-top: 6px;
+    padding-top: 4px;
     margin-bottom: 0;
-    font-weight: 550;
+    font-weight: 500;
+    font-size: 14px;
   }
 
   .product-price {
     padding: 0;
     margin-bottom: 8px;
     font-size: 0.8rem;
+    font-weight: 400;
   }
 
   .product-info {
@@ -158,7 +160,7 @@
 
   @media (max-width: 768px) {
     .product-grid {
-      grid-template-columns: 2fr;
+      grid-template-columns: 1fr 1fr;
     }
 
     .color-swatches-container {
