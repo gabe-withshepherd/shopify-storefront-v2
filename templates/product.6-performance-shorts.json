@@ -13,6 +13,10 @@
       "type": "custom-product-shorts",
       "settings": {}
     },
+    "product-photography-section": {
+      "type": "product-photography-section",
+      "settings": {}
+    },
     "main": {
       "type": "main-product",
       "disabled": true,
@@ -143,6 +147,7 @@
   },
   "order": [
     "custom-shorts",
+    "product-photography-section",
     "main",
     "sub",
     "product-recommendations",
