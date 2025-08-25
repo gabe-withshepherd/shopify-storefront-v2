@@ -15,11 +15,25 @@
     },
     "product-photography-section": {
       "type": "product-photography-section",
-      "settings": {}
+      "settings": {
+        "product": "airrail-6-performance-shorts",
+        "image_1": "shopify://shop_images/24_121_7pacific_00570.jpg",
+        "text_1": "6\" Inseam",
+        "subtext_1": "The perfect height for performance",
+        "image_2": "shopify://shop_images/24_121_7pacific_00709.jpg",
+        "text_2": "Laser Cut Performations",
+        "subtext_2": "Located in 3 high-sweat areas",
+        "image_3": "shopify://shop_images/24_121_7pacific_00605.jpg",
+        "text_3": "4 Way Stretch",
+        "subtext_3": "Durable and Flexible Fabric",
+        "text_4": "Photo Description 4",
+        "subtext_4": "Photo Subtext 4",
+        "text_5": "Photo Description 5",
+        "subtext_5": "Photo Subtext 5"
+      }
     },
     "main": {
       "type": "main-product",
-      "disabled": true,
       "blocks": {
         "price": {
           "type": "price",
@@ -75,6 +89,7 @@
         "tab",
         "share"
       ],
+      "disabled": true,
       "settings": {
         "sku_enable": false,
         "image_position": "left",

@@ -133,6 +133,26 @@
         "narrow_column": true,
         "divider": false
       }
+    },
+    "product_photography_section_8cRPgm": {
+      "type": "product-photography-section",
+      "name": "Scrollable Photography",
+      "settings": {
+        "product": "",
+        "image_1": "shopify://shop_images/24_121_7pacific_00845.jpg",
+        "text_1": "Athletic Fit",
+        "subtext_1": "Tailored to move with your body",
+        "image_2": "shopify://shop_images/24_121_7pacific_00851.jpg",
+        "text_2": "4 Way Stretch",
+        "subtext_2": "Made to be durable and flexible to perform",
+        "image_3": "shopify://shop_images/24_121_7pacific_00915.jpg",
+        "text_3": "Tracefiber Mesh",
+        "subtext_3": "Micro perforations for max breathability",
+        "text_4": "Photo Description 4",
+        "subtext_4": "Photo Subtext 4",
+        "text_5": "Photo Description 5",
+        "subtext_5": "Photo Subtext 5"
+      }
     }
   },
   "order": [
@@ -141,6 +161,7 @@
     "product-recommendations",
     "recently-viewed",
     "collection-return",
-    "84192693-d189-4603-9339-7429881640cd"
+    "84192693-d189-4603-9339-7429881640cd",
+    "product_photography_section_8cRPgm"
   ]
 }
