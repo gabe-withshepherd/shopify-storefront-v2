@@ -9,8 +9,8 @@
  */
 {
   "sections": {
-    "custom-shorts": {
-      "type": "custom-product-shorts",
+    "custom-product-info-section": {
+      "type": "custom-product-info-section",
       "settings": {}
     },
     "product-photography-section": {
@@ -161,7 +161,7 @@
     }
   },
   "order": [
-    "custom-shorts",
+    "custom-product-info-section",
     "product-photography-section",
     "main",
     "sub",
