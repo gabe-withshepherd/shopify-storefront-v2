@@ -11,7 +11,10 @@
   "sections": {
     "custom-product-info-section": {
       "type": "custom-product-info-section",
-      "settings": {}
+      "settings": {
+        "product": "tracefiber-performance-tech-tee",
+        "background_image": "shopify://shop_images/Group_21.png"
+      }
     },
     "product_photography_section_8cRPgm": {
       "type": "product-photography-section",

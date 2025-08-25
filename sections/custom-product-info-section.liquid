@@ -326,6 +326,9 @@
   }
 </style>
 
+{% comment %}
+  Used for the color swatches on the product page
+{% endcomment %}
 <style>
   .product-page-color-swatch-container {
     position: relative;
@@ -379,11 +382,26 @@
     transition: box-shadow 0.2s ease-in-out;
   }
 
+  .product-page-color-swatch[data-color='White'],
+  .product-page-color-swatch[data-color='Slate'] {
+    border: 1px solid #ccc;
+  }
+
   .product-page-color-swatch:hover {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
   }
 
+  .product-page-color-swatch[data-color='White']:hover,
+  .product-page-color-swatch[data-color='Slate']:hover {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
+  }
+
   .product-page-color-swatch.active {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
+  }
+
+  .product-page-color-swatch[data-color='White'].active,
+  .product-page-color-swatch[data-color='Slate'].active {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
   }
 </style>
@@ -469,12 +487,22 @@
     
     if (variant && window.ColorMap && window.ColorMap[variant.option1]) {
       const selectedColor = window.ColorMap[variant.option1];
+      const colorName = variant.option1;
+      
+      // For white and slate colors, use black instead
+      let buttonColor = selectedColor;
+      let sizeColor = selectedColor;
+      
+      if (colorName === 'White' || colorName === 'Slate') {
+        buttonColor = '#000000';
+        sizeColor = '#000000';
+      }
       
       // Update button color
-      addToCartBtn.style.backgroundColor = selectedColor;
+      addToCartBtn.style.backgroundColor = buttonColor;
       
       // Update size selector color using CSS custom property
-      sizeSelector.style.setProperty('--selected-color', selectedColor);
+      sizeSelector.style.setProperty('--selected-color', sizeColor);
     }
   }
 

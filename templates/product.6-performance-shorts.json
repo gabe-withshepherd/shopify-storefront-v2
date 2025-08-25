@@ -11,7 +11,10 @@
   "sections": {
     "custom-product-info-section": {
       "type": "custom-product-info-section",
-      "settings": {}
+      "settings": {
+        "product": "airrail-6-performance-shorts",
+        "background_image": "shopify://shop_images/Group_20.png"
+      }
     },
     "product-photography-section": {
       "type": "product-photography-section",

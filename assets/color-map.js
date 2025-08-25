@@ -8,7 +8,8 @@ window.ColorMap = {
   'Midnight': '#101820',
   'Mint': '#B4C8C2',
   'Tangerine': '#FF8A00',
-  'White': '#ffffff'
+  'White': '#ffffff',
+  'Slate': '#ffffff'
 };
 
 // Export for module systems if available
