@@ -1,0 +1,182 @@
+<section class="bottom-product-photography">
+  <div class="page-width">
+    <div class="bottom-product-photography__container">
+      {%- if section.settings.top_image != blank -%}
+        <div class="bottom-product-photography__top-image">
+          <div class="image-wrap">
+            {%- render 'image-element',
+              img: section.settings.top_image,
+              widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840',
+              sizeVariable: '100vw',
+              fallback: '100vw',
+              classes: 'bottom-product-photography__image'
+            -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      <div class="bottom-product-photography__bottom-images">
+        {%- if section.settings.bottom_left_image != blank -%}
+          <div class="bottom-product-photography__bottom-image">
+            <div class="image-wrap">
+              {%- render 'image-element',
+                img: section.settings.bottom_left_image,
+                widths: '180, 360, 540, 750, 900',
+                sizeVariable: '50vw',
+                fallback: '50vw',
+                classes: 'bottom-product-photography__image'
+              -%}
+            </div>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.bottom_right_image != blank -%}
+          <div class="bottom-product-photography__bottom-image">
+            <div class="image-wrap">
+              {%- render 'image-element',
+                img: section.settings.bottom_right_image,
+                widths: '180, 360, 540, 750, 900',
+                sizeVariable: '50vw',
+                fallback: '50vw',
+                classes: 'bottom-product-photography__image'
+              -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      {%- if section.settings.button_text != blank -%}
+        <div class="bottom-product-photography__cta">
+          <button type="button" class="btn bottom-product-photography__btn" data-newsletter-trigger>
+            {{ section.settings.button_text }}
+          </button>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% style %}
+  /* Bottom Product Photography Section */
+  .bottom-product-photography {
+    padding: 60px 0;
+  }
+
+  .bottom-product-photography__container {
+    max-width: 100%;
+  }
+
+  .bottom-product-photography__top-image {
+    margin-bottom: 20px;
+  }
+
+  .bottom-product-photography__top-image .image-wrap {
+    width: 100%;
+    height: auto;
+  }
+
+  .bottom-product-photography__bottom-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .bottom-product-photography__bottom-image .image-wrap {
+    width: 100%;
+    height: auto;
+  }
+
+  .bottom-product-photography__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  .bottom-product-photography__cta {
+    text-align: center;
+  }
+
+  .bottom-product-photography__btn {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  @media screen and (max-width: 768px) {
+    .bottom-product-photography {
+      padding: 40px 0;
+    }
+
+    .bottom-product-photography__bottom-images {
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    .bottom-product-photography__top-image {
+      margin-bottom: 15px;
+    }
+  }
+{% endstyle %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const ctaButton = document.querySelector('[data-newsletter-trigger]');
+    const newsletterModal = document.querySelector('#NewsletterPopup-newsletter-popup');
+
+    if (ctaButton && newsletterModal) {
+      ctaButton.addEventListener('click', function () {
+        newsletterModal.style.display = 'block';
+        document.body.classList.add('modal-open');
+      });
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Final Btm Photos",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "top_image",
+      "label": "Top image (full width)"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_left_image",
+      "label": "Bottom left image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bottom_right_image",
+      "label": "Bottom right image"
+    },
+    {
+      "type": "header",
+      "content": "Call to Action"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "Join Newsletter"
+    }
+  ],
+  "presets": [
+    {
+      "name": "BottomProductPhotography"
+    }
+  ]
+}
+{% endschema %}
