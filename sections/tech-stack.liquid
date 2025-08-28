@@ -87,34 +87,7 @@
           <div class="tech-stack__col tech-stack__col-title">
             <div class="tech-stack__col-title-container">
               <h3>CARE</h3>
-              <div class="care-instructions">
-                <div class="care-columns">
-                  <div class="care-column">
-                    <div class="care-row-item">
-                      <span class="small-star-icon" aria-label="Machine wash cold">★</span>
-                      <span>Machine Wash Cold</span>
-                    </div>
-                    <div class="care-row-item">
-                      <span class="small-star-icon" aria-label="Wash with like colors">★</span>
-                      <span>Wash with like colors</span>
-                    </div>
-                    <div class="care-row-item">
-                      <span class="small-star-icon" aria-label="Do not bleach">★</span>
-                      <span>Do not bleach</span>
-                    </div>
-                  </div>
-                  <div class="care-column">
-                    <div class="care-row-item">
-                      <span class="small-star-icon" aria-label="Lay flat to dry">★</span>
-                      <span>Lay flat to dry</span>
-                    </div>
-                    <div class="care-row-item">
-                      <span class="small-star-icon" aria-label="Do not iron">★</span>
-                      <span>Do not iron</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {% render 'care-instructions' %}
             </div>
           </div>
         </div>
@@ -188,40 +161,7 @@
     color: #ffffff;
   }
 
-  .care-instructions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
 
-  .care-columns {
-    display: flex;
-    gap: 30px;
-  }
-
-  .care-column {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    align-items: flex-start;
-  }
-
-  .care-row-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    justify-self: flex-start;
-  }
-
-  .care-row img {
-    width: 16px;
-    height: 16px;
-  }
-
-  .care-row span {
-    font-size: 0.8rem;
-    color: #ffffff;
-  }
 
   .tech-stack__col-description p {
     font-size: 1rem;
@@ -298,10 +238,6 @@
       max-width: none;
     }
 
-    .care-columns {
-      flex-direction: column;
-      gap: 8px;
-    }
 
     .tech-stack__col-title-container {
       align-items: center;
