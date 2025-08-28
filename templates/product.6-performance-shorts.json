@@ -35,6 +35,10 @@
         "subtext_5": "Photo Subtext 5"
       }
     },
+    "tech-stack": {
+      "type": "tech-stack",
+      "settings": {}
+    },
     "main": {
       "type": "main-product",
       "blocks": {
@@ -166,6 +170,7 @@
   "order": [
     "custom-product-info-section",
     "product-photography-section",
+    "tech-stack",
     "main",
     "sub",
     "product-recommendations",

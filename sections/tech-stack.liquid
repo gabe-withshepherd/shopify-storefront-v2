@@ -1,0 +1,317 @@
+<section class="tech-stack">
+  <div
+    class="tech-stack"
+  >
+    <div class="page-width">
+      <div class="tech-stack__heading">TECH STACK</div>
+      <div class="tech-stack__grid">
+        <div class="tech-stack__divider"></div>
+        <!-- Row 1 -->
+        <div class="tech-stack__row">
+          <div class="tech-stack__col tech-stack__col-title">
+            <h3>LASER-CUT PERFORATIONS</h3>
+          </div>
+          <div class="tech-stack__col tech-stack__col-description">
+            <p>Precision Venting where you need it most</p>
+          </div>
+
+          <div class="tech-stack__col tech-stack__col-icon">
+            <img
+              src="{{ 'perforations-icon.svg' | asset_url }}"
+              alt="Training effort icon"
+              width="100"
+              height="100"
+            >
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="tech-stack__divider"></div>
+
+        <!-- Row 2 -->
+        <div class="tech-stack__row">
+          <div class="tech-stack__col tech-stack__col-title">
+            <h3>0% FRICTION</h3>
+          </div>
+          <div class="tech-stack__col tech-stack__col-description">
+            <p>Built to glide. but held in place by Grip-Tape Liners</p>
+          </div>
+          <div class="tech-stack__col tech-stack__col-icon">
+            <img
+              src="{{ 'grip-tape-icon.svg' | asset_url }}"
+              alt="Grip tape icon"
+              width="100"
+              height="100"
+            >
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="tech-stack__divider"></div>
+
+        <!-- Row 3 -->
+        <div class="tech-stack__row">
+          <div class="tech-stack__col tech-stack__col-title">
+            <h3>TRAINING EFFORT</h3>
+          </div>
+          <div class="tech-stack__col tech-stack__col-description">
+            <p>Made to wear for training, not errands</p>
+          </div>
+          <div class="tech-stack__col tech-stack__col-icon">
+            <img
+              src="{{ 'effort-percents.svg' | asset_url }}"
+              alt="Training effort icon"
+              width="100"
+              height="100"
+            >
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="tech-stack__divider"></div>
+
+        <!-- Row 4 -->
+        <div class="tech-stack__row">
+          <div class="tech-stack__col tech-stack__col-title">
+            <div class="tech-stack__col-title-container">
+              <h3>MATERIALS</h3>
+              <p>5% Elastane, 95% Polyester</p>
+            </div>
+          </div>
+          <div class="tech-stack__col tech-stack__col-title">
+            <div class="tech-stack__col-title-container">
+              <h3>DETAILS</h3>
+              <p>Designed in San Francisco. Made in China</p>
+            </div>
+          </div>
+          <div class="tech-stack__col tech-stack__col-title">
+            <div class="tech-stack__col-title-container">
+              <h3>CARE</h3>
+              <div class="care-instructions">
+                <div class="care-columns">
+                  <div class="care-column">
+                    <div class="care-row-item">
+                      <span class="small-star-icon" aria-label="Machine wash cold">★</span>
+                      <span>Machine Wash Cold</span>
+                    </div>
+                    <div class="care-row-item">
+                      <span class="small-star-icon" aria-label="Wash with like colors">★</span>
+                      <span>Wash with like colors</span>
+                    </div>
+                    <div class="care-row-item">
+                      <span class="small-star-icon" aria-label="Do not bleach">★</span>
+                      <span>Do not bleach</span>
+                    </div>
+                  </div>
+                  <div class="care-column">
+                    <div class="care-row-item">
+                      <span class="small-star-icon" aria-label="Lay flat to dry">★</span>
+                      <span>Lay flat to dry</span>
+                    </div>
+                    <div class="care-row-item">
+                      <span class="small-star-icon" aria-label="Do not iron">★</span>
+                      <span>Do not iron</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% style %}
+  .tech-stack {
+    padding: 60px 0;
+    background: #161616;
+    color: #ffffff;
+  }
+
+  .tech-stack__heading {
+    text-align: left;
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .tech-stack__grid {
+  }
+
+  .tech-stack__row {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr 1fr;
+    gap: 20px;
+    align-items: center;
+    padding: 30px 0;
+  }
+
+  .tech-stack__row:last-child {
+    align-items: start;
+  }
+
+  .tech-stack__col {
+    display: flex;
+  }
+
+  .tech-stack__col-title {
+    justify-content: flex-start;
+  }
+
+  .tech-stack__col-title h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .tech-stack__col-description {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .tech-stack__col-title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .tech-stack__col-title-container p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #ffffff;
+  }
+
+  .care-instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .care-columns {
+    display: flex;
+    gap: 30px;
+  }
+
+  .care-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .care-row-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: flex-start;
+  }
+
+  .care-row img {
+    width: 16px;
+    height: 16px;
+  }
+
+  .care-row span {
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+
+  .tech-stack__col-description p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: #ffffff;
+    max-width: 400px;
+  }
+
+  .tech-stack__col-icon {
+    justify-content: center;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .tech-stack__col-icon img {
+    width: 100%;
+    /* height: auto; */
+    max-width: none;
+  }
+
+  .tech-stack__divider {
+    width: 100%;
+    height: 1px;
+    background: #cccccc;
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .tech-stack__row {
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 30px;
+      padding: 25px 0;
+    }
+
+    .tech-stack__col-title h3 {
+      font-size: 1rem;
+    }
+
+    .tech-stack__col-icon img {
+      width: 100%;
+      height: auto;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tech-stack {
+      padding: 40px 0;
+    }
+
+    .tech-stack__row {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .tech-stack__col {
+      justify-content: center !important;
+    }
+
+    .tech-stack__col-description {
+      text-align: center;
+    }
+
+    .tech-stack__col-title h3 {
+      font-size: 1rem;
+    }
+
+    .tech-stack__col-icon img {
+      width: 100%;
+      height: auto;
+      max-width: none;
+    }
+
+    .care-columns {
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tech-stack__col-title-container {
+      align-items: center;
+    }
+  }
+{% endstyle %}
+
+{% schema %}
+{
+  "name": "Tech Stack",
+  "settings": []
+}
+{% endschema %}
