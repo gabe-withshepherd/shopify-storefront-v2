@@ -41,13 +41,18 @@
     },
     "bottom-product-photography": {
       "type": "bottom-product-photography",
-      "settings": {}
+      "settings": {
+        "top_image": "shopify://shop_images/running.png",
+        "bottom_left_image": "shopify://shop_images/core_values_picture.png",
+        "bottom_right_image": "shopify://shop_images/single_running.png",
+        "button_text": "Join Newsletter"
+      }
     }
   },
   "order": [
     "custom-product-info-section",
     "product-photography-section",
     "tech-stack",
-    "bottom-product-photography",
+    "bottom-product-photography"
   ]
 }

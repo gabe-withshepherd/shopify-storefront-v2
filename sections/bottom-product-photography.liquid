@@ -4,13 +4,13 @@
       {%- if section.settings.top_image != blank -%}
         <div class="bottom-product-photography__top-image">
           <div class="image-wrap">
-            {%- render 'image-element',
-              img: section.settings.top_image,
-              widths: '375, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-              sizeVariable: '100vw',
-              fallback: '100vw',
-              classes: 'bottom-product-photography__image'
-            -%}
+            <img
+              src="{{ section.settings.top_image | image_url}}"
+              alt="Top image"
+              width="400px"
+              height="400px"
+              loading="lazy"
+            >
           </div>
         </div>
       {%- endif -%}
@@ -19,13 +19,13 @@
         {%- if section.settings.bottom_left_image != blank -%}
           <div class="bottom-product-photography__bottom-image">
             <div class="image-wrap">
-              {%- render 'image-element',
-                img: section.settings.bottom_left_image,
-                widths: '180, 360, 540, 750, 900',
-                sizeVariable: '50vw',
-                fallback: '50vw',
-                classes: 'bottom-product-photography__image'
-              -%}
+              <img
+                src="{{ section.settings.bottom_left_image | image_url }}"
+                alt="Bottom left image"
+                width="400px"
+                height="400px"
+                loading="lazy"
+              >
             </div>
           </div>
         {%- endif -%}
@@ -33,13 +33,13 @@
         {%- if section.settings.bottom_right_image != blank -%}
           <div class="bottom-product-photography__bottom-image">
             <div class="image-wrap">
-              {%- render 'image-element',
-                img: section.settings.bottom_right_image,
-                widths: '180, 360, 540, 750, 900',
-                sizeVariable: '50vw',
-                fallback: '50vw',
-                classes: 'bottom-product-photography__image'
-              -%}
+              <img
+                src="{{ section.settings.bottom_right_image | image_url }}"
+                alt="Bottom right image"
+                width="400px"
+                height="400px"
+                loading="lazy"
+              >
             </div>
           </div>
         {%- endif -%}
@@ -72,6 +72,7 @@
 
   .bottom-product-photography__top-image .image-wrap {
     width: 100%;
+    /* height: 400px; */
     height: auto;
   }
 
