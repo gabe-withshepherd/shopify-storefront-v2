@@ -12,17 +12,17 @@
     <div
       class="custom-product-info-section__container"
     >
-      <div
-        class="product-layout"
-        style="
-          {% if section.settings.background_image %}
-          background-image: url({{ section.settings.background_image | image_url }});
-          {% endif %}
-          background-size: cover;
-          background-position: center;
-          width: 100%;
-        "
-      >
+      <div class="product-layout">
+        <div
+          class="product-background-image"
+          style="
+            {% if section.settings.background_image %}
+            background-image: url({{ section.settings.background_image | image_url }});
+            {% endif %}
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
         <!-- Product Details Left Side -->
         <div class="product-details">
           <h1 class="product-title">{{ product.title }}</h1>
@@ -132,25 +132,6 @@
     font-family: 'Barlow', sans-serif !important;
   }
 
-  .custom-product-info-section__placeholder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-    background-color: #f8f9fa;
-    border: 2px dashed #dee2e6;
-    border-radius: 8px;
-    margin: 20px;
-    font-family: 'Barlow', sans-serif !important;
-  }
-
-  .custom-product-info-section__placeholder p {
-    color: #6c757d;
-    font-size: 16px;
-    text-align: center;
-    margin: 0;
-  }
-
   .product-layout {
     display: flex;
     flex-direction: row;
@@ -160,10 +141,20 @@
     position: relative;
   }
 
+  .product-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
   .product-details {
     width: 450px;
-    height: 650px;
-    background: rgba(255, 255, 255, 0.95);
+    height: 620px;
+    background-color: red;
+    /* background: rgba(255, 255, 255, 0.95); */
     padding: 20px;
     box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
@@ -173,7 +164,7 @@
     justify-content: flex-start;
     align-items: space-between;
     gap: 16px;
-    margin-left: 70px;
+    margin-left: 50px;
     z-index: 1;
   }
 
@@ -310,18 +301,31 @@
       min-height: auto;
     }
 
-    .product-details {
+    .product-background-image {
+      position: relative;
+      min-height: 400px;
       width: 100%;
-      margin: 20px;
+      order: 1;
+    }
+
+    .product-details {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      background-color: white;
+      margin: 0px;
       border-radius: 8px;
+      order: 2;
+      z-index: 1;
+    }
+
+    .product-title {
+      font-size: 20px;
+      font-weight: 600;
     }
 
     .custom-product-info-section__container {
-      min-height: 600px;
-    }
-
-    .product-background-image {
-      min-height: 600px;
+      min-height: auto;
     }
   }
 </style>
