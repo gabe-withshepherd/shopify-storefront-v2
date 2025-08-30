@@ -47,28 +47,15 @@
                 {% endif %}
 
                 <!-- Color Swatches Container -->
-                <div class="color-swatches-container">
-                  {% assign all_colors = '' %}
-                  {% for v in product.variants %}
-                    {% assign variant_color = v.options[color_index] %}
-                    {% unless all_colors contains variant_color %}
-                      {% assign all_colors = all_colors | append: variant_color | append: ',' %}
-                      <div class="color-swatch-container">
-                        <div class="color-swatch-tooltip">{{ variant_color }}</div>
-                        <a
-                          href="{{ product.url }}?variant={{ v.id }}"
-                          class="color-swatch-custom {% if variant_color == color %}active{% endif %} "
-                          data-color="{{ variant_color }}"
-                        >
-                        </a>
-                      </div>
-                    {% endunless %}
-                  {% endfor %}
-                </div>
+                {% render 'color-swatches-component',
+                  product: product,
+                  color_index: color_index,
+                  current_color: color
+                %}
               </div>
 
               <div class="product-info">
-                <h3 class="product-title">{{ product.title }} - {{ color }}</h3>
+                <div class="collection-product-title">{{ product.title }} - {{ color }}</div>
                 <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
               </div>
             </div>
@@ -82,7 +69,7 @@
 <style>
   .summer-25-collection {
     padding: 1rem 0.5rem;
-    font-family: 'Barlow', sans-serif;
+    font-family: 'Barlow', sans-serif !important;
   }
 
   .summer-25-header {
@@ -128,17 +115,19 @@
     transition: opacity 0.3s ease;
   }
 
-  .product-title {
+  .collection-product-title {
     padding: 0;
-    padding-top: 6px;
+    padding-top: 4px;
     margin-bottom: 0;
-    font-weight: 550;
+    font-weight: 500;
+    font-size: 14px;
   }
 
   .product-price {
     padding: 0;
     margin-bottom: 8px;
     font-size: 0.8rem;
+    font-weight: 400;
   }
 
   .product-info {
@@ -169,118 +158,9 @@
     opacity: 1;
   }
 
-  /* Color Swatches Styles */
-  .color-swatches-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 6px 16px;
-    display: flex;
-    justify-content: flex-start;
-    gap: 6px;
-    transform: translateY(110%);
-    transition: transform 0.2s ease;
-  }
-
-  .product-cell:hover .color-swatches-container {
-    transform: translateY(-10%);
-  }
-
-  .color-swatch-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: cascadeIn 0.2s ease forwards;
-  }
-
-  /* I have 5 here because I will have at most 5 colors */
-  .color-swatch-container:nth-child(1) {
-    animation-delay: 0s;
-  }
-  .color-swatch-container:nth-child(2) {
-    animation-delay: 0.1s;
-  }
-  .color-swatch-container:nth-child(3) {
-    animation-delay: 0.2s;
-  }
-  .color-swatch-container:nth-child(4) {
-    animation-delay: 0.3s;
-  }
-  .color-swatch-container:nth-child(5) {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes cascadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Tooltip Styles */
-  .color-swatch-tooltip {
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #666;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 2px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease, visibility 0.2s ease;
-    margin-bottom: 8px;
-    z-index: 10;
-  }
-
-  .color-swatch-tooltip::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 5px solid transparent; /* Increased the border size to make the triangle longer */
-    border-top-color: #666;
-  }
-
-  .color-swatch-container:hover .color-swatch-tooltip {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .color-swatch-custom {
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    text-decoration: none;
-    border: 1px solid white;
-    border-radius: 50%;
-    background: transparent;
-    transition: box-shadow 0.2s ease-in-out;
-  }
-
-  .color-swatch-custom:hover {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
-  }
-
-  .color-swatch-custom.active {
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 1);
-  }
-
   @media (max-width: 768px) {
     .product-grid {
-      grid-template-columns: 2fr;
+      grid-template-columns: 1fr 1fr;
     }
 
     .color-swatches-container {
@@ -290,52 +170,7 @@
   }
 </style>
 
-<script>
-  document.querySelectorAll('.color-swatch-custom').forEach((swatch) => {
-    const color = swatch.dataset.color;
-    if (color === 'Mountain Mist') {
-      swatch.style.backgroundColor = '#6A7E8D';
-    }
-    if (color === 'Midnight') {
-      swatch.style.backgroundColor = '#101820';
-    }
-    if (color === 'Mint') {
-      swatch.style.backgroundColor = '#B4C8C2';
-    }
-  });
-
-  document.addEventListener('DOMContentLoaded', function () {
-    // Add click handler for product cells
-    const productCells = document.querySelectorAll('.product-cell');
-
-    productCells.forEach((cell) => {
-      cell.addEventListener('click', function (e) {
-        // Don't navigate if clicking on a color swatch (let the swatch handle navigation)
-        if (e.target.closest('.color-swatch-custom')) {
-          return;
-        }
-
-        const productHandle = this.dataset.productHandle;
-        if (productHandle) {
-          window.location.href = `/products/${productHandle}`;
-        }
-      });
-
-      // Add hover event to trigger color swatch animations
-      const colorSwatchesContainer = cell.querySelector('.color-swatches-container');
-      const colorSwatchContainers = cell.querySelectorAll('.color-swatch-container');
-
-      cell.addEventListener('mouseenter', function () {
-        // Reset animations
-        colorSwatchContainers.forEach((container) => {
-          container.style.animation = 'none';
-          container.offsetHeight; // Trigger reflow
-          container.style.animation = null;
-        });
-      });
-    });
-  });
-</script>
+<script defer src="{{ 'color-swatch-component.js' | asset_url}}"></script>
 
 {% schema %}
 {

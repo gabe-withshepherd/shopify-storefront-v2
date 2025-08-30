@@ -1,0 +1,71 @@
+<div class="care-instructions">
+  <div class="care-columns">
+    <div class="care-column">
+      <div class="care-row-item">
+        <span class="small-star-icon" aria-label="Machine wash cold">★</span>
+        <span>Machine Wash Cold</span>
+      </div>
+      <div class="care-row-item">
+        <span class="small-star-icon" aria-label="Wash with like colors">★</span>
+        <span>Wash with like colors</span>
+      </div>
+      <div class="care-row-item">
+        <span class="small-star-icon" aria-label="Do not bleach">★</span>
+        <span>Do not bleach</span>
+      </div>
+    </div>
+    <div class="care-column">
+      <div class="care-row-item">
+        <span class="small-star-icon" aria-label="Lay flat to dry">★</span>
+        <span>Lay flat to dry</span>
+      </div>
+      <div class="care-row-item">
+        <span class="small-star-icon" aria-label="Do not iron">★</span>
+        <span>Do not iron</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% style %}
+  .care-instructions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .care-columns {
+    display: flex;
+    gap: 30px;
+  }
+
+  .care-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .care-row-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: flex-start;
+  }
+
+  .small-star-icon {
+    color: orange;
+  }
+
+  .care-row-item span:not(.small-star-icon) {
+    font-size: 0.8rem;
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .care-columns {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+{% endstyle %}
