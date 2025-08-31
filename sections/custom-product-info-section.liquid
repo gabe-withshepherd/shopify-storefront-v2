@@ -34,35 +34,34 @@
           </div>
 
           <!-- Color Selector -->
-          {% assign color_option = product.options_by_name.Color %}
-          {% if color_option %}
-            <div class="color-selector">
-              <div class="color-option-label">COLOR</div>
-              <div class="color-swatches">
-                {% for variant_color in color_option.values %}
-                  <div class="product-page-color-swatch-container">
-                    <div class="product-page-color-swatch-tooltip">{{ variant_color }}</div>
-                    <input
-                      form="{{ form_id }}"
-                      type="radio"
-                      id="color-{{ variant_color | handleize }}"
-                      name="options[Color]"
-                      value="{{ variant_color }}"
-                      data-variant-input
-                      {% if forloop.first %}
-                        checked
-                      {% endif %}
-                    >
-                    <label
-                      for="color-{{ variant_color | handleize }}"
-                      class="product-page-color-swatch"
-                      data-color="{{ variant_color }}"
-                    ></label>
-                  </div>
-                {% endfor %}
-              </div>
+          {% assign color_options = 'Mountain Mist,Mint,Midnight' | split: ',' %}
+          <div class="color-selector">
+            <div class="color-option-label">COLOR</div>
+            <div class="color-swatches">
+              {% for variant_color in color_options %}
+                <div class="product-page-color-swatch-container">
+                  <div class="product-page-color-swatch-tooltip">{{ variant_color }}</div>
+                  <input
+                    form="{{ form_id }}"
+                    type="radio"
+                    id="color-{{ variant_color | handleize }}"
+                    name="options[Color]"
+                    value="{{ variant_color }}"
+                    data-variant-input
+                    {% if forloop.first %}
+                      checked
+                    {% endif %}
+                  >
+                  <label
+                    for="color-{{ variant_color | handleize }}"
+                    class="product-page-color-swatch"
+                    data-color="{{ variant_color }}"
+                  ></label>
+                </div>
+              {% endfor %}
             </div>
-          {% endif %}
+          </div>
+          {% comment %} {% endif %} {% endcomment %}
 
           <!-- Size Selector -->
           {% assign size_option = product.options_by_name.Size %}
@@ -472,6 +471,7 @@
   }
 
   function setActiveColorSwatch(color) {
+    console.log(`setActiveColorSwatch: ${color}`);
     document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
       swatch.classList.remove('active');
       if (swatch.dataset.color === color) {
@@ -481,8 +481,10 @@
   }
 
   function initializeColorSwatches() {
+    console.log(`initializeColorSwatches`);
     document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
       const color = swatch.dataset.color;
+      console.log(`color: ${color}`);
       if (window.ColorMap && window.ColorMap[color]) {
         swatch.style.backgroundColor = window.ColorMap[color];
       }
@@ -519,15 +521,19 @@
   function initializeFromUrl() {
     const urlParams = new URLSearchParams(window.location.search);
     const variantId = urlParams.get('variant');
+
+    console.log(`initializeFromUrl`);
+    console.log('productVariants: ', productVariants);
+    console.log(`variantId: ${variantId}`);
     
     if (variantId) {
       const variant = productVariants.find(v => v.id == variantId);
       if (variant) {
         // Select the matching color and size inputs
-        const colorInput = document.querySelector(`input[name="options[Color]"][value="${variant.option1}"]`);
-        const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option2}"]`);
+        // const colorInput = document.querySelector(`input[name="options[Color]"][value="${variant.option1}"]`);
+        const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option1}"]`);
         
-        if (colorInput) colorInput.checked = true;
+        // if (colorInput) colorInput.checked = true;
         if (sizeInput) sizeInput.checked = true;
         
         setActiveColorSwatch(variant.option1);

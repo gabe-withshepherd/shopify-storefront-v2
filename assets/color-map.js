@@ -9,8 +9,18 @@ window.ColorMap = {
   'Mint': '#B4C8C2',
   'Tangerine': '#FF8A00',
   'White': '#ffffff',
-  'Slate': '#ffffff'
+  'Slate': '#708090'
 };
+
+window.ProductColorMap = {
+  // 'airrail-6-performance-shorts': ['Mountain Mist', 'Mint', 'Midnight'],
+  'airrail-6-performance-shorts-mountain-mist': 'Mountain Mist',
+  'airrail-6-performance-shorts-mint': 'Mint',
+  'airrail-6-performance-shorts-midnight': 'Midnight'
+};
+
+// Available colors for shorts products
+window.ShortsColors = ['Mountain Mist', 'Mint', 'Midnight'];
 
 // Export for module systems if available
 if (typeof module !== 'undefined' && module.exports) {
