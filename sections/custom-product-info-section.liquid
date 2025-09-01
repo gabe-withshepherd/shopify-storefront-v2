@@ -416,35 +416,26 @@
 </style>
 
 <script>
-  // Color map will be loaded from centralized file
   const productVariants = {{ product.variants | json }};
   
   function getSelectedOptions() {
-    const colorInput = document.querySelector('input[name="options[Color]"]:checked');
     const sizeInput = document.querySelector('input[name="options[Size]"]:checked');
-    
-    console.log(`colorInput: ${colorInput.value}`);
-    console.log(`sizeInput: ${sizeInput.value}`);
-
-    return {
-      color: colorInput ? colorInput.value : null,
-      size: sizeInput ? sizeInput.value : null
-    };
+    return sizeInput ? sizeInput.value : null;
   }
 
-  function findVariantByOptions(color, size) {
+  function findVariantByOptions(size) {
     return productVariants.find(variant => {
-      return variant.option1 === color && variant.option2 === size;
+      return variant.option1 === size;
     });
   }
 
   function updateVariantId() {
-    const options = getSelectedOptions();
-    const variant = findVariantByOptions(options.color, options.size);
+    console.log(`updateVariantId`);
+    const sizeOption = getSelectedOptions();
+    console.log('sizeOption: ', sizeOption);
+    const variant = findVariantByOptions(sizeOption);
+    console.log('variant: ', variant);
     const hiddenInput = document.querySelector('input[name="id"]');
-
-    console.log(`variant: ${variant.id}`);
-    console.log(`hiddenInput: ${hiddenInput}`);
     
     if (variant && hiddenInput) {
       hiddenInput.value = variant.id;
@@ -470,10 +461,16 @@
     }
   }
 
-  function setActiveColorSwatch(color) {
-    console.log(`setActiveColorSwatch: ${color}`);
+  function setActiveColorSwatch() {
+    console.log(`setActiveColorSwatch`);
+    const productHandle = '{{ product.handle }}';
+    const color = window.ProductColorMap[productHandle];
+    console.log(`color: ${color}`);
+    
     document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
       swatch.classList.remove('active');
+      console.log(`swatch.dataset.color: ${swatch.dataset.color}`);
+      console.log(`color: ${color}`);
       if (swatch.dataset.color === color) {
         swatch.classList.add('active');
       }
@@ -492,55 +489,77 @@
   }
 
   function updateColorStyles() {
-    const options = getSelectedOptions();
-    const variant = findVariantByOptions(options.color, options.size);
+    console.log(`updateColorStyles`);
+    const sizeOption = getSelectedOptions();
+    const variant = findVariantByOptions(sizeOption);
     const addToCartBtn = document.querySelector('.btn-add-to-cart');
     const sizeSelector = document.querySelector('.size-selector');
+
+    const productHandle = '{{ product.handle }}';
+    const colorName = window.ProductColorMap[productHandle];
+    console.log(`colorName: ${colorName}`);
     
-    if (variant && window.ColorMap && window.ColorMap[variant.option1]) {
-      const selectedColor = window.ColorMap[variant.option1];
-      const colorName = variant.option1;
+    if (variant && window.ColorMap[colorName]) {
+      const selectedColor = window.ColorMap[colorName];
       
       // For white and slate colors, use black instead
       let buttonColor = selectedColor;
-      let sizeColor = selectedColor;
       
       if (colorName === 'White' || colorName === 'Slate') {
         buttonColor = '#000000';
         sizeColor = '#000000';
       }
       
-      // Update button color
+      // Update Add to Cart Button color and Size Selector color
       addToCartBtn.style.backgroundColor = buttonColor;
+      sizeSelector.style.setProperty('--selected-color', buttonColor);
       
-      // Update size selector color using CSS custom property
-      sizeSelector.style.setProperty('--selected-color', sizeColor);
     }
   }
 
   function initializeFromUrl() {
+    console.log(`initializeFromUrl`);
     const urlParams = new URLSearchParams(window.location.search);
     const variantId = urlParams.get('variant');
 
-    console.log(`initializeFromUrl`);
     console.log('productVariants: ', productVariants);
     console.log(`variantId: ${variantId}`);
     
     if (variantId) {
       const variant = productVariants.find(v => v.id == variantId);
       if (variant) {
-        // Select the matching color and size inputs
-        // const colorInput = document.querySelector(`input[name="options[Color]"][value="${variant.option1}"]`);
         const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option1}"]`);
         
-        // if (colorInput) colorInput.checked = true;
         if (sizeInput) sizeInput.checked = true;
         
-        setActiveColorSwatch(variant.option1);
+        setActiveColorSwatch();
       }
     }
     
     updateVariantId();
+  }
+
+  function handleColorSwatchClick(colorName) {
+    console.log(`handleColorSwatchClick: ${colorName}`);
+    
+    // Find the product handle for this color from the ProductColorMap
+    let targetProductHandle = null;
+    
+    if (window.ProductColorMap) {
+      for (const [productHandle, color] of Object.entries(window.ProductColorMap)) {
+        if (color === colorName) {
+          targetProductHandle = productHandle;
+          break;
+        }
+      }
+    }
+    
+    if (targetProductHandle) {
+      console.log(`Navigating to: /products/${targetProductHandle}`);
+      window.location.href = `/products/${targetProductHandle}`;
+    } else {
+      console.warn(`No product handle found for color: ${colorName}`);
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -552,12 +571,15 @@
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
       input.addEventListener('change', function() {
         updateVariantId();
-        updateColorStyles();
-        
-        // Update active color swatch when color changes
-        if (this.name === 'options[Color]') {
-          setActiveColorSwatch(this.value);
-        }
+      });
+    });
+    
+    // Add click event listeners to color swatches for navigation
+    document.querySelectorAll('.product-page-color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent the default radio button behavior
+        const colorName = this.dataset.color;
+        handleColorSwatchClick(colorName);
       });
     });
   });

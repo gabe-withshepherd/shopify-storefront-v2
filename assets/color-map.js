@@ -13,7 +13,6 @@ window.ColorMap = {
 };
 
 window.ProductColorMap = {
-  // 'airrail-6-performance-shorts': ['Mountain Mist', 'Mint', 'Midnight'],
   'airrail-6-performance-shorts-mountain-mist': 'Mountain Mist',
   'airrail-6-performance-shorts-mint': 'Mint',
   'airrail-6-performance-shorts-midnight': 'Midnight'
