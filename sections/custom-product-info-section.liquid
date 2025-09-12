@@ -282,6 +282,7 @@
     width: 100%;
     padding: 16px 24px;
     color: #fff;
+    background: var(--selected-color, #000);
     border: none;
     font-size: 16px;
     font-weight: 600;
@@ -488,57 +489,6 @@
     });
   }
 
-  function updateColorStyles() {
-    console.log(`updateColorStyles`);
-    const sizeOption = getSelectedOptions();
-    const variant = findVariantByOptions(sizeOption);
-    const addToCartBtn = document.querySelector('.btn-add-to-cart');
-    const sizeSelector = document.querySelector('.size-selector');
-
-    const productHandle = '{{ product.handle }}';
-    const colorName = window.ProductColorMap[productHandle];
-    console.log(`colorName: ${colorName}`);
-    
-    if (variant && window.ColorMap[colorName]) {
-      const selectedColor = window.ColorMap[colorName];
-      
-      // For white and slate colors, use black instead
-      let buttonColor = selectedColor;
-      
-      if (colorName === 'White' || colorName === 'Slate') {
-        buttonColor = '#000000';
-        sizeColor = '#000000';
-      }
-      
-      // Update Add to Cart Button color and Size Selector color
-      addToCartBtn.style.backgroundColor = buttonColor;
-      sizeSelector.style.setProperty('--selected-color', buttonColor);
-      
-    }
-  }
-
-  function initializeFromUrl() {
-    console.log(`initializeFromUrl`);
-    const urlParams = new URLSearchParams(window.location.search);
-    const variantId = urlParams.get('variant');
-
-    console.log('productVariants: ', productVariants);
-    console.log(`variantId: ${variantId}`);
-    
-    if (variantId) {
-      const variant = productVariants.find(v => v.id == variantId);
-      if (variant) {
-        const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option1}"]`);
-        
-        if (sizeInput) sizeInput.checked = true;
-        
-        setActiveColorSwatch();
-      }
-    }
-    
-    updateVariantId();
-  }
-
   function handleColorSwatchClick(colorName) {
     console.log(`handleColorSwatchClick: ${colorName}`);
     
@@ -564,8 +514,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     initializeColorSwatches();
-    initializeFromUrl();
-    updateColorStyles();
+    setActiveColorSwatch();
     
     // Add event listeners for option changes
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
