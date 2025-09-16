@@ -18,7 +18,6 @@ function initializeProductCellInteractions() {
   const productCells = document.querySelectorAll('.product-cell');
 
   productCells.forEach((cell) => {
-    // Add click handler for product cells
     cell.addEventListener('click', function (e) {
       // Don't navigate if clicking on a color swatch (let the swatch handle navigation)
       if (e.target.closest('.color-swatch-custom')) {

@@ -6,61 +6,46 @@
     </div>
 
     <div class="product-grid">
-      {% assign products = 'airrail-6-performance-shorts,tracefiber-performance-tech-tee,motionframe-running-hat'
+      {% comment %}
+        {% assign products = 'airrail-6-performance-shorts,tracefiber-performance-tech-tee,motionframe-running-hat'
+          | split: ','
+        %}
+      {% endcomment %}
+      {% assign products = 'airrail-6-performance-shorts-midnight,airrail-6-performance-shorts-mint,airrail-6-performance-shorts-mountain-mist'
         | split: ','
       %}
 
       {% for product_handle in products %}
         {% assign product = all_products[product_handle] %}
-        {% assign color_index = null %}
 
-        {% for option in product.options_with_values %}
-          {% if option.name == 'Color' %}
-            {% assign color_index = forloop.index0 %}
-          {% endif %}
-        {% endfor %}
+        <div class="product-cell" data-product-handle="{{ product.handle }}">
+          <div class="product-image-container">
+            <img
+              src="{{ product.featured_image | image_url }}"
+              alt="{{ product.title }}"
+              class="product-image"
+              width="400"
+              height="600"
+            >
+            {% if product.images.size > 1 %}
+              <img
+                src="{{ product.images[1] | image_url }}"
+                alt="Hover image"
+                class="product-image-hover"
+                width="400"
+                height="600"
+              >
+            {% endif %}
 
-        {% assign shown_colors = '' %}
+            <!-- Color Swatches Container -->
+            {% comment %} {% render 'color-swatches-component', product: product, color_index: color_index, current_color: color %} {% endcomment %}
+          </div>
 
-        {% for variant in product.variants %}
-          {% assign color = variant.options[color_index] %}
-          {% unless shown_colors contains color %}
-            {% assign shown_colors = shown_colors | append: color | append: ',' %}
-
-            <div class="product-cell" data-product-handle="{{ product.handle }}">
-              <div class="product-image-container">
-                <img
-                  src="{{ variant.featured_image | image_url }}"
-                  alt="{{ product.title }} - {{ color }}"
-                  class="product-image"
-                  width="400"
-                  height="600"
-                >
-                {% if product.images.size > 1 %}
-                  <img
-                    src="{{ product.images[0] | image_url }}"
-                    alt="Hover image"
-                    class="product-image-hover"
-                    width="400"
-                    height="600"
-                  >
-                {% endif %}
-
-                <!-- Color Swatches Container -->
-                {% render 'color-swatches-component',
-                  product: product,
-                  color_index: color_index,
-                  current_color: color
-                %}
-              </div>
-
-              <div class="product-info">
-                <div class="collection-product-title">{{ product.title }} - {{ color }}</div>
-                <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
-              </div>
-            </div>
-          {% endunless %}
-        {% endfor %}
+          <div class="product-info">
+            <div class="collection-product-title">{{ product.title }}</div>
+            <p class="product-price">{{ product.price | money_without_trailing_zeros }} USD</p>
+          </div>
+        </div>
       {% endfor %}
     </div>
   </div>
@@ -170,7 +155,7 @@
   }
 </style>
 
-<script defer src="{{ 'color-swatch-component.js' | asset_url}}"></script>
+<script defer src="{{ 'summer-25-collection.js' | asset_url}}"></script>
 
 {% schema %}
 {
