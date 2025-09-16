@@ -6,19 +6,18 @@
     </div>
 
     <div class="product-grid">
-      {% comment %}
-        {% assign products = 'airrail-6-performance-shorts,tracefiber-performance-tech-tee,motionframe-running-hat'
-          | split: ','
-        %}
-      {% endcomment %}
-      {% assign products = 'airrail-6-performance-shorts-midnight,airrail-6-performance-shorts-mint,airrail-6-performance-shorts-mountain-mist'
+      {% assign products = 'airrail-6-performance-shorts-midnight,airrail-6-performance-shorts-mint,airrail-6-performance-shorts-mountain-mist,tracefiber-performance-tech-tee-white'
         | split: ','
       %}
 
       {% for product_handle in products %}
         {% assign product = all_products[product_handle] %}
 
-        <div class="product-cell" data-product-handle="{{ product.handle }}" data-default-variant="{{ product.selected_or_first_available_variant.id }}">
+        <div
+          class="product-cell"
+          data-product-handle="{{ product.handle }}"
+          data-default-variant="{{ product.selected_or_first_available_variant.id }}"
+        >
           <div class="product-image-container">
             <img
               src="{{ product.featured_image | image_url }}"
