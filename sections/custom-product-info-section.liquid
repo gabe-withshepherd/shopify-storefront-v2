@@ -448,6 +448,7 @@
         input.checked = false;
       });
       sizeInput.checked = true;
+      updateVariantId(); // Update form and URL after selecting size
     }
   }
 
@@ -462,6 +463,9 @@
     const variantId = variantParam ?? defaultVariant?.id;
     if (variantId) {
       selectSizeFromVariant(variantId);
+    } else {
+      // Ensure form has a valid variant ID even without URL param
+      updateVariantId();
     }
 
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
