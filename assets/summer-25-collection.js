@@ -25,8 +25,18 @@ function initializeProductCellInteractions() {
       }
 
       const productHandle = this.dataset.productHandle;
+      const defaultVariant = this.dataset.defaultVariant;
       if (productHandle) {
-        window.location.href = `/products/${productHandle}`;
+        // Use the theme utility function for consistent navigation
+        if (window.theme && window.theme.navigateToProduct) {
+          window.theme.navigateToProduct(productHandle, defaultVariant);
+        } else {
+          // Fallback if theme utilities are not available
+          const url = defaultVariant
+            ? `/products/${productHandle}?variant=${defaultVariant}`
+            : `/products/${productHandle}`;
+          window.location.href = url;
+        }
       }
     });
 

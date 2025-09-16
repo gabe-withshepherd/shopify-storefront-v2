@@ -78,9 +78,6 @@
                     name="options[Size]"
                     value="{{ size }}"
                     data-variant-input
-                    {% if forloop.index == 2 %}
-                      checked
-                    {% endif %}
                   >
                   <label for="size-{{ size | handleize }}" class="size-option">{{ display_size }}</label>
                 {% endfor %}
@@ -477,10 +474,10 @@
 
   function handleColorSwatchClick(colorName) {
     console.log(`handleColorSwatchClick: ${colorName}`);
-    
+
     // Find the product handle for this color from the ProductColorMap
     let targetProductHandle = null;
-    
+
     if (window.ProductColorMap) {
       for (const [productHandle, color] of Object.entries(window.ProductColorMap)) {
         if (color === colorName) {
@@ -489,7 +486,7 @@
         }
       }
     }
-    
+
     if (targetProductHandle) {
       console.log(`Navigating to: /products/${targetProductHandle}`);
       window.location.href = `/products/${targetProductHandle}`;
@@ -498,17 +495,65 @@
     }
   }
 
+  function selectSizeFromVariant(variantId) {
+    console.log(`selectSizeFromVariant: ${variantId}`);
+
+    // Find the variant by ID
+    const variant = productVariants.find(v => v.id == variantId);
+    if (!variant) {
+      console.warn(`Variant not found: ${variantId}`);
+      return;
+    }
+
+    // Get the size from the variant (option1 contains the size)
+    const size = variant.option1;
+    if (!size) {
+      console.warn(`No size found for variant: ${variantId}`);
+      return;
+    }
+
+    // Find and check the corresponding radio button
+    const sizeInput = document.querySelector(`input[name="options[Size]"][value="${size}"]`);
+    if (sizeInput) {
+      // Uncheck all size inputs first
+      document.querySelectorAll('input[name="options[Size]"]').forEach(input => {
+        input.checked = false;
+      });
+
+      // Check the matching size input
+      sizeInput.checked = true;
+      console.log(`Size selected: ${size}`);
+    } else {
+      console.warn(`Size input not found for size: ${size}`);
+    }
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initializeColorSwatches();
     setActiveColorSwatch();
-    
+
+    // Select appropriate size on page load
+    const url = new URL(window.location);
+    const variantParam = url.searchParams.get('variant');
+
+    if (variantParam) {
+      // Use variant from URL
+      selectSizeFromVariant(variantParam);
+    } else {
+      // Use default selected variant
+      const defaultVariant = {{ product.selected_or_first_available_variant | json }};
+      if (defaultVariant && defaultVariant.id) {
+        selectSizeFromVariant(defaultVariant.id);
+      }
+    }
+
     // Add event listeners for option changes
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
       input.addEventListener('change', function() {
         updateVariantId();
       });
     });
-    
+
     // Add click event listeners to color swatches for navigation
     document.querySelectorAll('.product-page-color-swatch').forEach(swatch => {
       swatch.addEventListener('click', function(e) {
