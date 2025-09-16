@@ -41,17 +41,6 @@
               {% for variant_color in color_options %}
                 <div class="product-page-color-swatch-container">
                   <div class="product-page-color-swatch-tooltip">{{ variant_color }}</div>
-                  <input
-                    form="{{ form_id }}"
-                    type="radio"
-                    id="color-{{ variant_color | handleize }}"
-                    name="options[Color]"
-                    value="{{ variant_color }}"
-                    data-variant-input
-                    {% if forloop.first %}
-                      checked
-                    {% endif %}
-                  >
                   <label
                     for="color-{{ variant_color | handleize }}"
                     class="product-page-color-swatch"
@@ -61,7 +50,6 @@
               {% endfor %}
             </div>
           </div>
-          {% comment %} {% endif %} {% endcomment %}
 
           <!-- Size Selector -->
           {% assign size_option = product.options_by_name.Size %}
@@ -73,15 +61,15 @@
               </div>
               <div class="size-options">
                 {% for size in size_option.values %}
-                  {% assign size_short = size %}
+                  {% assign display_size = size %}
                   {% if size == 'Small' %}
-                    {% assign size_short = 'S' %}
+                    {% assign display_size = 'S' %}
                   {% elsif size == 'Medium' %}
-                    {% assign size_short = 'M' %}
+                    {% assign display_size = 'M' %}
                   {% elsif size == 'Large' %}
-                    {% assign size_short = 'L' %}
+                    {% assign display_size = 'L' %}
                   {% elsif size == 'Extra Large' %}
-                    {% assign size_short = 'XL' %}
+                    {% assign display_size = 'XL' %}
                   {% endif %}
                   <input
                     form="{{ form_id }}"
@@ -94,7 +82,7 @@
                       checked
                     {% endif %}
                   >
-                  <label for="size-{{ size | handleize }}" class="size-option">{{ size_short }}</label>
+                  <label for="size-{{ size | handleize }}" class="size-option">{{ display_size }}</label>
                 {% endfor %}
               </div>
             </div>
