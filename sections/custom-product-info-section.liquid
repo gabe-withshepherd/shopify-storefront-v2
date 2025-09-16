@@ -60,17 +60,16 @@
                 <a href="#" class="size-guide">SIZE GUIDE</a>
               </div>
               <div class="size-options">
+                {% assign size_map = 'Small:S,Medium:M,Large:L,Extra Large:XL' | split: ',' %}
                 {% for size in size_option.values %}
                   {% assign display_size = size %}
-                  {% if size == 'Small' %}
-                    {% assign display_size = 'S' %}
-                  {% elsif size == 'Medium' %}
-                    {% assign display_size = 'M' %}
-                  {% elsif size == 'Large' %}
-                    {% assign display_size = 'L' %}
-                  {% elsif size == 'Extra Large' %}
-                    {% assign display_size = 'XL' %}
-                  {% endif %}
+                  {% for size_pair in size_map %}
+                    {% assign pair = size_pair | split: ':' %}
+                    {% if pair[0] == size %}
+                      {% assign display_size = pair[1] %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
                   <input
                     form="{{ form_id }}"
                     type="radio"
@@ -93,7 +92,7 @@
               value="{{ product.selected_or_first_available_variant.id }}"
               data-product-select
             >
-            <button type="submit" class="btn-add-to-cart" data-add-to-cart id="addToCartBtn">
+            <button type="submit" class="btn-add-to-cart" data-add-to-cart>
               <span data-add-to-cart-text>ADD TO CART</span>
             </button>
           {% endform %}
@@ -171,39 +170,7 @@
     font-weight: 400;
   }
 
-  .color-option-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0px;
-    margin: 0px;
-    color: #000;
-    margin-bottom: 6px;
-  }
-
-  .color-selector {
-  }
-
-  .color-swatches {
-    display: flex;
-    gap: 8px;
-  }
-
-  .color-swatches input[type='radio'] {
-    display: none;
-  }
-  .size-selector {
-  }
-
-  .size-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-  }
-
+  .color-option-label,
   .size-option-label {
     font-size: 12px;
     font-weight: 600;
@@ -212,6 +179,21 @@
     padding: 0px;
     margin: 0px;
     color: #000;
+    margin-bottom: 6px;
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 8px;
+  }
+
+  .color-swatches input[type='radio'],
+  .size-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
   }
 
   .size-guide {
@@ -311,18 +293,12 @@
     }
   }
 
-  /* Mobile Responsiveness */
   @media (max-width: 550px) {
     .product-details {
       height: 600px;
     }
   }
-</style>
-
-{% comment %}
-  Used for the color swatches on the product page
-{% endcomment %}
-<style>
+  /* Color Swatch Styles */
   .product-page-color-swatch-container {
     position: relative;
     display: flex;
@@ -330,7 +306,6 @@
     align-items: center;
   }
 
-  /* Tooltip Styles */
   .product-page-color-swatch-tooltip {
     position: absolute;
     bottom: 100%;
@@ -380,54 +355,42 @@
     border: 1px solid #ccc;
   }
 
-  .product-page-color-swatch:hover {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
-  }
-
-  .product-page-color-swatch[data-color='White']:hover,
-  .product-page-color-swatch[data-color='Slate']:hover {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
-  }
-
+  .product-page-color-swatch:hover,
   .product-page-color-swatch.active {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
-  }
-
-  .product-page-color-swatch[data-color='White'].active,
-  .product-page-color-swatch[data-color='Slate'].active {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
   }
 </style>
 
 <script>
   const productVariants = {{ product.variants | json }};
-  
-  function getSelectedOptions() {
+
+  const sizeMap = {
+    'Small': 'S',
+    'Medium': 'M',
+    'Large': 'L',
+    'Extra Large': 'XL'
+  };
+
+  function getSelectedSize() {
     const sizeInput = document.querySelector('input[name="options[Size]"]:checked');
     return sizeInput ? sizeInput.value : null;
   }
 
-  function findVariantByOptions(size) {
-    return productVariants.find(variant => {
-      return variant.option1 === size;
-    });
+  function findVariantBySize(size) {
+    return productVariants.find(variant => variant.option1 === size);
   }
 
   function updateVariantId() {
-    console.log(`updateVariantId`);
-    const sizeOption = getSelectedOptions();
-    console.log('sizeOption: ', sizeOption);
-    const variant = findVariantByOptions(sizeOption);
-    console.log('variant: ', variant);
+    const selectedSize = getSelectedSize();
+    const variant = findVariantBySize(selectedSize);
     const hiddenInput = document.querySelector('input[name="id"]');
-    
+
     if (variant && hiddenInput) {
       hiddenInput.value = variant.id;
-      
-      // Update button state based on availability
+
       const addToCartBtn = document.querySelector('[data-add-to-cart]');
       const addToCartText = document.querySelector('[data-add-to-cart-text]');
-      
+
       if (variant.available) {
         addToCartBtn.disabled = false;
         addToCartText.textContent = 'ADD TO CART';
@@ -437,8 +400,7 @@
         addToCartText.textContent = 'SOLD OUT';
         addToCartBtn.classList.add('btn--sold-out');
       }
-      
-      // Update URL
+
       const url = new URL(window.location);
       url.searchParams.set('variant', variant.id);
       window.history.replaceState({}, '', url);
@@ -446,85 +408,46 @@
   }
 
   function setActiveColorSwatch() {
-    console.log(`setActiveColorSwatch`);
     const productHandle = '{{ product.handle }}';
-    const color = window.ProductColorMap[productHandle];
-    console.log(`color: ${color}`);
-    
-    document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
-      swatch.classList.remove('active');
-      console.log(`swatch.dataset.color: ${swatch.dataset.color}`);
-      console.log(`color: ${color}`);
-      if (swatch.dataset.color === color) {
-        swatch.classList.add('active');
-      }
-    });
+    const color = window.ProductColorMap?.[productHandle];
+
+    if (color) {
+      document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
+        swatch.classList.toggle('active', swatch.dataset.color === color);
+      });
+    }
   }
 
   function initializeColorSwatches() {
-    console.log(`initializeColorSwatches`);
     document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
       const color = swatch.dataset.color;
-      console.log(`color: ${color}`);
-      if (window.ColorMap && window.ColorMap[color]) {
+      if (window.ColorMap?.[color]) {
         swatch.style.backgroundColor = window.ColorMap[color];
       }
     });
   }
 
   function handleColorSwatchClick(colorName) {
-    console.log(`handleColorSwatchClick: ${colorName}`);
+    if (!window.ProductColorMap) return;
 
-    // Find the product handle for this color from the ProductColorMap
-    let targetProductHandle = null;
-
-    if (window.ProductColorMap) {
-      for (const [productHandle, color] of Object.entries(window.ProductColorMap)) {
-        if (color === colorName) {
-          targetProductHandle = productHandle;
-          break;
-        }
-      }
-    }
+    const targetProductHandle = Object.keys(window.ProductColorMap)
+      .find(handle => window.ProductColorMap[handle] === colorName);
 
     if (targetProductHandle) {
-      console.log(`Navigating to: /products/${targetProductHandle}`);
       window.location.href = `/products/${targetProductHandle}`;
-    } else {
-      console.warn(`No product handle found for color: ${colorName}`);
     }
   }
 
   function selectSizeFromVariant(variantId) {
-    console.log(`selectSizeFromVariant: ${variantId}`);
-
-    // Find the variant by ID
     const variant = productVariants.find(v => v.id == variantId);
-    if (!variant) {
-      console.warn(`Variant not found: ${variantId}`);
-      return;
-    }
+    if (!variant?.option1) return;
 
-    // Get the size from the variant (option1 contains the size)
-    const size = variant.option1;
-    if (!size) {
-      console.warn(`No size found for variant: ${variantId}`);
-      return;
-    }
-
-    // Find and check the corresponding radio button
-    const sizeInput = document.querySelector(`input[name="options[Size]"][value="${size}"]`);
+    const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option1}"]`);
     if (sizeInput) {
-      // Uncheck all size inputs first
       document.querySelectorAll('input[name="options[Size]"]').forEach(input => {
         input.checked = false;
       });
-
-      // Check the matching size input
       sizeInput.checked = true;
-      console.log(`Size selected: ${size}`);
-    } else {
-      console.warn(`Size input not found for size: ${size}`);
     }
   }
 
@@ -532,34 +455,23 @@
     initializeColorSwatches();
     setActiveColorSwatch();
 
-    // Select appropriate size on page load
     const url = new URL(window.location);
     const variantParam = url.searchParams.get('variant');
+    const defaultVariant = {{ product.selected_or_first_available_variant | json }};
 
-    if (variantParam) {
-      // Use variant from URL
-      selectSizeFromVariant(variantParam);
-    } else {
-      // Use default selected variant
-      const defaultVariant = {{ product.selected_or_first_available_variant | json }};
-      if (defaultVariant && defaultVariant.id) {
-        selectSizeFromVariant(defaultVariant.id);
-      }
+    const variantId = variantParam ?? defaultVariant?.id;
+    if (variantId) {
+      selectSizeFromVariant(variantId);
     }
 
-    // Add event listeners for option changes
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
-      input.addEventListener('change', function() {
-        updateVariantId();
-      });
+      input.addEventListener('change', updateVariantId);
     });
 
-    // Add click event listeners to color swatches for navigation
     document.querySelectorAll('.product-page-color-swatch').forEach(swatch => {
       swatch.addEventListener('click', function(e) {
-        e.preventDefault(); // Prevent the default radio button behavior
-        const colorName = this.dataset.color;
-        handleColorSwatchClick(colorName);
+        e.preventDefault();
+        handleColorSwatchClick(this.dataset.color);
       });
     });
   });
