@@ -6,7 +6,7 @@
     </div>
 
     <div class="product-grid">
-      {% assign products = 'airrail-6-performance-shorts-midnight,airrail-6-performance-shorts-mint,airrail-6-performance-shorts-mountain-mist,tracefiber-performance-tech-tee-white'
+      {% assign products = 'airrail-6-performance-shorts-midnight,airrail-6-performance-shorts-mint,airrail-6-performance-shorts-mountain-mist,tracefiber-performance-tech-tee-white,tracefiber-performance-tech-tee-mint,tracefiber-performance-tech-tee-midnight,tracefiber-performance-tech-tee-tangerine,tracefiber-performance-tech-tee-mountain-mist,motionframe-running-hat'
         | split: ','
       %}
 
@@ -36,8 +36,7 @@
               >
             {% endif %}
 
-            <!-- Color Swatches Container -->
-            {% comment %} {% render 'color-swatches-component', product: product, color_index: color_index, current_color: color %} {% endcomment %}
+            {% render 'color-swatches-component', product: product %}
           </div>
 
           <div class="product-info">

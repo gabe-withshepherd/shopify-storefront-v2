@@ -15,11 +15,17 @@ window.ColorMap = {
 window.ProductColorMap = {
   'airrail-6-performance-shorts-mountain-mist': 'Mountain Mist',
   'airrail-6-performance-shorts-mint': 'Mint',
-  'airrail-6-performance-shorts-midnight': 'Midnight'
+  'airrail-6-performance-shorts-midnight': 'Midnight',
+  'tracefiber-performance-tech-tee-white': 'White',
+  'tracefiber-performance-tech-tee-mint': 'Mint',
+  'tracefiber-performance-tech-tee-midnight': 'Midnight',
+  'tracefiber-performance-tech-tee-tangerine': 'Tangerine',
+  'tracefiber-performance-tech-tee-mountain-mist': 'Mountain Mist'
 };
 
 // Available colors for shorts products
 window.ShortsColors = ['Mountain Mist', 'Mint', 'Midnight'];
+window.TeesColors = ['White', 'Mint', 'Midnight', 'Tangerine', 'Mountain Mist'];
 
 // Export for module systems if available
 if (typeof module !== 'undefined' && module.exports) {
