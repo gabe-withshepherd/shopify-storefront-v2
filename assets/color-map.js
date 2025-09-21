@@ -46,18 +46,6 @@ window.getAvailableColors = function(productHandle) {
   return window.ProductTypeColors[productType] || [];
 };
 
-// Helper function to get base product handle (remove color suffix)
-window.getBaseProductHandle = function(productHandle) {
-  // Remove color suffixes to get base handle
-  return productHandle
-    .replace(/-mountain-mist$/, '')
-    .replace(/-midnight$/, '')
-    .replace(/-mint$/, '')
-    .replace(/-white$/, '')
-    .replace(/-tangerine$/, '')
-    .replace(/-slate$/, '');
-};
-
 // Helper function to get current color from product handle
 window.getCurrentColor = function(productHandle) {
   if (productHandle.endsWith('-mountain-mist')) return 'Mountain Mist';
@@ -69,16 +57,12 @@ window.getCurrentColor = function(productHandle) {
   return null;
 };
 
-// Helper function to generate product handle for specific color
-window.getColorVariantHandle = function(productHandle, color) {
-  const baseHandle = window.getBaseProductHandle(productHandle);
-  const colorSuffix = color.toLowerCase().replace(/\s+/g, '-');
-  return `${baseHandle}-${colorSuffix}`;
+// Helper function to apply color background to swatch elements
+window.applyColorToSwatch = function(element, color) {
+  if (window.ColorMap && window.ColorMap[color]) {
+    element.style.backgroundColor = window.ColorMap[color];
+  }
 };
-
-// Legacy support
-window.ShortsColors = window.ProductTypeColors.short;
-window.TeesColors = window.ProductTypeColors.shirt;
 
 // Export for module systems if available
 if (typeof module !== 'undefined' && module.exports) {

@@ -8,14 +8,16 @@
 
 <div class="color-swatches-container" data-product-handle="{{ product.handle }}">
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
       function initializeColorSwatches() {
-        if (!window.getAvailableColors || !window.getColorVariantHandle || !window.getCurrentColor) {
+        if (!window.getAvailableColors || !window.getCurrentColor || !window.applyColorToSwatch) {
           setTimeout(initializeColorSwatches, 100);
           return;
         }
 
-        const container = document.querySelector('[data-product-handle="{{ product.handle }}"] .color-swatches-container');
+        const container = document.querySelector(
+          '[data-product-handle="{{ product.handle }}"] .color-swatches-container'
+        );
         if (!container) return;
 
         const productHandle = '{{ product.handle }}';
@@ -23,20 +25,27 @@
         const currentColor = window.getCurrentColor(productHandle) || '{{ current_color }}';
 
         availableColors.forEach((color) => {
-          const colorVariantHandle = window.getColorVariantHandle(productHandle, color);
           const isActive = color === currentColor;
 
           const swatchContainer = document.createElement('div');
           swatchContainer.className = 'color-swatch-container';
-          swatchContainer.innerHTML = `
-            <div class="color-swatch-tooltip">${color}</div>
-            <a
-              href="/products/${colorVariantHandle}"
-              class="color-swatch-custom ${isActive ? 'active' : ''}"
-              data-color="${color}"
-              onmouseover="updateActiveColorSwatch('${productHandle}', '${color}')"
-            ></a>
-          `;
+
+          const swatchLink = document.createElement('a');
+          // swatchLink.href = `/products/${colorVariantHandle}`;
+          swatchLink.href = `/products/${productHandle}`;
+          swatchLink.className = `color-swatch-custom ${isActive ? 'active' : ''}`;
+          swatchLink.setAttribute('data-color', color);
+          swatchLink.setAttribute('onmouseover', `updateActiveColorSwatch('${productHandle}', '${color}')`);
+
+          // Apply color from centralized ColorMap
+          window.applyColorToSwatch(swatchLink, color);
+
+          const tooltip = document.createElement('div');
+          tooltip.className = 'color-swatch-tooltip';
+          tooltip.textContent = color;
+
+          swatchContainer.appendChild(tooltip);
+          swatchContainer.appendChild(swatchLink);
           container.appendChild(swatchContainer);
         });
       }
@@ -162,30 +171,9 @@
     }
   }
 
-  /* Color-specific styles */
-  .color-swatch-custom[data-color='Mountain Mist'] {
-    background-color: #6a7e8d;
-  }
-
-  .color-swatch-custom[data-color='Midnight'] {
-    background-color: #101820;
-  }
-
-  .color-swatch-custom[data-color='Mint'] {
-    background-color: #b4c8c2;
-  }
-
-  .color-swatch-custom[data-color='Tangerine'] {
-    background-color: #ff8a00;
-  }
-
+  /* Color-specific styles - colors applied dynamically via JavaScript */
   .color-swatch-custom[data-color='White'] {
-    background-color: #ffffff;
     border-color: #ccc;
-  }
-
-  .color-swatch-custom[data-color='Slate'] {
-    background-color: #708090;
   }
 </style>
 
