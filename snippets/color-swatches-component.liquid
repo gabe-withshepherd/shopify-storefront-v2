@@ -1,31 +1,49 @@
 {% comment %}
   Color Swatch Component
-  
+
   Parameters:
   - product: Required - The product object
-  - color_index: Required - The index of the color option in the product options
   - current_color: Optional - The currently selected color (for active state)
 {% endcomment %}
 
-{% assign color_index = color_index | default: 0 %}
+<div class="color-swatches-container" data-product-handle="{{ product.handle }}">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      function initializeColorSwatches() {
+        if (!window.getAvailableColors || !window.getColorVariantHandle || !window.getCurrentColor) {
+          setTimeout(initializeColorSwatches, 100);
+          return;
+        }
 
-<div class="color-swatches-container">
-  {% assign all_colors = '' %}
-  {% for variant in product.variants %}
-    {% assign variant_color = variant.options[color_index] %}
-    {% unless all_colors contains variant_color %}
-      {% assign all_colors = all_colors | append: variant_color | append: ',' %}
-      <div class="color-swatch-container">
-        <div class="color-swatch-tooltip">{{ variant_color }}</div>
-        <a
-          href="{{ product.url }}?variant={{ variant.id }}"
-          class="color-swatch-custom {% if variant_color == current_color %}active{% endif %}"
-          data-color="{{ variant_color }}"
-        >
-        </a>
-      </div>
-    {% endunless %}
-  {% endfor %}
+        const container = document.querySelector('[data-product-handle="{{ product.handle }}"] .color-swatches-container');
+        if (!container) return;
+
+        const productHandle = '{{ product.handle }}';
+        const availableColors = window.getAvailableColors(productHandle);
+        const currentColor = window.getCurrentColor(productHandle) || '{{ current_color }}';
+
+        availableColors.forEach((color) => {
+          const colorVariantHandle = window.getColorVariantHandle(productHandle, color);
+          const isActive = color === currentColor;
+
+          const swatchContainer = document.createElement('div');
+          swatchContainer.className = 'color-swatch-container';
+          swatchContainer.innerHTML = `
+            <div class="color-swatch-tooltip">${color}</div>
+            <a
+              href="/products/${colorVariantHandle}"
+              class="color-swatch-custom ${isActive ? 'active' : ''}"
+              data-color="${color}"
+              onmouseover="updateActiveColorSwatch('${productHandle}', '${color}')"
+            ></a>
+          `;
+          container.appendChild(swatchContainer);
+        });
+      }
+
+      initializeColorSwatches();
+    });
+  </script>
 </div>
 
 <style>
@@ -143,4 +161,52 @@
       gap: 4px;
     }
   }
+
+  /* Color-specific styles */
+  .color-swatch-custom[data-color='Mountain Mist'] {
+    background-color: #6a7e8d;
+  }
+
+  .color-swatch-custom[data-color='Midnight'] {
+    background-color: #101820;
+  }
+
+  .color-swatch-custom[data-color='Mint'] {
+    background-color: #b4c8c2;
+  }
+
+  .color-swatch-custom[data-color='Tangerine'] {
+    background-color: #ff8a00;
+  }
+
+  .color-swatch-custom[data-color='White'] {
+    background-color: #ffffff;
+    border-color: #ccc;
+  }
+
+  .color-swatch-custom[data-color='Slate'] {
+    background-color: #708090;
+  }
 </style>
+
+<script>
+  // Function to update active color swatch on hover
+  window.updateActiveColorSwatch = function (productHandle, color) {
+    const productCell = document.querySelector(`[data-product-handle="${productHandle}"]`);
+    if (productCell) {
+      const container = productCell.querySelector('.color-swatches-container');
+      if (container) {
+        // Remove active class from all swatches in this container
+        container.querySelectorAll('.color-swatch-custom').forEach((swatch) => {
+          swatch.classList.remove('active');
+        });
+
+        // Add active class to the hovered color
+        const activeSwatch = container.querySelector(`[data-color="${color}"]`);
+        if (activeSwatch) {
+          activeSwatch.classList.add('active');
+        }
+      }
+    }
+  };
+</script>

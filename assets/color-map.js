@@ -23,9 +23,62 @@ window.ProductColorMap = {
   'tracefiber-performance-tech-tee-mountain-mist': 'Mountain Mist'
 };
 
-// Available colors for shorts products
-window.ShortsColors = ['Mountain Mist', 'Mint', 'Midnight'];
-window.TeesColors = ['White', 'Mint', 'Midnight', 'Tangerine', 'Mountain Mist'];
+// Available colors for each product type
+window.ProductTypeColors = {
+  'short': ['Mountain Mist', 'Mint', 'Midnight'],
+  'shirt': ['Mountain Mist', 'Mint', 'White', 'Midnight', 'Tangerine']
+};
+
+// Helper function to get product type from handle
+window.getProductType = function(productHandle) {
+  if (productHandle.includes('shorts') || productHandle.includes('short')) {
+    return 'short';
+  }
+  if (productHandle.includes('tee') || productHandle.includes('shirt')) {
+    return 'shirt';
+  }
+  return null;
+};
+
+// Helper function to get available colors for a product
+window.getAvailableColors = function(productHandle) {
+  const productType = window.getProductType(productHandle);
+  return window.ProductTypeColors[productType] || [];
+};
+
+// Helper function to get base product handle (remove color suffix)
+window.getBaseProductHandle = function(productHandle) {
+  // Remove color suffixes to get base handle
+  return productHandle
+    .replace(/-mountain-mist$/, '')
+    .replace(/-midnight$/, '')
+    .replace(/-mint$/, '')
+    .replace(/-white$/, '')
+    .replace(/-tangerine$/, '')
+    .replace(/-slate$/, '');
+};
+
+// Helper function to get current color from product handle
+window.getCurrentColor = function(productHandle) {
+  if (productHandle.endsWith('-mountain-mist')) return 'Mountain Mist';
+  if (productHandle.endsWith('-midnight')) return 'Midnight';
+  if (productHandle.endsWith('-mint')) return 'Mint';
+  if (productHandle.endsWith('-white')) return 'White';
+  if (productHandle.endsWith('-tangerine')) return 'Tangerine';
+  if (productHandle.endsWith('-slate')) return 'Slate';
+  return null;
+};
+
+// Helper function to generate product handle for specific color
+window.getColorVariantHandle = function(productHandle, color) {
+  const baseHandle = window.getBaseProductHandle(productHandle);
+  const colorSuffix = color.toLowerCase().replace(/\s+/g, '-');
+  return `${baseHandle}-${colorSuffix}`;
+};
+
+// Legacy support
+window.ShortsColors = window.ProductTypeColors.short;
+window.TeesColors = window.ProductTypeColors.shirt;
 
 // Export for module systems if available
 if (typeof module !== 'undefined' && module.exports) {
