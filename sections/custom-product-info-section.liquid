@@ -34,21 +34,9 @@
           </div>
 
           <!-- Color Selector -->
-          {% assign color_options = 'Mountain Mist,Mint,Midnight' | split: ',' %}
           <div class="color-selector">
             <div class="color-option-label">COLOR</div>
-            <div class="color-swatches">
-              {% for variant_color in color_options %}
-                <div class="product-page-color-swatch-container">
-                  <div class="product-page-color-swatch-tooltip">{{ variant_color }}</div>
-                  <label
-                    for="color-{{ variant_color | handleize }}"
-                    class="product-page-color-swatch"
-                    data-color="{{ variant_color }}"
-                  ></label>
-                </div>
-              {% endfor %}
-            </div>
+            <div class="color-swatches" id="dynamic-color-swatches"></div>
           </div>
 
           <!-- Size Selector -->
@@ -291,6 +279,10 @@
     .custom-product-info-section__container {
       min-height: auto;
     }
+
+    .btn-add-to-cart {
+      background: #f26927;
+    }
   }
 
   @media (max-width: 550px) {
@@ -341,8 +333,8 @@
 
   .product-page-color-swatch {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     text-decoration: none;
     border: 1px solid white;
     border-radius: 50%;
@@ -408,8 +400,10 @@
   }
 
   function setActiveColorSwatch() {
+    if (!window.getCurrentColor) return;
+
     const productHandle = '{{ product.handle }}';
-    const color = window.ProductColorMap?.[productHandle];
+    const color = window.getCurrentColor(productHandle);
 
     if (color) {
       document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
@@ -419,19 +413,52 @@
   }
 
   function initializeColorSwatches() {
-    document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
-      const color = swatch.dataset.color;
-      if (window.ColorMap?.[color]) {
-        swatch.style.backgroundColor = window.ColorMap[color];
-      }
+    if (!window.getAvailableColors || !window.ColorMap || !window.applyColorToSwatch) {
+      setTimeout(initializeColorSwatches, 100);
+      return;
+    }
+
+    const container = document.getElementById('dynamic-color-swatches');
+    if (!container) return;
+
+    const productHandle = '{{ product.handle }}';
+    const availableColors = window.getAvailableColors(productHandle);
+    const currentColor = window.getCurrentColor && window.getCurrentColor(productHandle);
+
+    // Clear existing swatches
+    container.innerHTML = '';
+
+    availableColors.forEach((color) => {
+      const isActive = color === currentColor;
+
+      const swatchContainer = document.createElement('div');
+      swatchContainer.className = 'product-page-color-swatch-container';
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'product-page-color-swatch-tooltip';
+      tooltip.textContent = color;
+
+      const swatch = document.createElement('label');
+      swatch.className = `product-page-color-swatch ${isActive ? 'active' : ''}`;
+      swatch.setAttribute('data-color', color);
+      swatch.setAttribute('for', `color-${color.toLowerCase().replace(/\s+/g, '-')}`);
+
+      // Apply color from centralized ColorMap
+      window.applyColorToSwatch(swatch, color);
+
+      swatchContainer.appendChild(tooltip);
+      swatchContainer.appendChild(swatch);
+      container.appendChild(swatchContainer);
     });
+
+    // Attach event listeners after creating swatches
+    attachColorSwatchListeners();
   }
 
   function handleColorSwatchClick(colorName) {
-    if (!window.ProductColorMap) return;
 
-    const targetProductHandle = Object.keys(window.ProductColorMap)
-      .find(handle => window.ProductColorMap[handle] === colorName);
+    const productHandle = '{{ product.handle }}';
+    const targetProductHandle = window.getColorVariantHandle(productHandle, colorName);
 
     if (targetProductHandle) {
       window.location.href = `/products/${targetProductHandle}`;
@@ -452,6 +479,15 @@
     }
   }
 
+  function attachColorSwatchListeners() {
+    document.querySelectorAll('.product-page-color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', function(e) {
+        e.preventDefault();
+        handleColorSwatchClick(this.dataset.color);
+      });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
     initializeColorSwatches();
     setActiveColorSwatch();
@@ -470,13 +506,6 @@
 
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
       input.addEventListener('change', updateVariantId);
-    });
-
-    document.querySelectorAll('.product-page-color-swatch').forEach(swatch => {
-      swatch.addEventListener('click', function(e) {
-        e.preventDefault();
-        handleColorSwatchClick(this.dataset.color);
-      });
     });
   });
 </script>
