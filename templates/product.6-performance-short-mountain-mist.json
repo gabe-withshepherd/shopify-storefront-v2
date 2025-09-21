@@ -13,26 +13,28 @@
       "type": "custom-product-info-section",
       "settings": {
         "product": "airrail-6-performance-shorts-mountain-mist",
-        "background_image": "shopify://shop_images/Group_22.png"
+        "background_image": "shopify://shop_images/mountain_mist_short_product_info_hero.png"
       }
     },
     "product-photography-section": {
       "type": "product-photography-section",
       "settings": {
         "product": "airrail-6-performance-shorts-mountain-mist",
-        "image_1": "shopify://shop_images/24_121_7pacific_00570.jpg",
+        "image_1": "shopify://shop_images/mountain_mist_short_front.jpg",
         "text_1": "6\" Inseam",
         "subtext_1": "The perfect height for performance",
-        "image_2": "shopify://shop_images/24_121_7pacific_00709.jpg",
-        "text_2": "Laser Cut Performations",
+        "image_2": "shopify://shop_images/mountain_mist_short_back.jpg",
+        "text_2": "Laser Cut Perforations",
         "subtext_2": "Located in 3 high-sweat areas",
-        "image_3": "shopify://shop_images/24_121_7pacific_00605.jpg",
+        "image_3": "shopify://shop_images/mountain_mist_short_stretch.jpg",
         "text_3": "4 Way Stretch",
         "subtext_3": "Durable and Flexible Fabric",
-        "text_4": "Photo Description 4",
-        "subtext_4": "Photo Subtext 4",
-        "text_5": "Photo Description 5",
-        "subtext_5": "Photo Subtext 5"
+        "text_4": "Phone Pocket",
+        "subtext_4": "Kept secure during training",
+        "image_4": "shopify://shop_images/mountain_mist_short_phone_pocket.jpg",
+        "text_5": "Grip Tape Liner",
+        "subtext_5": "No liner ride up. No Distractions.",
+        "image_5": "shopify://shop_images/mountain_mist_short_grip_tape.jpg"
       }
     },
     "tech-stack": {
