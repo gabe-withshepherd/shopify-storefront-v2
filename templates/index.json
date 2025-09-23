@@ -34,7 +34,7 @@
       "type": "black-text-image-split",
       "name": "Black Text and Image",
       "settings": {
-        "image": "shopify://shop_images/med_ball_throw.png",
+        "image": "shopify://shop_images/two_walking_to_workout_cropped.png",
         "background_image": "shopify://shop_images/Rectangle_47.png",
         "background_video": "shopify://files/videos/202306071552 copy.mp4"
       }
