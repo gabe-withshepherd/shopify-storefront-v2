@@ -34,35 +34,10 @@
           </div>
 
           <!-- Color Selector -->
-          {% assign color_option = product.options_by_name.Color %}
-          {% if color_option %}
-            <div class="color-selector">
-              <div class="color-option-label">COLOR</div>
-              <div class="color-swatches">
-                {% for variant_color in color_option.values %}
-                  <div class="product-page-color-swatch-container">
-                    <div class="product-page-color-swatch-tooltip">{{ variant_color }}</div>
-                    <input
-                      form="{{ form_id }}"
-                      type="radio"
-                      id="color-{{ variant_color | handleize }}"
-                      name="options[Color]"
-                      value="{{ variant_color }}"
-                      data-variant-input
-                      {% if forloop.first %}
-                        checked
-                      {% endif %}
-                    >
-                    <label
-                      for="color-{{ variant_color | handleize }}"
-                      class="product-page-color-swatch"
-                      data-color="{{ variant_color }}"
-                    ></label>
-                  </div>
-                {% endfor %}
-              </div>
-            </div>
-          {% endif %}
+          <div class="color-selector">
+            <div class="color-option-label">COLOR</div>
+            <div class="color-swatches" id="dynamic-color-swatches"></div>
+          </div>
 
           <!-- Size Selector -->
           {% assign size_option = product.options_by_name.Size %}
@@ -73,19 +48,16 @@
                 <a href="#" class="size-guide">SIZE GUIDE</a>
               </div>
               <div class="size-options">
+                {% assign size_map = 'Small:S,Medium:M,Large:L,Extra Large:XL' | split: ',' %}
                 {% for size in size_option.values %}
-                  {% assign size_short = size %}
-                  {% if size == 'Small' %}
-                    {% assign size_short = 'S' %}
-                  {% elsif size == 'Medium' %}
-                    {% assign size_short = 'M' %}
-                  {% elsif size == 'Large' %}
-                    {% assign size_short = 'L' %}
-                  {% elsif size == 'Extra Large' %}
-                    {% assign size_short = 'XL' %}
-                  {% elsif size == 'Extra Extra Large' %}
-                    {% assign size_short = 'XXL' %}
-                  {% endif %}
+                  {% assign display_size = size %}
+                  {% for size_pair in size_map %}
+                    {% assign pair = size_pair | split: ':' %}
+                    {% if pair[0] == size %}
+                      {% assign display_size = pair[1] %}
+                      {% break %}
+                    {% endif %}
+                  {% endfor %}
                   <input
                     form="{{ form_id }}"
                     type="radio"
@@ -93,11 +65,8 @@
                     name="options[Size]"
                     value="{{ size }}"
                     data-variant-input
-                    {% if forloop.index == 2 %}
-                      checked
-                    {% endif %}
                   >
-                  <label for="size-{{ size | handleize }}" class="size-option">{{ size_short }}</label>
+                  <label for="size-{{ size | handleize }}" class="size-option">{{ display_size }}</label>
                 {% endfor %}
               </div>
             </div>
@@ -111,7 +80,7 @@
               value="{{ product.selected_or_first_available_variant.id }}"
               data-product-select
             >
-            <button type="submit" class="btn-add-to-cart" data-add-to-cart id="addToCartBtn">
+            <button type="submit" class="btn-add-to-cart" data-add-to-cart>
               <span data-add-to-cart-text>ADD TO CART</span>
             </button>
           {% endform %}
@@ -151,7 +120,7 @@
   }
 
   .product-details {
-    width: 450px;
+    width: 500px;
     height: 620px;
     background: rgba(255, 255, 255, 0.95);
     padding: 20px;
@@ -189,39 +158,7 @@
     font-weight: 400;
   }
 
-  .color-option-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0px;
-    margin: 0px;
-    color: #000;
-    margin-bottom: 6px;
-  }
-
-  .color-selector {
-  }
-
-  .color-swatches {
-    display: flex;
-    gap: 8px;
-  }
-
-  .color-swatches input[type='radio'] {
-    display: none;
-  }
-  .size-selector {
-  }
-
-  .size-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
-  }
-
+  .color-option-label,
   .size-option-label {
     font-size: 12px;
     font-weight: 600;
@@ -230,6 +167,21 @@
     padding: 0px;
     margin: 0px;
     color: #000;
+    margin-bottom: 6px;
+  }
+
+  .color-swatches {
+    display: flex;
+    gap: 8px;
+  }
+
+  .color-swatches input[type='radio'],
+  .size-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
   }
 
   .size-guide {
@@ -283,6 +235,7 @@
     width: 100%;
     padding: 16px 24px;
     color: #fff;
+    background: var(--selected-color, #000);
     border: none;
     font-size: 16px;
     font-weight: 600;
@@ -326,20 +279,18 @@
     .custom-product-info-section__container {
       min-height: auto;
     }
+
+    .btn-add-to-cart {
+      background: var(--colorCta);
+    }
   }
 
-  /* Mobile Responsiveness */
   @media (max-width: 550px) {
     .product-details {
       height: 600px;
     }
   }
-</style>
-
-{% comment %}
-  Used for the color swatches on the product page
-{% endcomment %}
-<style>
+  /* Color Swatch Styles */
   .product-page-color-swatch-container {
     position: relative;
     display: flex;
@@ -347,7 +298,6 @@
     align-items: center;
   }
 
-  /* Tooltip Styles */
   .product-page-color-swatch-tooltip {
     position: absolute;
     bottom: 100%;
@@ -383,8 +333,8 @@
 
   .product-page-color-swatch {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     text-decoration: none;
     border: 1px solid white;
     border-radius: 50%;
@@ -397,63 +347,42 @@
     border: 1px solid #ccc;
   }
 
-  .product-page-color-swatch:hover {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
-  }
-
-  .product-page-color-swatch[data-color='White']:hover,
-  .product-page-color-swatch[data-color='Slate']:hover {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
-  }
-
+  .product-page-color-swatch:hover,
   .product-page-color-swatch.active {
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
-  }
-
-  .product-page-color-swatch[data-color='White'].active,
-  .product-page-color-swatch[data-color='Slate'].active {
     box-shadow: 0 0 0 2px rgba(0, 0, 0, 1);
   }
 </style>
 
 <script>
-  // Color map will be loaded from centralized file
   const productVariants = {{ product.variants | json }};
-  
-  function getSelectedOptions() {
-    const colorInput = document.querySelector('input[name="options[Color]"]:checked');
-    const sizeInput = document.querySelector('input[name="options[Size]"]:checked');
-    
-    console.log(`colorInput: ${colorInput.value}`);
-    console.log(`sizeInput: ${sizeInput.value}`);
 
-    return {
-      color: colorInput ? colorInput.value : null,
-      size: sizeInput ? sizeInput.value : null
-    };
+  const sizeMap = {
+    'Small': 'S',
+    'Medium': 'M',
+    'Large': 'L',
+    'Extra Large': 'XL'
+  };
+
+  function getSelectedSize() {
+    const sizeInput = document.querySelector('input[name="options[Size]"]:checked');
+    return sizeInput ? sizeInput.value : null;
   }
 
-  function findVariantByOptions(color, size) {
-    return productVariants.find(variant => {
-      return variant.option1 === color && variant.option2 === size;
-    });
+  function findVariantBySize(size) {
+    return productVariants.find(variant => variant.option1 === size);
   }
 
   function updateVariantId() {
-    const options = getSelectedOptions();
-    const variant = findVariantByOptions(options.color, options.size);
+    const selectedSize = getSelectedSize();
+    const variant = findVariantBySize(selectedSize);
     const hiddenInput = document.querySelector('input[name="id"]');
 
-    console.log(`variant: ${variant.id}`);
-    console.log(`hiddenInput: ${hiddenInput}`);
-    
     if (variant && hiddenInput) {
       hiddenInput.value = variant.id;
-      
-      // Update button state based on availability
+
       const addToCartBtn = document.querySelector('[data-add-to-cart]');
       const addToCartText = document.querySelector('[data-add-to-cart-text]');
-      
+
       if (variant.available) {
         addToCartBtn.disabled = false;
         addToCartText.textContent = 'ADD TO CART';
@@ -463,96 +392,120 @@
         addToCartText.textContent = 'SOLD OUT';
         addToCartBtn.classList.add('btn--sold-out');
       }
-      
-      // Update URL
+
       const url = new URL(window.location);
       url.searchParams.set('variant', variant.id);
       window.history.replaceState({}, '', url);
     }
   }
 
-  function setActiveColorSwatch(color) {
-    document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
-      swatch.classList.remove('active');
-      if (swatch.dataset.color === color) {
-        swatch.classList.add('active');
-      }
-    });
+  function setActiveColorSwatch() {
+    if (!window.getCurrentColor) return;
+
+    const productHandle = '{{ product.handle }}';
+    const color = window.getCurrentColor(productHandle);
+
+    if (color) {
+      document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
+        swatch.classList.toggle('active', swatch.dataset.color === color);
+      });
+    }
   }
 
   function initializeColorSwatches() {
-    document.querySelectorAll('.product-page-color-swatch').forEach((swatch) => {
-      const color = swatch.dataset.color;
-      if (window.ColorMap && window.ColorMap[color]) {
-        swatch.style.backgroundColor = window.ColorMap[color];
-      }
+    if (!window.getAvailableColors || !window.ColorMap || !window.applyColorToSwatch) {
+      setTimeout(initializeColorSwatches, 100);
+      return;
+    }
+
+    const container = document.getElementById('dynamic-color-swatches');
+    if (!container) return;
+
+    const productHandle = '{{ product.handle }}';
+    const availableColors = window.getAvailableColors(productHandle);
+    const currentColor = window.getCurrentColor && window.getCurrentColor(productHandle);
+
+    // Clear existing swatches
+    container.innerHTML = '';
+
+    availableColors.forEach((color) => {
+      const isActive = color === currentColor;
+
+      const swatchContainer = document.createElement('div');
+      swatchContainer.className = 'product-page-color-swatch-container';
+
+      const tooltip = document.createElement('div');
+      tooltip.className = 'product-page-color-swatch-tooltip';
+      tooltip.textContent = color;
+
+      const swatch = document.createElement('label');
+      swatch.className = `product-page-color-swatch ${isActive ? 'active' : ''}`;
+      swatch.setAttribute('data-color', color);
+      swatch.setAttribute('for', `color-${color.toLowerCase().replace(/\s+/g, '-')}`);
+
+      // Apply color from centralized ColorMap
+      window.applyColorToSwatch(swatch, color);
+
+      swatchContainer.appendChild(tooltip);
+      swatchContainer.appendChild(swatch);
+      container.appendChild(swatchContainer);
     });
+
+    // Attach event listeners after creating swatches
+    attachColorSwatchListeners();
   }
 
-  function updateColorStyles() {
-    const options = getSelectedOptions();
-    const variant = findVariantByOptions(options.color, options.size);
-    const addToCartBtn = document.querySelector('.btn-add-to-cart');
-    const sizeSelector = document.querySelector('.size-selector');
-    
-    if (variant && window.ColorMap && window.ColorMap[variant.option1]) {
-      const selectedColor = window.ColorMap[variant.option1];
-      const colorName = variant.option1;
-      
-      // For white and slate colors, use black instead
-      let buttonColor = selectedColor;
-      let sizeColor = selectedColor;
-      
-      if (colorName === 'White' || colorName === 'Slate') {
-        buttonColor = '#000000';
-        sizeColor = '#000000';
-      }
-      
-      // Update button color
-      addToCartBtn.style.backgroundColor = buttonColor;
-      
-      // Update size selector color using CSS custom property
-      sizeSelector.style.setProperty('--selected-color', sizeColor);
+  function handleColorSwatchClick(colorName) {
+
+    const productHandle = '{{ product.handle }}';
+    const targetProductHandle = window.getColorVariantHandle(productHandle, colorName);
+
+    if (targetProductHandle) {
+      window.location.href = `/products/${targetProductHandle}`;
     }
   }
 
-  function initializeFromUrl() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const variantId = urlParams.get('variant');
-    
-    if (variantId) {
-      const variant = productVariants.find(v => v.id == variantId);
-      if (variant) {
-        // Select the matching color and size inputs
-        const colorInput = document.querySelector(`input[name="options[Color]"][value="${variant.option1}"]`);
-        const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option2}"]`);
-        
-        if (colorInput) colorInput.checked = true;
-        if (sizeInput) sizeInput.checked = true;
-        
-        setActiveColorSwatch(variant.option1);
-      }
+  function selectSizeFromVariant(variantId) {
+    const variant = productVariants.find(v => v.id == variantId);
+    if (!variant?.option1) return;
+
+    const sizeInput = document.querySelector(`input[name="options[Size]"][value="${variant.option1}"]`);
+    if (sizeInput) {
+      document.querySelectorAll('input[name="options[Size]"]').forEach(input => {
+        input.checked = false;
+      });
+      sizeInput.checked = true;
+      updateVariantId(); // Update form and URL after selecting size
     }
-    
-    updateVariantId();
+  }
+
+  function attachColorSwatchListeners() {
+    document.querySelectorAll('.product-page-color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', function(e) {
+        e.preventDefault();
+        handleColorSwatchClick(this.dataset.color);
+      });
+    });
   }
 
   document.addEventListener('DOMContentLoaded', function () {
     initializeColorSwatches();
-    initializeFromUrl();
-    updateColorStyles();
-    
-    // Add event listeners for option changes
+    setActiveColorSwatch();
+
+    const url = new URL(window.location);
+    const variantParam = url.searchParams.get('variant');
+    const defaultVariant = {{ product.selected_or_first_available_variant | json }};
+
+    const variantId = variantParam ?? defaultVariant?.id;
+    if (variantId) {
+      selectSizeFromVariant(variantId);
+    } else {
+      // Ensure form has a valid variant ID even without URL param
+      updateVariantId();
+    }
+
     document.querySelectorAll('input[data-variant-input]').forEach(input => {
-      input.addEventListener('change', function() {
-        updateVariantId();
-        updateColorStyles();
-        
-        // Update active color swatch when color changes
-        if (this.name === 'options[Color]') {
-          setActiveColorSwatch(this.value);
-        }
-      });
+      input.addEventListener('change', updateVariantId);
     });
   });
 </script>
@@ -560,6 +513,12 @@
 {% schema %}
 {
   "name": "Product Info Section",
+  "class": "product-info-section",
+  "presets": [
+    {
+      "name": "Product Info Section"
+    }
+  ],
   "settings": [
     {
       "type": "header",

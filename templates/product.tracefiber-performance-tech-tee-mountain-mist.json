@@ -1,0 +1,58 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom-product-info-section": {
+      "type": "custom-product-info-section",
+      "settings": {
+        "product": "tracefiber-performance-tech-tee-mountain-mist",
+        "background_image": "shopify://shop_images/mountain_mist_shirt_product_info_hero.png.png"
+      }
+    },
+    "product-photography-section": {
+      "type": "product-photography-section",
+      "settings": {
+        "product": "tracefiber-performance-tech-tee-mountain-mist",
+        "image_1": "shopify://shop_images/24_121_7pacific_00570.jpg",
+        "text_1": "6\" Inseam",
+        "subtext_1": "The perfect height for performance",
+        "image_2": "shopify://shop_images/24_121_7pacific_00709.jpg",
+        "text_2": "Laser Cut Performations",
+        "subtext_2": "Located in 3 high-sweat areas",
+        "image_3": "shopify://shop_images/24_121_7pacific_00605.jpg",
+        "text_3": "4 Way Stretch",
+        "subtext_3": "Durable and Flexible Fabric",
+        "text_4": "Photo Description 4",
+        "subtext_4": "Photo Subtext 4",
+        "text_5": "Photo Description 5",
+        "subtext_5": "Photo Subtext 5"
+      }
+    },
+    "tech-stack": {
+      "type": "tech-stack",
+      "settings": {}
+    },
+    "bottom-product-photography": {
+      "type": "bottom-product-photography",
+      "settings": {
+        "top_image": "shopify://shop_images/running.png",
+        "bottom_left_image": "shopify://shop_images/core_values_picture.png",
+        "bottom_right_image": "shopify://shop_images/single_running.png",
+        "button_text": "Join Newsletter"
+      }
+    }
+  },
+  "order": [
+    "custom-product-info-section",
+    "product-photography-section",
+    "tech-stack",
+    "bottom-product-photography"
+  ]
+}

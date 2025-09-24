@@ -18,41 +18,6 @@
         "parallax_direction": "top"
       }
     },
-    "promo-grid": {
-      "type": "promo-grid",
-      "blocks": {
-        "advanced": {
-          "type": "advanced",
-          "settings": {
-            "subheading": "",
-            "heading": "The Tailwind in Short and Long-Sleeve",
-            "textarea": "",
-            "cta_text1": "Shop The Collection",
-            "cta_link1": "shopify://products/the-activeshirt®-7pacific",
-            "cta_text2": "",
-            "cta_link2": "",
-            "image": "shopify://shop_images/7Pacific_May_11_2023-1193.jpg",
-            "video_url": "",
-            "width": "100",
-            "height": 560,
-            "text_size": 85,
-            "text_align": "vertical-center horizontal-center",
-            "color_accent": "#126e8f",
-            "boxed": false,
-            "framed": false
-          }
-        }
-      },
-      "block_order": [
-        "advanced"
-      ],
-      "settings": {
-        "full_width": false,
-        "gutter_size": 20,
-        "space_above": true,
-        "space_below": false
-      }
-    },
     "main-collection": {
       "type": "main-collection",
       "blocks": {
@@ -193,29 +158,15 @@
         "parallax": true,
         "parallax_direction": "top"
       }
-    },
-    "5ff245d0-176e-4679-a361-21c30c87b341": {
-      "type": "featured-collection",
-      "settings": {
-        "title": "Tailwind ® Fall & Winter 23 Collection",
-        "home_featured_products": "tailwind-1-0-®-fall-winter-23-collection",
-        "per_row": 4,
-        "rows": 1,
-        "mobile_scrollable": true,
-        "view_all": true,
-        "divider": false
-      }
     }
   },
   "order": [
     "collection-header",
-    "promo-grid",
     "main-collection",
     "672a0364-3a7d-4b43-81f8-c0cf740a34c1",
     "246c5b81-5d96-43b6-97cf-cf5f28b89450",
     "fe2fefea-f22e-4f1d-a0d2-d2ae1ba6bd79",
     "7aa40739-3091-422b-9a0f-8405c5466d58",
     "0c8744c2-d4f5-4f66-aee1-1fb9df7c8d9e",
-    "5ff245d0-176e-4679-a361-21c30c87b341"
   ]
 }

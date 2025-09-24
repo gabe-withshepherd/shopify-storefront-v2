@@ -18,7 +18,6 @@ function initializeProductCellInteractions() {
   const productCells = document.querySelectorAll('.product-cell');
 
   productCells.forEach((cell) => {
-    // Add click handler for product cells
     cell.addEventListener('click', function (e) {
       // Don't navigate if clicking on a color swatch (let the swatch handle navigation)
       if (e.target.closest('.color-swatch-custom')) {
@@ -26,8 +25,18 @@ function initializeProductCellInteractions() {
       }
 
       const productHandle = this.dataset.productHandle;
+      const defaultVariant = this.dataset.defaultVariant;
       if (productHandle) {
-        window.location.href = `/products/${productHandle}`;
+        // Use the theme utility function for consistent navigation
+        if (window.theme && window.theme.navigateToProduct) {
+          window.theme.navigateToProduct(productHandle, defaultVariant);
+        } else {
+          // Fallback if theme utilities are not available
+          const url = defaultVariant
+            ? `/products/${productHandle}?variant=${defaultVariant}`
+            : `/products/${productHandle}`;
+          window.location.href = url;
+        }
       }
     });
 

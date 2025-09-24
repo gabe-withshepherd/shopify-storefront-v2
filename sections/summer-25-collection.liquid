@@ -1,66 +1,49 @@
 <section class="summer-25-collection">
   <div class="page-width">
     <div class="summer-25-header">
-      <h2 class="summer-25-title">SUMMER '25 COLLECTION</h2>
+      <h2 class="summer-25-title">NEW ARRIVALS</h2>
       <p class="summer-25-subtext">Ultra-Light. Breathable. Ready To Train. Click in to see why.</p>
     </div>
 
     <div class="product-grid">
-      {% assign products = 'airrail-6-performance-shorts,tracefiber-performance-tech-tee,motionframe-running-hat'
+      {% assign products = 'airrail-6-performance-shorts-mountain-mist,airrail-6-performance-shorts-mint,airrail-6-performance-shorts-midnight,tracefiber-performance-tech-tee-white,tracefiber-performance-tech-tee-mint,tracefiber-performance-tech-tee-midnight,tracefiber-performance-tech-tee-tangerine,tracefiber-performance-tech-tee-mountain-mist,motionframe-running-hat'
         | split: ','
       %}
 
       {% for product_handle in products %}
         {% assign product = all_products[product_handle] %}
-        {% assign color_index = null %}
 
-        {% for option in product.options_with_values %}
-          {% if option.name == 'Color' %}
-            {% assign color_index = forloop.index0 %}
-          {% endif %}
-        {% endfor %}
+        <div
+          class="product-cell"
+          data-product-handle="{{ product.handle }}"
+          data-default-variant="{{ product.selected_or_first_available_variant.id }}"
+        >
+          <div class="product-image-container">
+            <img
+              src="{{ product.featured_image | image_url }}"
+              alt="{{ product.title }}"
+              class="product-image"
+              width="400"
+              height="600"
+            >
+            {% if product.images.size > 1 %}
+              <img
+                src="{{ product.images[1] | image_url }}"
+                alt="Hover image"
+                class="product-image-hover"
+                width="400"
+                height="600"
+              >
+            {% endif %}
 
-        {% assign shown_colors = '' %}
+            {% render 'color-swatches-component', product: product %}
+          </div>
 
-        {% for variant in product.variants %}
-          {% assign color = variant.options[color_index] %}
-          {% unless shown_colors contains color %}
-            {% assign shown_colors = shown_colors | append: color | append: ',' %}
-
-            <div class="product-cell" data-product-handle="{{ product.handle }}">
-              <div class="product-image-container">
-                <img
-                  src="{{ variant.featured_image | image_url }}"
-                  alt="{{ product.title }} - {{ color }}"
-                  class="product-image"
-                  width="400"
-                  height="600"
-                >
-                {% if product.images.size > 1 %}
-                  <img
-                    src="{{ product.images[0] | image_url }}"
-                    alt="Hover image"
-                    class="product-image-hover"
-                    width="400"
-                    height="600"
-                  >
-                {% endif %}
-
-                <!-- Color Swatches Container -->
-                {% render 'color-swatches-component',
-                  product: product,
-                  color_index: color_index,
-                  current_color: color
-                %}
-              </div>
-
-              <div class="product-info">
-                <div class="collection-product-title">{{ product.title }} - {{ color }}</div>
-                <p class="product-price">{{ variant.price | money_without_trailing_zeros }} USD</p>
-              </div>
-            </div>
-          {% endunless %}
-        {% endfor %}
+          <div class="product-info">
+            <div class="collection-product-title">{{ product.title }}</div>
+            <p class="product-price">{{ product.price | money_without_trailing_zeros }} USD</p>
+          </div>
+        </div>
       {% endfor %}
     </div>
   </div>
@@ -79,8 +62,8 @@
   }
 
   .summer-25-title {
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 4rem;
+    font-weight: 500;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
   }
@@ -98,7 +81,7 @@
   .product-cell {
     text-align: left;
     position: relative;
-    outline: 1px solid black;
+    /* outline: 1px solid black; */
     overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -150,6 +133,7 @@
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
@@ -170,7 +154,7 @@
   }
 </style>
 
-<script defer src="{{ 'color-swatch-component.js' | asset_url}}"></script>
+<script defer src="{{ 'summer-25-collection.js' | asset_url}}"></script>
 
 {% schema %}
 {
