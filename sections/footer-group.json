@@ -23,7 +23,7 @@
         "250e6701-9acf-4b4b-96b4-917b6121b420": {
           "type": "logo_social",
           "settings": {
-            "logo": "shopify://shop_images/white_logo2.svg",
+            "logo": "shopify://shop_images/white_logo.svg",
             "desktop_logo_height": 47,
             "container_width": 47
           }
