@@ -20,8 +20,7 @@
           REFINED BY COMMUNITY.
         </div>
         <p class="split-section__subtext">
-          We think everyone builds a stronger version of themselves<br>
-          and of their community when you sweat together.
+          We think everyone builds a stronger version of themselves and of their community when you sweat together.
         </p>
 
         {% render 'cta-button', url: '/pages/membership', text: 'JOIN THE MEMBERSHIP', class: 'split-section__button' %}
@@ -74,9 +73,8 @@
 
   .split-section__text-content {
     position: relative;
-    margin-left: 14px;
-    margin-right: 14px;
-    background-color: aqua;
+    margin-left: 18px;
+    margin-right: 18px;
   }
 
   .split-section__button {
@@ -84,7 +82,7 @@
   }
 
   .split-section__text-content-title {
-    font-size: 50px;
+    font-size: clamp(2rem, 4.5vw, 5rem);
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 1rem;
@@ -93,7 +91,6 @@
   .split-section__subtext {
     font-size: 1.25rem;
     font-weight: 400;
-    line-height: 1.3;
   }
 
   .split-section__image img {
@@ -101,6 +98,12 @@
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .split-section__text-content-title {
+      font-size: clamp(2rem, 4.2vw, 5rem);
+    }
   }
 
   @media screen and (max-width: 768px) {
@@ -117,7 +120,15 @@
     }
 
     .split-section__text-content-title {
-      font-size: 2rem;
+      margin-top: 0.5rem;
+      font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+    .split-section__button {
+      margin-bottom: 1rem;
+    }
+
+    .split-section__subtext {
+      font-size: 1rem;
     }
   }
 </style>
