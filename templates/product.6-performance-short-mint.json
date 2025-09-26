@@ -20,19 +20,29 @@
       "type": "product-photography-section",
       "settings": {
         "product": "airrail-6-performance-shorts",
-        "image_1": "shopify://shop_images/24_121_7pacific_00570.jpg",
-        "text_1": "6\" Inseam",
-        "subtext_1": "The perfect height for performance",
-        "image_2": "shopify://shop_images/24_121_7pacific_00709.jpg",
-        "text_2": "Laser Cut Performations",
-        "subtext_2": "Located in 3 high-sweat areas",
-        "image_3": "shopify://shop_images/24_121_7pacific_00605.jpg",
+        "image_1": "shopify://shop_images/mint_short_back_close_up_c5eefa3b-f54b-4242-8c47-0e3b8f94e41c.jpg",
+        "text_1": "Laser Cut Performations",
+        "subtext_1": "Located in 3 high-sweat areas",
+
+        "image_2": "shopify://shop_images/mint_short_walking.jpg",
+        "text_2": "6\" Inseam",
+        "subtext_2": "The perfect height for performance",
+
+        "image_3": "shopify://shop_images/mint_short_med_ball_twist_930f360e-3637-4572-83be-4c26837cbd4e.jpg",
         "text_3": "4 Way Stretch",
         "subtext_3": "Durable and Flexible Fabric",
-        "text_4": "Photo Description 4",
-        "subtext_4": "Photo Subtext 4",
-        "text_5": "Photo Description 5",
-        "subtext_5": "Photo Subtext 5"
+
+        "image_4": "shopify://shop_images/mint_short_grip_tape_fbb0e55a-a008-4848-a54b-57c5389f22ad.jpg",
+        "text_4": "Grip Tape Liner",
+        "subtext_4": "No liner ride up. No Distractions.",
+
+        "image_5": "shopify://shop_images/mint_short_phone_pocket_98683e24-9e96-43bc-85a1-af700a23a14e.jpg",
+        "text_5": "Phone Pocket",
+        "subtext_5": "Kept it secure during training",
+
+        "image_6": "shopify://shop_images/mint_short_waistband_392fc6a2-a5d2-4f5d-a958-89ad14215931.jpg",
+        "text_6": "Lightweight Construction",
+        "subtext_6": "Bonded Seams for featherweight comfort",
       }
     },
     "tech-stack": {

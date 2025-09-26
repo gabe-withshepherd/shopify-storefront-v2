@@ -7,6 +7,7 @@
   - text: The text to display on the button
   - icon: Optional icon to display (defaults to chevron-right)
   - class: Optional additional CSS classes
+  - popover: Optional popover ID to trigger instead of navigation
 {% endcomment %}
 
 {% assign button_url = url | default: '#' %}
@@ -14,10 +15,21 @@
 {% assign button_icon = icon | default: 'chevron-right' %}
 {% assign button_class = class | default: '' %}
 
-<a href="{{ button_url }}" class="cta-button {{ button_class }}">
-  {{ button_text }}
-  {% render 'custom-icons', icon: button_icon %}
-</a>
+{% if popover %}
+  <button
+    type="button"
+    class="cta-button js-modal-open-{{ popover }} {{ button_class }}"
+    data-popover-target="{{ popover }}"
+  >
+    {{ button_text }}
+    {% render 'custom-icons', icon: button_icon %}
+  </button>
+{% else %}
+  <a href="{{ button_url }}" class="cta-button {{ button_class }}">
+    {{ button_text }}
+    {% render 'custom-icons', icon: button_icon %}
+  </a>
+{% endif %}
 
 <style>
   .cta-button {
@@ -25,7 +37,7 @@
     display: inline-flex;
     align-items: center;
     background: #cb5c28;
-    color: #fff;
+    color: #fff !important;
     text-decoration: none;
     gap: 0.25rem;
     padding: clamp(8px, 0.9vw, 12px);
@@ -50,7 +62,7 @@
 
   .cta-button:hover {
     background-color: #fff;
-    color: #000;
+    color: #000 !important;
     border: 1px solid #000;
     text-decoration: none;
   }
