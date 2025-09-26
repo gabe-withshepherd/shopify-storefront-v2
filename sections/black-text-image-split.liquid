@@ -23,7 +23,11 @@
           We think everyone builds a stronger version of themselves and of their community when you sweat together.
         </p>
 
-        {% render 'cta-button', url: '/pages/membership', text: 'JOIN THE MEMBERSHIP', class: 'split-section__button' %}
+        {% render 'cta-button',
+          popover: 'newsletter-membership-popover',
+          text: 'JOIN THE MEMBERSHIP',
+          class: 'split-section__button'
+        %}
       </div>
     </div>
     <div class="split-section__image">
@@ -132,6 +136,25 @@
     }
   }
 </style>
+
+{% comment %}
+  Include the newsletter popover that will be triggered by the button
+{% endcomment %}
+{% render 'newsletter-popover',
+  id: 'newsletter-membership-popover',
+  title: 'JOIN THE MEMBERSHIP',
+  text: 'Be the first to know about exclusive offers, new products, and community events. Join our membership today!',
+  button_text: 'SIGN UP'
+%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize modal for the newsletter popover
+    if (window.theme && window.theme.Modals) {
+      new theme.Modals('newsletter-membership-popover', 'newsletter-membership-popover');
+    }
+  });
+</script>
 
 {% schema %}
 {

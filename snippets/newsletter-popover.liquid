@@ -1,0 +1,311 @@
+{% comment %}
+  Newsletter Popover Snippet
+  Usage: {% render 'newsletter-popover', id: 'unique-id', title: 'Join Our Newsletter', text: 'Sign up for exclusive offers' %}
+
+  Parameters:
+  - id: Unique identifier for the popover (required)
+  - title: Heading text for the popover (optional, defaults to 'Join Our Newsletter')
+  - text: Description text (optional)
+  - button_text: Submit button text (optional, defaults to 'Sign Up')
+{% endcomment %}
+
+{% assign popover_id = id | default: 'newsletter-popover' %}
+{% assign popover_title = title | default: 'Join Our Newsletter' %}
+{% assign popover_button_text = button_text | default: 'Sign Up' %}
+{% assign newsletter_form_id = 'newsletter-popover-form-' | append: popover_id %}
+
+<div id="{{ popover_id }}" class="modal modal--square modal--newsletter-popover" data-popover-id="{{ popover_id }}">
+  <div class="modal__inner">
+    <div class="modal__centered">
+      <div class="modal__centered-content newsletter-popover">
+        <div class="newsletter-popover__content">
+          {% if popover_title != blank %}
+            <h3 class="newsletter-popover__title">{{ popover_title }}</h3>
+          {% endif %}
+
+          {% if text != blank %}
+            <div class="newsletter-popover__text">
+              {{ text }}
+            </div>
+          {% endif %}
+
+          <div class="newsletter-popover__form-wrapper" id="form-wrapper-{{ popover_id }}">
+            {% form 'customer', id: newsletter_form_id, class: 'newsletter-popover__form' %}
+              <input type="hidden" name="contact[tags]" value="prospect,newsletter">
+              <input type="hidden" name="contact[context]" value="popover">
+
+              {% if form.errors %}
+                <div class="newsletter-popover__error">
+                  {{ form.errors | default_errors }}
+                </div>
+              {% endif %}
+
+              <div class="newsletter-popover__input-group">
+                <label for="email-{{ popover_id }}" class="visually-hidden">
+                  {{- 'general.newsletter_form.newsletter_email' | t -}}
+                </label>
+                <input
+                  type="email"
+                  name="contact[email]"
+                  id="email-{{ popover_id }}"
+                  class="newsletter-popover__input"
+                  placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}"
+                  value="{% if customer %}{{ customer.email }}{% endif %}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  required
+                >
+                {% comment %}
+                  <button type="submit" class="newsletter-popover__submit btn">
+                    {{ popover_button_text }}
+                  </button>
+                {% endcomment %}
+                {% render 'cta-button', text: popover_button_text %}
+              </div>
+            {% endform %}
+          </div>
+
+          <div class="newsletter-popover__success" id="success-{{ popover_id }}" style="display: none;">
+            <svg
+              class="newsletter-popover__success-icon"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <p class="newsletter-popover__success-message">
+              {{ 'general.newsletter_form.newsletter_confirmation' | t }}
+            </p>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="modal__close js-modal-close newsletter-popover__close"
+          aria-label="{{ 'general.accessibility.close_modal' | t }}"
+        >
+          <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-close" viewBox="0 0 64 64">
+            <title>icon-X</title>
+            <path d="m19 17.61 27.12 27.13m0-27.12L19 44.74"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal--newsletter-popover .modal__inner {
+    font-family: 'Barlow', sans-serif;
+    background-color: var(--colorBody, #fff);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    color: var(--colorTextBody, #000);
+    max-width: 500px;
+    width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .newsletter-popover {
+    padding: 3rem 2rem;
+    position: relative;
+  }
+
+  .newsletter-popover__title {
+    font-size: 2rem;
+    margin: 0 0 1rem;
+    text-align: center;
+    font-weight: 600;
+    color: var(--colorTextBody);
+  }
+
+  .newsletter-popover__text {
+    margin-bottom: 2rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--colorTextBody);
+    opacity: 0.8;
+  }
+
+  .newsletter-popover__form-wrapper {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .newsletter-popover__input-group {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .newsletter-popover__input {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+    background: #fff;
+    color: var(--colorTextBody);
+  }
+
+  .newsletter-popover__input:focus {
+    outline: none;
+    border-color: #cb5c28;
+  }
+
+  .newsletter-popover__submit {
+    background: #cb5c28;
+    color: #fff;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .newsletter-popover__submit:hover {
+    background: #b54d20;
+  }
+
+  .newsletter-popover__error {
+    background: #fee;
+    color: #c00;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .newsletter-popover__success {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .newsletter-popover__success-icon {
+    color: #4caf50;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter-popover__success-message {
+    font-size: 1.25rem;
+    color: var(--colorTextBody);
+    margin: 0;
+  }
+
+  .newsletter-popover__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: var(--colorTextBody);
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  .newsletter-popover__close:hover {
+    opacity: 1;
+  }
+
+  .newsletter-popover__close .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .modal--newsletter-popover .modal__inner {
+      width: 95%;
+      max-width: none;
+    }
+
+    .newsletter-popover {
+      padding: 2rem 1.5rem;
+    }
+
+    .newsletter-popover__title {
+      font-size: 1.5rem;
+    }
+
+    .newsletter-popover__input-group {
+      flex-direction: column;
+    }
+
+    .newsletter-popover__submit {
+      width: 100%;
+      padding: 1rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const popoverId = '{{ popover_id }}';
+    const popover = document.getElementById(popoverId);
+    if (!popover) return;
+
+    const form = popover.querySelector('#{{ newsletter_form_id }}');
+    const formWrapper = popover.querySelector('#form-wrapper-' + popoverId);
+    const successDiv = popover.querySelector('#success-' + popoverId);
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              // Show success message
+              formWrapper.style.display = 'none';
+              successDiv.style.display = 'block';
+
+              // Close popover after 2 seconds
+              setTimeout(function () {
+                if (window.theme && window.theme.Modals) {
+                  // Find and close the modal using theme's modal system
+                  const modalInstance = window.theme.Modals.find((m) => m.id === popoverId);
+                  if (modalInstance) {
+                    modalInstance.close();
+                  }
+                } else {
+                  // Fallback: manually close
+                  popover.classList.remove('modal--is-active');
+                  document.documentElement.classList.remove('modal-open');
+                }
+
+                // Reset form for next use
+                setTimeout(function () {
+                  form.reset();
+                  formWrapper.style.display = 'block';
+                  successDiv.style.display = 'none';
+                }, 500);
+              }, 2000);
+            } else {
+              // Handle error
+              console.error('Newsletter signup failed');
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      });
+    }
+  });
+</script>
