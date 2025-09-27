@@ -14,10 +14,20 @@
     >
       <div class="product-layout">
         <div
-          class="product-background-image"
+          class="product-background-image desktop-image"
           style="
             {% if section.settings.background_image %}
             background-image: url({{ section.settings.background_image | image_url }});
+            {% endif %}
+            background-size: cover;
+            background-position: center;
+          "
+        ></div>
+        <div
+          class="product-background-image mobile-image"
+          style="
+            {% if section.settings.background_image_mobile %}
+            background-image: url({{ section.settings.background_image_mobile | image_url }});
             {% endif %}
             background-size: cover;
             background-position: center;
@@ -117,6 +127,14 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+  }
+
+  .product-background-image.mobile-image {
+    display: none;
+  }
+
+  .product-background-image.desktop-image {
+    display: block;
   }
 
   .product-details {
@@ -256,8 +274,16 @@
     .product-background-image {
       position: relative;
       min-height: 400px;
-      width: 100%;
+      width: 75%;
       order: 1;
+    }
+
+    .product-background-image.desktop-image {
+      display: none;
+    }
+
+    .product-background-image.mobile-image {
+      display: block;
     }
 
     .product-details {
