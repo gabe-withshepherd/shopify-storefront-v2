@@ -1,43 +1,40 @@
 <section class="related-products-section">
   <div class="page-width">
-    <div class="related-products-header">
-      <h2 class="related-products-title">{{ section.settings.title | default: 'Related Products' }}</h2>
-      {% if section.settings.subtitle != blank %}
-        <p class="related-products-subtitle">{{ section.settings.subtitle }}</p>
-      {% endif %}
+    <div class="default-title-header">
+      <h2 class="default-title-header-title">PLANNING ON SWEATING MORE?</h2>
+      <p class="default-title-header-subtitle">Shop more of what you need to get you through those sessions.</p>
     </div>
 
     <div class="related-products-grid">
       {% comment %} Specific products: mint shorts, mountain mist shirt, and midnight shorts {% endcomment %}
       {% render 'product-cell', product_handle: 'airrail-6-performance-shorts-mint' %}
       {% render 'product-cell', product_handle: 'tracefiber-performance-tech-tee-mountain-mist' %}
-      {% render 'product-cell', product_handle: 'airrail-6-performance-shorts-midnight' %}
+      {% render 'product-cell', product_handle: 'motionframe-running-hat' %}
     </div>
   </div>
 </section>
 
 <style>
   .related-products-section {
-    padding: 3rem 0.5rem;
-    font-family: 'Barlow', sans-serif !important;
+    padding: 1rem 0.5rem;
+    font-family: 'Barlow', sans-serif;
   }
 
-  .related-products-header {
-    text-align: center;
-    margin-bottom: 2.5rem;
+  .default-title-header {
+    text-align: left;
+    margin-bottom: 2rem;
+    font-weight: 400;
   }
 
-  .related-products-title {
+  .default-title-header-title {
     font-size: 2.5rem;
     font-weight: 500;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
   }
 
-  .related-products-subtitle {
-    font-size: 1rem;
-    color: #666;
-    margin: 0;
+  .default-title-header-subtitle {
+    font-size: 1.1rem;
   }
 
   .related-products-grid {
@@ -45,17 +42,13 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
   }
 
   @media (max-width: 768px) {
     .related-products-grid {
       grid-template-columns: 1fr;
       gap: 1rem;
-    }
-
-    .related-products-title {
-      font-size: 2rem;
     }
 
     .color-swatches-container {
@@ -76,20 +69,7 @@
 {% schema %}
 {
   "name": "Related Products",
-  "settings": [
-    {
-      "type": "text",
-      "id": "title",
-      "label": "Section Title",
-      "default": "Related Products"
-    },
-    {
-      "type": "text",
-      "id": "subtitle",
-      "label": "Section Subtitle",
-      "info": "Optional subtitle text"
-    }
-  ],
+  "settings": [],
   "presets": [
     {
       "name": "Related Products",
