@@ -2,23 +2,16 @@
   Core Values Section with alternating layout and video support
 {% endcomment %}
 
-{% comment %} Button Component {% endcomment %}
-{% capture core_values_button %}
-  {% comment %}
-    Usage: {% assign buttonText = "Learn More" %}
-           {% assign buttonUrl = "/pages/about" %}
-           {{ core_values_button }}
-  {% endcomment %}
-  <a href="{{ button_url }}" class="core-value-button">
-    <span class="button-text">{{ button_text }}</span>
-    <svg class="button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-{% endcapture %}
-
 <section class="core-values-v2-section">
   <div class="core-values-v2-container">
+    <div class="summer-25-header">
+      <h2 class="summer-25-title">WHAT WE STAND FOR</h2>
+      <p class="summer-25-subtext">
+        Our core tenets that guide our mission. It's what we strive to do as a company, and what we hope to inspire in
+        our community.
+      </p>
+    </div>
+
     {% comment %} Row 1 - Video/Image on Left {% endcomment %}
     <div class="core-value-row core-value-row--media-left">
       <div class="core-value-media">
@@ -52,27 +45,63 @@
         {% endif %}
       </div>
       <div class="core-value-content">
-        <h3 class="core-value-title">LOVE THE JOURNEY</h3>
-        <p class="core-value-description">
-          The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves when
-          you sweat together.
-        </p>
-        {% assign button_text = 'Learn More' %}
-        {% assign button_url = '/pages/about' %}
-        {{ core_values_button }}
+        <div class="core-value-content-inner">
+          <h3 class="core-value-title">LOVE THE JOURNEY</h3>
+          <p class="core-value-description">
+            The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves when
+            you sweat together.
+          </p>
+          <a href="/pages/our-story" class="core-value-button">
+            <span class="button-text">READ OUR STORY</span>
+            {% comment %} {% render 'custom-icons', icon: 'chevron-right' %} {% endcomment %}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="core-value-button-icon"
+            >
+              {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
+              <path d="M9 6l6 6l-6 6" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
+    {% comment %} end of row 1 {% endcomment %}
 
     {% comment %} Row 2 - Content on Left, Image on Right {% endcomment %}
     <div class="core-value-row core-value-row--media-right">
-      <div class="core-value-content">
-        <h3 class="core-value-title">TRACK THE TRUTH</h3>
-        <p class="core-value-description">
-          Start point. End point. The space in between is yours to shape. Measure the work, watch the evolution.
-        </p>
-        {% assign button_text = 'Discover More' %}
-        {% assign button_url = '/pages/our-mission' %}
-        {{ core_values_button }}
+      <div class="core-value-content core-value-content--left">
+        <div class="core-value-content-inner">
+          <h3 class="core-value-title core-value-title--left">NO LOSSES, ONLY LESSONS</h3>
+          <p class="core-value-description core-value-description--left">
+            When something doesn’t work out, we figure out why and come back more experienced.
+          </p>
+          <a href="/pages/our-story" class="core-value-button">
+            <span class="button-text">JOIN THE MEMBERSHIP</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="core-value-button-icon"
+            >
+              {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
+              <path d="M9 6l6 6l-6 6" />
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="core-value-media">
         {% if section.settings.image_2 != blank %}
@@ -91,6 +120,7 @@
         {% endif %}
       </div>
     </div>
+    {% comment %} end of row 2 {% endcomment %}
 
     {% comment %} Row 3 - Image on Left {% endcomment %}
     <div class="core-value-row core-value-row--media-left">
@@ -111,26 +141,62 @@
         {% endif %}
       </div>
       <div class="core-value-content">
-        <h3 class="core-value-title">PLAY THE LONG GAME</h3>
-        <p class="core-value-description">
-          We don't chase quick wins. We build things that outlast the season. Patience is the loudest statement.
-        </p>
-        {% assign button_text = 'Our Philosophy' %}
-        {% assign button_url = '/pages/philosophy' %}
-        {{ core_values_button }}
+        <div class="core-value-content-inner">
+          <h3 class="core-value-title">PLAY THE LONG GAME</h3>
+          <p class="core-value-description">
+            We don't chase quick wins. We build things that outlast the season. Patience is the loudest statement.
+          </p>
+          <a href="{{ all_products['tracefiber-performance-tech-tee-mountain-mist'].url }}" class="core-value-button">
+            <span class="button-text">SHOP SHIRTS</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="core-value-button-icon"
+            >
+              {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
+              <path d="M9 6l6 6l-6 6" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
+    {% comment %} end of row 3 {% endcomment %}
 
     {% comment %} Row 4 - Content on Left, Image on Right {% endcomment %}
     <div class="core-value-row core-value-row--media-right">
-      <div class="core-value-content">
-        <h3 class="core-value-title">NO LOSSES, ONLY LESSONS</h3>
-        <p class="core-value-description">
-          When something doesn't work out, we figure out why and come back more experienced.
-        </p>
-        {% assign button_text = 'Join Us' %}
-        {% assign button_url = '/pages/community' %}
-        {{ core_values_button }}
+      <div class="core-value-content core-value-content--left">
+        <div class="core-value-content-inner">
+          <h3 class="core-value-title core-value-title--left">TRACK THE TRUTH</h3>
+          <p class="core-value-description core-value-description--left">
+            The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves when
+            you sweat together.
+          </p>
+          <a href="{{ all_products['airrail-6-performance-shorts-mountain-mist'].url }}" class="core-value-button">
+            <span class="button-text">SHOP SHORTS</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="core-value-button-icon"
+            >
+              {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
+              <path d="M9 6l6 6l-6 6" />
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="core-value-media">
         {% if section.settings.image_4 != blank %}
@@ -149,6 +215,7 @@
         {% endif %}
       </div>
     </div>
+    {% comment %} end of row 4 {% endcomment %}
   </div>
 </section>
 
@@ -161,15 +228,15 @@
   .core-values-v2-container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 50px;
   }
 
   .core-value-row {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    gap: 60px;
+    gap: 20px;
     align-items: center;
-    margin-bottom: 80px;
+    margin-bottom: 20px;
   }
 
   .core-value-row:last-child {
@@ -198,7 +265,7 @@
     width: 100%;
     height: 400px;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 2px;
     position: relative;
     background-color: #f5f5f5;
   }
@@ -223,20 +290,6 @@
     object-fit: cover;
   }
 
-  .core-value-video-embed {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .core-value-video-embed iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
   .core-value-placeholder {
     display: flex;
     align-items: center;
@@ -244,65 +297,77 @@
     background-color: #f0f0f0;
   }
 
-  .core-value-placeholder svg {
-    width: 100px;
-    height: 100px;
-    opacity: 0.3;
-  }
-
   .core-value-content {
     padding: 20px;
+    background-color: #282829;
+    height: 100%;
+  }
+
+  .core-value-content--left {
+    background-color: #d9d9d9;
+  }
+
+  .core-value-content-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-bottom: 30px;
   }
 
   .core-value-title {
     font-family: 'Barlow', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-size: 2rem;
+    font-weight: 500;
     margin: 0 0 20px 0;
-    color: #000;
+    color: #fff;
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
 
+  .core-value-title--left {
+    color: #000;
+  }
+
   .core-value-description {
     font-family: 'Barlow', sans-serif;
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #333;
-    margin: 0 0 30px 0;
+    font-size: 1rem;
+    color: #fff;
+  }
+
+  .core-value-description--left {
+    color: #000;
   }
 
   /* Button Component Styles */
   .core-value-button {
+    font-family: 'Barlow', sans-serif;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    background-color: #cb5c28;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 24px;
-    border-radius: 4px;
-    font-family: 'Barlow', sans-serif;
+    gap: 0.25rem;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2px 4px;
+    border-radius: 2px;
     font-weight: 600;
     font-size: 1rem;
-    letter-spacing: 0.03em;
     transition: all 0.3s ease;
-    border: 1px solid #cb5c28;
   }
 
   .core-value-button:hover {
-    background-color: #ffffff;
-    color: #cb5c28;
-    border-color: #cb5c28;
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
   }
 
-  .core-value-button .button-arrow {
+  .core-value-button .core-value-button-icon {
     width: 18px;
     height: 18px;
     transition: transform 0.3s ease;
   }
 
-  .core-value-button:hover .button-arrow {
+  .core-value-button:hover .core-value-button-icon {
     transform: translateX(4px);
   }
 

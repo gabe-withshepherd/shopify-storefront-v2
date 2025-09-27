@@ -13,7 +13,8 @@
       "type": "custom-hero-image",
       "name": "Custom Hero Image",
       "settings": {
-        "custom_hero_image": "shopify://shop_images/CleanShot_2025-06-26_at_22.10.41_2x_0911b881-2aa4-49a7-a71d-22248a593724.jpg"
+        // "custom_hero_image": "shopify://shop_images/CleanShot_2025-06-26_at_22.10.41_2x_0911b881-2aa4-49a7-a71d-22248a593724.jpg"
+        "custom_hero_image": "shopify://shop_images/potential_hero_image.jpg"
       }
     },
     "summer_25_collection_fe9dMF": {
@@ -27,7 +28,10 @@
       "type": "core-values-homepage-v2",
       "name": "Core Values Homepage V2",
       "settings": {
-        "video_url_1": "shopify://files/videos/golden_gate_bridge_video.mp4"
+        "video_url_1": "https://cdn.shopify.com/videos/c/o/v/a156e4e88aec47fa96892073a276450f.mp4",
+        "image_2": "shopify://shop_images/social_sharing.jpg",
+        "image_3": "shopify://shop_images/paul_screaming.jpg",
+        "image_4": "shopify://shop_images/fitness_stats_1.jpg"
       }
     },
     "black_text_image_split_PNHLiU": {
