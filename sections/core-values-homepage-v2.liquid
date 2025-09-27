@@ -83,7 +83,11 @@
           <p class="core-value-description core-value-description--left">
             When something doesn’t work out, we figure out why and come back more experienced.
           </p>
-          <a href="/pages/our-story" class="core-value-button">
+          <button
+            type="button"
+            class="core-value-button js-modal-open-newsletter-core-values"
+            data-popover-target="newsletter-core-values"
+          >
             <span class="button-text">JOIN THE MEMBERSHIP</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +104,7 @@
               {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
               <path d="M9 6l6 6l-6 6" />
             </svg>
-          </a>
+          </button>
         </div>
       </div>
       <div class="core-value-media">
@@ -218,6 +222,22 @@
     {% comment %} end of row 4 {% endcomment %}
   </div>
 </section>
+
+{% comment %} Include newsletter popover modal {% endcomment %}
+{% render 'newsletter-popover',
+  id: 'newsletter-core-values',
+  title: 'Join Our Membership',
+  text: 'Get exclusive access to new products, member-only events, and training tips.'
+%}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initialize modal for the newsletter popover
+    if (window.theme && window.theme.Modals) {
+      new theme.Modals('newsletter-core-values', 'newsletter-core-values');
+    }
+  });
+</script>
 
 <style>
   .core-values-v2-section {
@@ -353,6 +373,9 @@
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
   }
 
   .core-value-button:hover {
