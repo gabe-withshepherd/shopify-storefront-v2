@@ -19,7 +19,7 @@
       }
     },
     "main-collection": {
-      "type": "main-collection",
+      "type": "main-collection-basic",
       "blocks": {
         "collection_description": {
           "type": "collection_description",

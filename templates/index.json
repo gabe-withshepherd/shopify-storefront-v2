@@ -17,9 +17,9 @@
         "custom_hero_image": "shopify://shop_images/potential_hero_image.jpg"
       }
     },
-    "summer_25_collection_fe9dMF": {
-      "type": "summer-25-collection",
-      "name": "Summer '25 Collection",
+    "main_collection_fe9dMF": {
+      "type": "main-collection",
+      "name": "Main Collection",
       "settings": {
         "custom_grid_collection": "summer-25"
       }
@@ -46,7 +46,7 @@
   },
   "order": [
     "custom_hero_image_kKQLfE",
-    "summer_25_collection_fe9dMF",
+    "main_collection_fe9dMF",
     "core_values_homepage_v2_JzVxzy",
     "black_text_image_split_PNHLiU"
   ]
