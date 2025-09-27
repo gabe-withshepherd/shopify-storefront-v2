@@ -1,0 +1,431 @@
+{% comment %}
+  Core Values Section with alternating layout and video support
+{% endcomment %}
+
+{% comment %} Button Component {% endcomment %}
+{% capture core_values_button %}
+  {% comment %}
+    Usage: {% assign buttonText = "Learn More" %}
+           {% assign buttonUrl = "/pages/about" %}
+           {{ core_values_button }}
+  {% endcomment %}
+  <a href="{{ button_url }}" class="core-value-button">
+    <span class="button-text">{{ button_text }}</span>
+    <svg class="button-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </a>
+{% endcapture %}
+
+<section class="core-values-v2-section">
+  <div class="core-values-v2-container">
+    {% comment %} Row 1 - Video/Image on Left {% endcomment %}
+    <div class="core-value-row core-value-row--media-left">
+      <div class="core-value-media">
+        {% if section.settings.video_url_1 != blank %}
+          <div class="core-value-video">
+            {% if section.settings.video_url_1 contains '.mp4' or section.settings.video_url_1 contains '.MP4' %}
+              <video
+                class="core-value-video-element"
+                src="{{ section.settings.video_url_1 }}"
+                loop
+                muted
+                playsinline
+                autoplay
+                poster="{% if section.settings.video_poster_1 != blank %}{{ section.settings.video_poster_1 | image_url }}{% endif %}"
+              ></video>
+            {% endif %}
+          </div>
+        {% elsif section.settings.image_1 != blank %}
+          <img
+            src="{{ section.settings.image_1 | image_url }}"
+            alt="Core Value 1"
+            loading="lazy"
+            class="core-value-image"
+            width="400"
+            height="600"
+          >
+        {% else %}
+          <div class="core-value-placeholder">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="core-value-content">
+        <h3 class="core-value-title">LOVE THE JOURNEY</h3>
+        <p class="core-value-description">
+          The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves when
+          you sweat together.
+        </p>
+        {% assign button_text = 'Learn More' %}
+        {% assign button_url = '/pages/about' %}
+        {{ core_values_button }}
+      </div>
+    </div>
+
+    {% comment %} Row 2 - Content on Left, Image on Right {% endcomment %}
+    <div class="core-value-row core-value-row--media-right">
+      <div class="core-value-content">
+        <h3 class="core-value-title">TRACK THE TRUTH</h3>
+        <p class="core-value-description">
+          Start point. End point. The space in between is yours to shape. Measure the work, watch the evolution.
+        </p>
+        {% assign button_text = 'Discover More' %}
+        {% assign button_url = '/pages/our-mission' %}
+        {{ core_values_button }}
+      </div>
+      <div class="core-value-media">
+        {% if section.settings.image_2 != blank %}
+          <img
+            src="{{ section.settings.image_2 | image_url }}"
+            alt="Track the Truth"
+            loading="lazy"
+            class="core-value-image"
+            width="400"
+            height="600"
+          >
+        {% else %}
+          <div class="core-value-placeholder">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    {% comment %} Row 3 - Image on Left {% endcomment %}
+    <div class="core-value-row core-value-row--media-left">
+      <div class="core-value-media">
+        {% if section.settings.image_3 != blank %}
+          <img
+            src="{{ section.settings.image_3 | image_url }}"
+            alt="Play the Long Game"
+            loading="lazy"
+            class="core-value-image"
+            width="400"
+            height="600"
+          >
+        {% else %}
+          <div class="core-value-placeholder">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="core-value-content">
+        <h3 class="core-value-title">PLAY THE LONG GAME</h3>
+        <p class="core-value-description">
+          We don't chase quick wins. We build things that outlast the season. Patience is the loudest statement.
+        </p>
+        {% assign button_text = 'Our Philosophy' %}
+        {% assign button_url = '/pages/philosophy' %}
+        {{ core_values_button }}
+      </div>
+    </div>
+
+    {% comment %} Row 4 - Content on Left, Image on Right {% endcomment %}
+    <div class="core-value-row core-value-row--media-right">
+      <div class="core-value-content">
+        <h3 class="core-value-title">NO LOSSES, ONLY LESSONS</h3>
+        <p class="core-value-description">
+          When something doesn't work out, we figure out why and come back more experienced.
+        </p>
+        {% assign button_text = 'Join Us' %}
+        {% assign button_url = '/pages/community' %}
+        {{ core_values_button }}
+      </div>
+      <div class="core-value-media">
+        {% if section.settings.image_4 != blank %}
+          <img
+            src="{{ section.settings.image_4 | image_url }}"
+            alt="No Losses, Only Lessons"
+            loading="lazy"
+            class="core-value-image"
+            width="400"
+            height="600"
+          >
+        {% else %}
+          <div class="core-value-placeholder">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .core-values-v2-section {
+    padding: 60px 0;
+    background-color: #ffffff;
+  }
+
+  .core-values-v2-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .core-value-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+  }
+
+  .core-value-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .core-value-row--media-right {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .core-value-row--media-left {
+    grid-template-columns: 2fr 1fr;
+  }
+
+  .core-value-row--media-right .core-value-content {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .core-value-row--media-right .core-value-media {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .core-value-media {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    background-color: #f5f5f5;
+  }
+
+  .core-value-image,
+  .core-value-video video,
+  .core-value-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .core-value-video {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .core-value-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .core-value-video-embed {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .core-value-video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .core-value-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+  }
+
+  .core-value-placeholder svg {
+    width: 100px;
+    height: 100px;
+    opacity: 0.3;
+  }
+
+  .core-value-content {
+    padding: 20px;
+  }
+
+  .core-value-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .core-value-description {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+    margin: 0 0 30px 0;
+  }
+
+  /* Button Component Styles */
+  .core-value-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #cb5c28;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    border: 1px solid #cb5c28;
+  }
+
+  .core-value-button:hover {
+    background-color: #ffffff;
+    color: #cb5c28;
+    border-color: #cb5c28;
+  }
+
+  .core-value-button .button-arrow {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .core-value-button:hover .button-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Mobile Responsive Design */
+  @media screen and (max-width: 768px) {
+    .core-values-v2-section {
+      padding: 40px 0;
+    }
+
+    .core-value-row {
+      grid-template-columns: 1fr !important;
+      gap: 30px;
+      margin-bottom: 50px;
+    }
+
+    /* On mobile, always show media first, then content */
+    .core-value-row--media-right .core-value-media,
+    .core-value-row--media-left .core-value-media {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .core-value-row--media-right .core-value-content,
+    .core-value-row--media-left .core-value-content {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .core-value-media {
+      height: 300px;
+    }
+
+    .core-value-content {
+      padding: 10px;
+    }
+
+    .core-value-title {
+      font-size: 1.8rem;
+    }
+
+    .core-value-description {
+      font-size: 1rem;
+    }
+
+    .core-value-button {
+      padding: 10px 20px;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .core-value-media {
+      height: 250px;
+    }
+
+    .core-value-title {
+      font-size: 1.5rem;
+    }
+
+    .core-value-description {
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Core Values v2",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Core Value 1 - Love the Journey"
+    },
+    {
+      "type": "text",
+      "id": "video_url_1",
+      "label": "Video URL",
+      "info": "Enter URL for MP4, YouTube, or Vimeo video"
+    },
+    {
+      "type": "image_picker",
+      "id": "video_poster_1",
+      "label": "Video Poster Image",
+      "info": "Fallback image for video"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image (used if no video URL provided)"
+    },
+    {
+      "type": "header",
+      "content": "Core Value 2 - Track the Truth"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Core Value 3 - Play the Long Game"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Core Value 4 - No Losses, Only Lessons"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_4",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Core Values v2",
+      "category": "Content"
+    }
+  ]
+}
+{% endschema %}

@@ -23,11 +23,11 @@
         "custom_grid_collection": "summer-25"
       }
     },
-    "core_values_homepage_PmmBmy": {
-      "type": "core-values-homepage",
-      "name": "Core Values Homepage",
+    "core_values_homepage_v2_JzVxzy": {
+      "type": "core-values-homepage-v2",
+      "name": "Core Values Homepage V2",
       "settings": {
-        "image": "shopify://shop_images/core_values_picture.png"
+        "video_url_1": "shopify://files/videos/golden_gate_bridge_video.mp4"
       }
     },
     "black_text_image_split_PNHLiU": {
@@ -43,7 +43,7 @@
   "order": [
     "custom_hero_image_kKQLfE",
     "summer_25_collection_fe9dMF",
-    "core_values_homepage_PmmBmy",
+    "core_values_homepage_v2_JzVxzy",
     "black_text_image_split_PNHLiU"
   ]
 }
