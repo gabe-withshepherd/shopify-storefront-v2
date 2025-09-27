@@ -20,29 +20,22 @@
       "type": "product-photography-section",
       "settings": {
         "product": "airrail-6-performance-shorts",
-        "image_1": "shopify://shop_images/mint_short_back_close_up_c5eefa3b-f54b-4242-8c47-0e3b8f94e41c.jpg",
-        "text_1": "TraceFiber Mesh Material",
-        "subtext_1": "Airflow everywhere, keeping you cool",
 
-        "image_2": "shopify://shop_images/midnight_short_front.jpg",
+        "image_1": "shopify://shop_images/white_shirt_back_top_right.jpg",
+        "text_1": "TraceFiber Mesh Material",
+        "subtext_1": "Small perforations everywhere, keeping you cool",
+
+        "image_2": "shopify://shop_images/white_shirt_back.jpg",
         "text_2": "Athletic Fit",
         "subtext_2": "Perfect for any high intensity training",
 
-        "image_3": "shopify://shop_images/midnight_short_stretch.jpg",
+        "image_3": "shopify://shop_images/white_shirt_stretch.jpg",
         "text_3": "4-Way Stretch",
         "subtext_3": "Durable and Flexible Fabric",
 
-        "image_4": "shopify://shop_images/midnight_short_grip_tape.jpg",
-        "text_4": "Grip Tape Liner",
-        "subtext_4": "No liner ride up. No Distractions.",
-
-        "image_5": "shopify://shop_images/midnight_short_phone_pocket.jpg",
-        "text_5": "Phone Pocket",
-        "subtext_5": "Kept it secure during training",
-
-        "image_6": "shopify://shop_images/midnight_short_back.jpg",
-        "text_6": "Lightweight Construction",
-        "subtext_6": "Bonded Seams for featherweight comfort",
+        "image_4": "shopify://shop_images/white_shirt_shoulder_closeup.jpg",
+        "text_4": "Strategic Shoulder Seams",
+        "subtext_4": "Built to move with your body",
       }
     },
     "tech-stack": {

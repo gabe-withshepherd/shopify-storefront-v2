@@ -20,19 +20,22 @@
       "type": "product-photography-section",
       "settings": {
         "product": "tracefiber-performance-tech-tee-mint",
-        "image_1": "shopify://shop_images/midnight_shirt_product_info_hero.png",
-        "text_1": "6\" Inseam",
-        "subtext_1": "The perfect height for performance",
-        "image_2": "shopify://shop_images/24_121_7pacific_00709.jpg",
-        "text_2": "Laser Cut Performations",
-        "subtext_2": "Located in 3 high-sweat areas",
-        "image_3": "shopify://shop_images/24_121_7pacific_00605.jpg",
-        "text_3": "4 Way Stretch",
+
+        "image_1": "shopify://shop_images/mint_shirt_back_top_right.jpg",
+        "text_1": "TraceFiber Mesh Material",
+        "subtext_1": "Small perforations everywhere, keeping you cool",
+
+        "image_2": "shopify://shop_images/mint_shirt_back.jpg",
+        "text_2": "Athletic Fit",
+        "subtext_2": "Perfect for any high intensity training",
+
+        "image_3": "shopify://shop_images/mint_shirt_front_carrying_weights.jpg",
+        "text_3": "4-Way Stretch",
         "subtext_3": "Durable and Flexible Fabric",
-        "text_4": "Photo Description 4",
-        "subtext_4": "Photo Subtext 4",
-        "text_5": "Photo Description 5",
-        "subtext_5": "Photo Subtext 5"
+
+        "image_4": "shopify://shop_images/mint_shirt_shoulder_closeup.jpg",
+        "text_4": "Strategic Shoulder Seams",
+        "subtext_4": "Built to move with your body",
       }
     },
     "tech-stack": {
