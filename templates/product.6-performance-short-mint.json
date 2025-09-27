@@ -13,7 +13,8 @@
       "type": "custom-product-info-section",
       "settings": {
         "product": "airrail-6-performance-shorts-mint",
-        "background_image": "shopify://shop_images/mint_short_product_info_hero.png"
+        "background_image": "shopify://shop_images/mint_short_product_info_hero.png",
+        "background_image_mobile": "shopify://shop_images/mint_short_back_305e6309-b8b2-4197-a9ae-755d1bf14e52.jpg"
       }
     },
     "product-photography-section": {
