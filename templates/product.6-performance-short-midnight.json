@@ -58,12 +58,17 @@
         "bottom_right_image": "shopify://shop_images/single_running.png",
         "button_text": "Join Newsletter"
       }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {}
     }
   },
   "order": [
     "custom-product-info-section",
     "product-photography-section",
     "tech-stack",
-    "bottom-product-photography"
+    "bottom-product-photography",
+    "related-products"
   ]
 }
