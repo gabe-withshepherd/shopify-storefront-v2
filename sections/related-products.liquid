@@ -6,7 +6,6 @@
     </div>
 
     <div class="related-products-grid">
-      {% comment %} Specific products: mint shorts, mountain mist shirt, and midnight shorts {% endcomment %}
       {% render 'product-cell', product_handle: 'airrail-6-performance-shorts-mint' %}
       {% render 'product-cell', product_handle: 'tracefiber-performance-tech-tee-mountain-mist' %}
       {% render 'product-cell', product_handle: 'motionframe-running-hat' %}
@@ -64,7 +63,7 @@
   }
 </style>
 
-<script defer src="{{ 'summer-25-collection.js' | asset_url}}"></script>
+{% comment %} <script defer src="{{ 'summer-25-collection.js' | asset_url}}"></script> {% endcomment %}
 
 {% schema %}
 {
