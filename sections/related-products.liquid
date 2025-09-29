@@ -17,6 +17,7 @@
   .related-products-section {
     padding: 1rem 0.5rem;
     font-family: 'Barlow', sans-serif;
+    margin-bottom: 3rem;
   }
 
   .default-title-header {
@@ -46,19 +47,38 @@
 
   @media (max-width: 768px) {
     .related-products-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      overflow-y: hidden; /* hide vertical scrollbar */
+      white-space: nowrap;
+      /* -webkit-overflow-scrolling: touch; */
       gap: 1rem;
+    }
+
+    .related-products-grid > * {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+    }
+
+    .related-products-grid::-webkit-scrollbar {
+      height: 2px;
+      flex: 1;
+    }
+
+    .related-products-grid::-webkit-scrollbar-track {
+      background: lightgrey;
+      border-radius: 2px;
+    }
+
+    .related-products-grid::-webkit-scrollbar-thumb {
+      background: black;
+      border-radius: 2px;
     }
 
     .color-swatches-container {
       padding: 6px;
       gap: 4px;
-    }
-  }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .related-products-grid {
-      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>
