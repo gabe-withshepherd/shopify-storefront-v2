@@ -19,7 +19,8 @@
                   We think everyone builds a stronger version of themselves and of their community when you sweat
                   together.
                 </p>
-                <button type="button" class="btn bottom-product-photography__overlay-btn">JOIN THE MEMBERSHIP</button>
+
+                {% render 'cta-button', popover: 'newsletter-membership-popover', text: 'JOIN THE MEMBERSHIP' %}
               </div>
             </div>
           </div>
@@ -91,7 +92,6 @@
     padding-top: 50px;
     padding-right: 20px;
     box-sizing: border-box;
-    /* background-color: red; */
   }
 
   .bottom-product-photography__overlay-content {
@@ -101,49 +101,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: blue; */
   }
 
   .bottom-product-photography__overlay-title {
     font-size: clamp(22px, 5vw, 60px);
     font-weight: 500;
     text-transform: uppercase;
-    color: #1a1a1a;
     letter-spacing: -0.02em;
   }
 
   .bottom-product-photography__overlay-subtitle {
     font-size: 16px;
-    color: #4a4a4a;
     margin: 0 0 30px 0;
     line-height: 1.6;
     font-weight: 400;
     text-align: center;
   }
-
-  .bottom-product-photography__overlay-btn {
-    background-color: #ff6b35;
-    color: white;
-    border: none;
-    padding: 16px 28px;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-radius: 0;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: auto;
-    min-width: 200px;
-    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);
-  }
-
-  .bottom-product-photography__overlay-btn:hover {
-    background-color: #e55a2b;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 24px rgba(255, 107, 53, 0.4);
-  }
-
   .bottom-product-photography__bottom-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -196,12 +169,6 @@
       margin-bottom: 20px;
     }
 
-    .bottom-product-photography__overlay-btn {
-      padding: 14px 24px;
-      font-size: 12px;
-      min-width: 180px;
-    }
-
     .bottom-product-photography {
       padding: 40px 0;
     }
@@ -214,16 +181,16 @@
   }
 {% endstyle %}
 
+{% comment %}
+  Include the newsletter popover that will be triggered by the button
+{% endcomment %}
+{% render 'newsletter-popover', id: 'newsletter-membership-popover' %}
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const ctaButton = document.querySelector('[data-newsletter-trigger]');
-    const newsletterModal = document.querySelector('#NewsletterPopup-newsletter-popup');
-
-    if (ctaButton && newsletterModal) {
-      ctaButton.addEventListener('click', function () {
-        newsletterModal.style.display = 'block';
-        document.body.classList.add('modal-open');
-      });
+    // Initialize modal for the newsletter popover
+    if (window.theme && window.theme.Modals) {
+      new theme.Modals('newsletter-membership-popover', 'newsletter-membership-popover');
     }
   });
 </script>

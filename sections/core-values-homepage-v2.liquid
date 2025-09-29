@@ -223,12 +223,7 @@
   </div>
 </section>
 
-{% comment %} Include newsletter popover modal {% endcomment %}
-{% render 'newsletter-popover',
-  id: 'newsletter-core-values',
-  title: 'Join Our Membership',
-  text: 'Get exclusive access to new products, member-only events, and training tips.'
-%}
+{% render 'newsletter-popover', id: 'newsletter-core-values' %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
