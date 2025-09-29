@@ -3,221 +3,223 @@
 {% endcomment %}
 
 <section class="core-values-v2-section">
-  <div class="core-values-v2-container">
-    <div class="default-title-header">
-      <h2 class="default-title-header-title">WHAT WE STAND FOR</h2>
-      <p class="default-title-header-subtitle">
-        Our core tenets that guide our mission. It's what we strive to do as a company, and what we hope to inspire in
-        our community.
-      </p>
-    </div>
-
-    {% comment %} Row 1 - Video/Image on Left {% endcomment %}
-    <div class="core-value-row core-value-row--media-left">
-      <div class="core-value-media">
-        {% if section.settings.video_url_1 != blank %}
-          <div class="core-value-video">
-            {% if section.settings.video_url_1 contains '.mp4' or section.settings.video_url_1 contains '.MP4' %}
-              <video
-                class="core-value-video-element"
-                src="{{ section.settings.video_url_1 }}"
-                loop
-                muted
-                playsinline
-                autoplay
-                poster="{% if section.settings.video_poster_1 != blank %}{{ section.settings.video_poster_1 | image_url }}{% endif %}"
-              ></video>
-            {% endif %}
-          </div>
-        {% elsif section.settings.image_1 != blank %}
-          <img
-            src="{{ section.settings.image_1 | image_url }}"
-            alt="Core Value 1"
-            loading="lazy"
-            class="core-value-image"
-            width="400"
-            height="600"
-          >
-        {% else %}
-          <div class="core-value-placeholder">
-            {{ 'image' | placeholder_svg_tag }}
-          </div>
-        {% endif %}
+  <div class="page-width">
+    <div class="core-values-v2-container">
+      <div class="default-title-header">
+        <h2 class="default-title-header-title">WHAT WE STAND FOR</h2>
+        <p class="default-title-header-subtitle">
+          Our core tenets that guide our mission. It's what we strive to do as a company, and what we hope to inspire in
+          our community.
+        </p>
       </div>
-      <div class="core-value-content">
-        <div class="core-value-content-inner">
-          <h3 class="core-value-title">LOVE THE JOURNEY</h3>
-          <p class="core-value-description">
-            The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves when
-            you sweat together.
-          </p>
-          <a href="/pages/our-story" class="core-value-button">
-            <span class="button-text">READ OUR STORY</span>
-            {% comment %} {% render 'custom-icons', icon: 'chevron-right' %} {% endcomment %}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="core-value-button-icon"
+
+      {% comment %} Row 1 - Video/Image on Left {% endcomment %}
+      <div class="core-value-row core-value-row--media-left">
+        <div class="core-value-media">
+          {% if section.settings.video_url_1 != blank %}
+            <div class="core-value-video">
+              {% if section.settings.video_url_1 contains '.mp4' or section.settings.video_url_1 contains '.MP4' %}
+                <video
+                  class="core-value-video-element"
+                  src="{{ section.settings.video_url_1 }}"
+                  loop
+                  muted
+                  playsinline
+                  autoplay
+                  poster="{% if section.settings.video_poster_1 != blank %}{{ section.settings.video_poster_1 | image_url }}{% endif %}"
+                ></video>
+              {% endif %}
+            </div>
+          {% elsif section.settings.image_1 != blank %}
+            <img
+              src="{{ section.settings.image_1 | image_url }}"
+              alt="Core Value 1"
+              loading="lazy"
+              class="core-value-image"
+              width="400"
+              height="600"
             >
-              {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
-              <path d="M9 6l6 6l-6 6" />
-            </svg>
-          </a>
+          {% else %}
+            <div class="core-value-placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="core-value-content">
+          <div class="core-value-content-inner">
+            <h3 class="core-value-title">LOVE THE JOURNEY</h3>
+            <p class="core-value-description">
+              The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves
+              when you sweat together.
+            </p>
+            <a href="/pages/our-story" class="core-value-button">
+              <span class="button-text">READ OUR STORY</span>
+              {% comment %} {% render 'custom-icons', icon: 'chevron-right' %} {% endcomment %}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="core-value-button-icon"
+              >
+                {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    {% comment %} end of row 1 {% endcomment %}
+      {% comment %} end of row 1 {% endcomment %}
 
-    {% comment %} Row 2 - Content on Left, Image on Right {% endcomment %}
-    <div class="core-value-row core-value-row--media-right">
-      <div class="core-value-content core-value-content--left">
-        <div class="core-value-content-inner">
-          <h3 class="core-value-title core-value-title--left">NO LOSSES, ONLY LESSONS</h3>
-          <p class="core-value-description core-value-description--left">
-            When something doesn’t work out, we figure out why and come back more experienced.
-          </p>
-          <button
-            type="button"
-            class="core-value-button js-modal-open-newsletter-core-values"
-            data-popover-target="newsletter-core-values"
-          >
-            <span class="button-text">JOIN THE MEMBERSHIP</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="core-value-button-icon"
+      {% comment %} Row 2 - Content on Left, Image on Right {% endcomment %}
+      <div class="core-value-row core-value-row--media-right">
+        <div class="core-value-content core-value-content--left">
+          <div class="core-value-content-inner">
+            <h3 class="core-value-title core-value-title--left">NO LOSSES, ONLY LESSONS</h3>
+            <p class="core-value-description core-value-description--left">
+              When something doesn’t work out, we figure out why and come back more experienced.
+            </p>
+            <button
+              type="button"
+              class="core-value-button js-modal-open-newsletter-core-values"
+              data-popover-target="newsletter-core-values"
             >
-              <path d="M9 6l6 6l-6 6" />
-            </svg>
-          </button>
+              <span class="button-text">JOIN THE MEMBERSHIP</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="core-value-button-icon"
+              >
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="core-value-media">
+          {% if section.settings.image_2 != blank %}
+            <img
+              src="{{ section.settings.image_2 | image_url }}"
+              alt="Track the Truth"
+              loading="lazy"
+              class="core-value-image"
+              width="400"
+              height="600"
+            >
+          {% else %}
+            <div class="core-value-placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
         </div>
       </div>
-      <div class="core-value-media">
-        {% if section.settings.image_2 != blank %}
-          <img
-            src="{{ section.settings.image_2 | image_url }}"
-            alt="Track the Truth"
-            loading="lazy"
-            class="core-value-image"
-            width="400"
-            height="600"
-          >
-        {% else %}
-          <div class="core-value-placeholder">
-            {{ 'image' | placeholder_svg_tag }}
-          </div>
-        {% endif %}
-      </div>
-    </div>
-    {% comment %} end of row 2 {% endcomment %}
+      {% comment %} end of row 2 {% endcomment %}
 
-    {% comment %} Row 3 - Image on Left {% endcomment %}
-    <div class="core-value-row core-value-row--media-left">
-      <div class="core-value-media">
-        {% if section.settings.image_3 != blank %}
-          <img
-            src="{{ section.settings.image_3 | image_url }}"
-            alt="Play the Long Game"
-            loading="lazy"
-            class="core-value-image"
-            width="400"
-            height="600"
-          >
-        {% else %}
-          <div class="core-value-placeholder">
-            {{ 'image' | placeholder_svg_tag }}
-          </div>
-        {% endif %}
-      </div>
-      <div class="core-value-content">
-        <div class="core-value-content-inner">
-          <h3 class="core-value-title">PLAY THE LONG GAME</h3>
-          <p class="core-value-description">
-            We don't chase quick wins. We build things that outlast the season. Patience is the loudest statement.
-          </p>
-          <a href="{{ all_products['tracefiber-performance-tech-tee-mountain-mist'].url }}" class="core-value-button">
-            <span class="button-text">SHOP SHIRTS</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="core-value-button-icon"
+      {% comment %} Row 3 - Image on Left {% endcomment %}
+      <div class="core-value-row core-value-row--media-left">
+        <div class="core-value-media">
+          {% if section.settings.image_3 != blank %}
+            <img
+              src="{{ section.settings.image_3 | image_url }}"
+              alt="Play the Long Game"
+              loading="lazy"
+              class="core-value-image"
+              width="400"
+              height="600"
             >
-              <path d="M9 6l6 6l-6 6" />
-            </svg>
-          </a>
+          {% else %}
+            <div class="core-value-placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        </div>
+        <div class="core-value-content">
+          <div class="core-value-content-inner">
+            <h3 class="core-value-title">PLAY THE LONG GAME</h3>
+            <p class="core-value-description">
+              We don't chase quick wins. We build things that outlast the season. Patience is the loudest statement.
+            </p>
+            <a href="{{ all_products['tracefiber-performance-tech-tee-mountain-mist'].url }}" class="core-value-button">
+              <span class="button-text">SHOP SHIRTS</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="core-value-button-icon"
+              >
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    {% comment %} end of row 3 {% endcomment %}
+      {% comment %} end of row 3 {% endcomment %}
 
-    {% comment %} Row 4 - Content on Left, Image on Right {% endcomment %}
-    <div class="core-value-row core-value-row--media-right">
-      <div class="core-value-content core-value-content--left">
-        <div class="core-value-content-inner">
-          <h3 class="core-value-title core-value-title--left">TRACK THE TRUTH</h3>
-          <p class="core-value-description core-value-description--left">
-            The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves when
-            you sweat together.
-          </p>
-          <a href="{{ all_products['airrail-6-performance-shorts-mountain-mist'].url }}" class="core-value-button">
-            <span class="button-text">SHOP SHORTS</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              class="core-value-button-icon"
+      {% comment %} Row 4 - Content on Left, Image on Right {% endcomment %}
+      <div class="core-value-row core-value-row--media-right">
+        <div class="core-value-content core-value-content--left">
+          <div class="core-value-content-inner">
+            <h3 class="core-value-title core-value-title--left">TRACK THE TRUTH</h3>
+            <p class="core-value-description core-value-description--left">
+              The peak is a moment. The climb is the life. We think everyone builds a stronger version of themselves
+              when you sweat together.
+            </p>
+            <a href="{{ all_products['airrail-6-performance-shorts-mountain-mist'].url }}" class="core-value-button">
+              <span class="button-text">SHOP SHORTS</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="core-value-button-icon"
+              >
+                {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
+                <path d="M9 6l6 6l-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="core-value-media">
+          {% if section.settings.image_4 != blank %}
+            <img
+              src="{{ section.settings.image_4 | image_url }}"
+              alt="No Losses, Only Lessons"
+              loading="lazy"
+              class="core-value-image"
+              width="400"
+              height="600"
             >
-              {% comment %} <path stroke="none" d="M0 0h24v24H0z" fill="none" /> {% endcomment %}
-              <path d="M9 6l6 6l-6 6" />
-            </svg>
-          </a>
+          {% else %}
+            <div class="core-value-placeholder">
+              {{ 'image' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
         </div>
       </div>
-      <div class="core-value-media">
-        {% if section.settings.image_4 != blank %}
-          <img
-            src="{{ section.settings.image_4 | image_url }}"
-            alt="No Losses, Only Lessons"
-            loading="lazy"
-            class="core-value-image"
-            width="400"
-            height="600"
-          >
-        {% else %}
-          <div class="core-value-placeholder">
-            {{ 'image' | placeholder_svg_tag }}
-          </div>
-        {% endif %}
-      </div>
+      {% comment %} end of row 4 {% endcomment %}
     </div>
-    {% comment %} end of row 4 {% endcomment %}
   </div>
 </section>
 
@@ -234,13 +236,11 @@
 
 <style>
   .core-values-v2-section {
-    padding: 60px 0;
-    background-color: #ffffff;
+    padding: 1rem 0.5rem;
   }
 
   .core-values-v2-container {
     margin: 0 auto;
-    padding: 0 50px;
   }
 
   .core-value-row {
