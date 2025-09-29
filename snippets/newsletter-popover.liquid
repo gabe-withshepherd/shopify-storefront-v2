@@ -10,8 +10,6 @@
 {% endcomment %}
 
 {% assign popover_id = id | default: 'newsletter-popover' %}
-{% assign popover_title = title | default: 'Join Our Newsletter' %}
-{% assign popover_button_text = button_text | default: 'Sign Up' %}
 {% assign newsletter_form_id = 'newsletter-popover-form-' | append: popover_id %}
 
 <div id="{{ popover_id }}" class="modal modal--square modal--newsletter-popover" data-popover-id="{{ popover_id }}">
@@ -19,26 +17,16 @@
     <div class="modal__centered">
       <div class="modal__centered-content newsletter-popover">
         <div class="newsletter-popover__content">
-          {% if popover_title != blank %}
-            <h3 class="newsletter-popover__title">{{ popover_title }}</h3>
-          {% endif %}
+          <h3 class="newsletter-popover__title">JOIN THE MEMBERSHIP</h3>
 
-          {% if text != blank %}
-            <div class="newsletter-popover__text">
-              {{ text }}
-            </div>
-          {% endif %}
+          <div class="newsletter-popover__text">
+            Be the first to know about exclusive offers, new products, and community events. Join our membership today!
+          </div>
 
           <div class="newsletter-popover__form-wrapper" id="form-wrapper-{{ popover_id }}">
             {% form 'customer', id: newsletter_form_id, class: 'newsletter-popover__form' %}
               <input type="hidden" name="contact[tags]" value="prospect,newsletter">
               <input type="hidden" name="contact[context]" value="popover">
-
-              {% if form.errors %}
-                <div class="newsletter-popover__error">
-                  {{ form.errors | default_errors }}
-                </div>
-              {% endif %}
 
               <div class="newsletter-popover__input-group">
                 <label for="email-{{ popover_id }}" class="visually-hidden">
@@ -50,37 +38,45 @@
                   id="email-{{ popover_id }}"
                   class="newsletter-popover__input"
                   placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}"
-                  value="{% if customer %}{{ customer.email }}{% endif %}"
+                  value="{{ form.email }}"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="ContactFooter-error"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="ContactFooter-success"
+                  {% endif %}
                   autocorrect="off"
                   autocapitalize="off"
                   required
                 >
-                {% comment %}
-                  <button type="submit" class="newsletter-popover__submit btn">
-                    {{ popover_button_text }}
-                  </button>
-                {% endcomment %}
-                {% render 'cta-button', text: popover_button_text %}
-              </div>
-            {% endform %}
-          </div>
+                <button type="submit" class="newsletter-popover__submit btn">SIGN UP</button>
 
-          <div class="newsletter-popover__success" id="success-{{ popover_id }}" style="display: none;">
-            <svg
-              class="newsletter-popover__success-icon"
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-              <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            <p class="newsletter-popover__success-message">
-              {{ 'general.newsletter_form.newsletter_confirmation' | t }}
-            </p>
+                {%- if form.errors -%}
+                  <small class="newsletter-form__message form__message" id="ContactFooter-error">
+                    <span class="svg-wrapper">
+                      {{- 'icon-error.svg' | inline_asset_content -}}
+                    </span>
+                    {{- form.errors.translated_fields.email | capitalize }}
+                    {{ form.errors.messages.email -}}
+                  </small>
+                {%- endif -%}
+              </div>
+
+              {%- if form.posted_successfully? -%}
+                <h3
+                  class="newsletter-form__message newsletter-form__message--success form__message"
+                  id="ContactFooter-success"
+                  tabindex="-1"
+                  autofocus
+                >
+                  <span class="svg-wrapper">
+                    {{- 'icon-success.svg' | inline_asset_content -}}
+                  </span>
+                  You're locked in to the community!
+                </h3>
+              {%- endif -%}
+            {% endform %}
           </div>
         </div>
 
@@ -102,12 +98,13 @@
 <style>
   .modal--newsletter-popover .modal__inner {
     font-family: 'Barlow', sans-serif;
-    background-color: var(--colorBody, #fff);
+    /* background-color: blue; */
+    background-color: red;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
     color: var(--colorTextBody, #000);
     max-width: 500px;
-    width: 90%;
-    border-radius: 8px;
+    width: 100%;
+    border-radius: 2px;
     overflow: hidden;
   }
 
@@ -256,56 +253,5 @@
     const form = popover.querySelector('#{{ newsletter_form_id }}');
     const formWrapper = popover.querySelector('#form-wrapper-' + popoverId);
     const successDiv = popover.querySelector('#success-' + popoverId);
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        const formData = new FormData(form);
-
-        fetch(form.action, {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-          },
-        })
-          .then((response) => {
-            if (response.ok) {
-              // Show success message
-              formWrapper.style.display = 'none';
-              successDiv.style.display = 'block';
-
-              // Close popover after 2 seconds
-              setTimeout(function () {
-                if (window.theme && window.theme.Modals) {
-                  // Find and close the modal using theme's modal system
-                  const modalInstance = window.theme.Modals.find((m) => m.id === popoverId);
-                  if (modalInstance) {
-                    modalInstance.close();
-                  }
-                } else {
-                  // Fallback: manually close
-                  popover.classList.remove('modal--is-active');
-                  document.documentElement.classList.remove('modal-open');
-                }
-
-                // Reset form for next use
-                setTimeout(function () {
-                  form.reset();
-                  formWrapper.style.display = 'block';
-                  successDiv.style.display = 'none';
-                }, 500);
-              }, 2000);
-            } else {
-              // Handle error
-              console.error('Newsletter signup failed');
-            }
-          })
-          .catch((error) => {
-            console.error('Error:', error);
-          });
-      });
-    }
   });
 </script>
