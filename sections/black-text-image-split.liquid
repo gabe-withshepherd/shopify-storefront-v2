@@ -3,43 +3,45 @@
 {% endcomment %}
 
 <section class="split-section">
-  <div class="split-section__inner">
-    <div class="split-section__video-container">
-      {% if section.settings.video_url_2 contains '.mp4' or section.settings.video_url_2 contains '.MP4' %}
-        <video
-          class="split-section__video"
-          src="{{ section.settings.video_url_2 }}"
-          loop
-          muted
-          playsinline
-          autoplay
-          poster="{% if section.settings.video_poster_1 != blank %}{{ section.settings.video_poster_1 | image_url }}{% endif %}"
-        ></video>
-      {% endif %}
-      <div class="split-section__text">
-        <div class="split-section__text-content">
-          <div class="split-section__text-content-title">
-            TESTED IN TRAINING.<br>
-            REFINED BY COMMUNITY.
-          </div>
-          <p class="split-section__subtext">
-            We think everyone builds a stronger version of themselves and of their community when you sweat together.
-          </p>
+  <div class="page-width">
+    <div class="split-section__inner">
+      <div class="split-section__video-container">
+        {% if section.settings.video_url_2 contains '.mp4' or section.settings.video_url_2 contains '.MP4' %}
+          <video
+            class="split-section__video"
+            src="{{ section.settings.video_url_2 }}"
+            loop
+            muted
+            playsinline
+            autoplay
+            poster="{% if section.settings.video_poster_1 != blank %}{{ section.settings.video_poster_1 | image_url }}{% endif %}"
+          ></video>
+        {% endif %}
+        <div class="split-section__text">
+          <div class="split-section__text-content">
+            <div class="split-section__text-content-title">
+              TESTED IN TRAINING.<br>
+              REFINED BY COMMUNITY.
+            </div>
+            <p class="split-section__subtext">
+              We think everyone builds a stronger version of themselves and of their community when you sweat together.
+            </p>
 
-          {% render 'cta-button', popover: 'newsletter-membership-popover', text: 'JOIN THE MEMBERSHIP' %}
+            {% render 'cta-button', popover: 'newsletter-membership-popover', text: 'JOIN THE MEMBERSHIP' %}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="split-section__image">
-      {% if section.settings.image %}
-        {%- render 'image-element',
-          img: section.settings.image,
-          img_width: 2400,
-          loading: 'lazy',
-          classes: 'split-image',
-          sizes: '(min-width: 768px) 400px, 100vw'
-        -%}
-      {% endif %}
+      <div class="split-section__image">
+        {% if section.settings.image %}
+          {%- render 'image-element',
+            img: section.settings.image,
+            img_width: 2400,
+            loading: 'lazy',
+            classes: 'split-image',
+            sizes: '(min-width: 768px) 400px, 100vw'
+          -%}
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>

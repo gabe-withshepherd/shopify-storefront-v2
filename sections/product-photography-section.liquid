@@ -147,11 +147,6 @@
     scroll-snap-type: x mandatory;
   }
 
-  .product-photography-section__gallery > * {
-    flex: 0 0 280px;
-    scroll-snap-align: center;
-  }
-
   .product-photography-section__gallery::-webkit-scrollbar {
     height: 8px;
   }
@@ -201,7 +196,11 @@
     font-weight: 400;
   }
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
+    .product-photography-section__gallery > * {
+      flex: 0 0 280px;
+      scroll-snap-align: center;
+    }
     .product-photography-section__item {
       width: 320px;
       height: 500px;
