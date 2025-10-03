@@ -26,7 +26,6 @@
 
 <footer class="site-footer" data-section-id="{{ section.id }}" data-section-type="footer-section">
   <div class="page-width">
-
     <div class="grid">
       {%- assign row_width = 0 -%}
       {%- for block in section.blocks -%}
@@ -36,7 +35,11 @@
           {%- assign row_width = row_width | minus: 100 -%}
         {%- endif -%}
 
-        <div {{ block.shopify_attributes }} class="grid__item footer__item--{{ block.id }}" data-type="{{ block.type }}">
+        <div
+          {{ block.shopify_attributes }}
+          class="grid__item footer__item--{{ block.id }}"
+          data-type="{{ block.type }}"
+        >
           {%- style -%}
             @media only screen and (min-width: 769px) and (max-width: 959px) {
               .footer__item--{{ block.id }} {
@@ -78,7 +81,7 @@
         {%- render 'multi-selectors',
           locale_selector: locale_selector,
           currency_selector: currency_selector,
-          show_currency_flags: section.settings.show_currency_flags
+          show_currency_flags: section.settings.show_currency_flags,
           location: 'footer'
         -%}
       </div>
@@ -98,14 +101,14 @@
 
     {%- if section.settings.show_copyright -%}
       <p class="footer__small-text">
-        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
+        &copy; {{ 'now' | date: '%Y' }}
+        {{ shop.name }}
         {%- if section.settings.copyright_text != blank -%}
           {{ section.settings.copyright_text }}
         {%- endif -%}
       </p>
     {%- endif -%}
     <p class="footer__small-text">{{ powered_by_link }}</p>
-
   </div>
 </footer>
 

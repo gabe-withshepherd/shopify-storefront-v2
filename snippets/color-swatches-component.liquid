@@ -51,6 +51,21 @@
       }
 
       initializeColorSwatches();
+
+      // Add hover animation trigger
+      const productCell = document.querySelector('[data-product-handle="{{ product.handle }}"]');
+      if (productCell) {
+        productCell.addEventListener('mouseenter', function () {
+          const swatches = this.querySelectorAll('.color-swatch-container');
+          swatches.forEach((swatch, index) => {
+            // Remove and re-add to restart animation
+            swatch.style.animation = 'none';
+            setTimeout(() => {
+              swatch.style.animation = '';
+            }, 10);
+          });
+        });
+      }
     });
   </script>
 </div>
@@ -80,7 +95,10 @@
     flex-direction: column;
     align-items: center;
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(0);
+  }
+
+  .color-swatch-container {
     animation: cascadeIn 0.2s ease forwards;
   }
 
@@ -91,16 +109,16 @@
     animation-delay: 0.1s;
   }
   .color-swatch-container:nth-child(3) {
-    animation-delay: 0.2s;
+    animation-delay: 0.15s;
   }
   .color-swatch-container:nth-child(4) {
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
   }
   .color-swatch-container:nth-child(5) {
-    animation-delay: 0.4s;
+    animation-delay: 0.3s;
   }
   .color-swatch-container:nth-child(6) {
-    animation-delay: 0.5s;
+    animation-delay: 0.4s;
   }
 
   @keyframes cascadeIn {
