@@ -7,6 +7,11 @@
   {% assign form_id = 'product-form-' | append: product.id %}
 {% endif %}
 
+{% assign is_hat = false %}
+{% if product.type contains 'Hat' %}
+  {% assign is_hat = true %}
+{% endif %}
+
 <section class="custom-product-info-section">
   {% if product %}
     <div
@@ -80,6 +85,10 @@
                 {% endfor %}
               </div>
             </div>
+          {% endif %}
+
+          {% if is_hat %}
+            <div class="model-size-info">Our guy Cole is 6'2'' and wearing size L shorts.</div>
           {% endif %}
 
           <!-- Model Size Info -->

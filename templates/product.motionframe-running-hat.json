@@ -1,0 +1,44 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom-product-info-section": {
+      "type": "custom-product-info-section",
+      "settings": {
+        "product": "motionframe-running-hat-white",
+        "background_image": "shopify://shop_images/hat_product_info_hero.png",
+        "background_image_mobile": "shopify://shop_images/hat_side_profile.jpg"
+      }
+    },
+    "tech-stack": {
+      "type": "tech-stack",
+      "settings": {}
+    },
+    "bottom-product-photography": {
+      "type": "bottom-product-photography",
+      "settings": {
+        "top_image": "shopify://shop_images/running.png",
+        "bottom_left_image": "shopify://shop_images/core_values_picture.png",
+        "bottom_right_image": "shopify://shop_images/single_running.png",
+        "button_text": "Join Newsletter"
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {}
+    }
+  },
+  "order": [
+    "custom-product-info-section",
+    "tech-stack",
+    "bottom-product-photography",
+    "related-products"
+  ]
+}
