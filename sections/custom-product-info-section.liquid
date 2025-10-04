@@ -101,6 +101,7 @@
             >
             <button type="submit" class="btn-add-to-cart" data-add-to-cart>
               <span data-add-to-cart-text>ADD TO CART</span>
+              <span class="btn-add-to-cart__slashes">//</span>
             </button>
           {% endform %}
         </div>
@@ -273,15 +274,36 @@
     width: 100%;
     padding: 16px 24px;
     color: #fff;
-    background: var(--selected-color, #000);
-    border: none;
+    background: #000;
+    border: 1px solid transparent;
+    /* border: none; */
     font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 500;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Barlow', sans-serif !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-add-to-cart__slashes {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-add-to-cart:hover {
+    background-color: #000000bc;
+    border: 1px solid transparent;
+  }
+
+  .btn-add-to-cart:hover .btn-add-to-cart__slashes {
+    transform: rotate(180deg);
   }
 
   /* Mobile Responsiveness */
@@ -327,7 +349,12 @@
     }
 
     .btn-add-to-cart {
-      background: var(--colorCta);
+      background: #cb5c28;
+    }
+
+    .btn-add-to-cart:hover {
+      background-color: #a84920;
+      border: 1px solid transparent;
     }
   }
 
