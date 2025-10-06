@@ -4,12 +4,13 @@
   Replace 'product-handle-X' with your actual product handles
 {% endcomment %}
 
-{% assign additional_text = ' If you want a tighter fit, we recommend sizing down.' %}
+{% comment %} {% assign additional_text = ' If you want a tighter fit, we recommend sizing down.' %} {% endcomment %}
+{% assign additional_text = '' %}
 
-{% assign cole_short_size_text = "Our guy Cole is 6'2'' and wearing size L shorts." %}
-{% assign cole_tee_size_text = "Our guy Cole is 6'2'' and wearing size XL t-shirt." %}
-{% assign chris_short_size_text = "Our guy Chris is 5'11'' and wearing size M shorts." %}
-{% assign chris_tee_size_text = "Our guy Chris is 5'11'' and wearing size M t-shirt." %}
+{% assign cole_short_size_text = "Our guy Cole is 6'2'', weighs 205lbs, and is wearing size L shorts." %}
+{% assign cole_tee_size_text = "Our guy Cole is 6'2'', weighs 205lbs, and is wearing size XL t-shirt." %}
+{% assign chris_short_size_text = "Our guy Chris is 5'11'', weighs 170lbs, and is wearing size M shorts." %}
+{% assign chris_tee_size_text = "Our guy Chris is 5'11'', weighs 170lbs, and is wearing size M t-shirt." %}
 
 {% case product_handle %}
   {% when 'airrail-6-performance-shorts-mountain-mist' %}

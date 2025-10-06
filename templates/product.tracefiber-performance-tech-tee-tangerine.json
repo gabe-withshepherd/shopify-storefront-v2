@@ -13,7 +13,8 @@
       "type": "custom-product-info-section",
       "settings": {
         "product": "tracefiber-performance-tech-tee-tangerine",
-        "background_image": "shopify://shop_images/tangerine_shirt_product_info_hero.png"
+        "background_image": "shopify://shop_images/tangerine_shirt_hero.jpg",
+        "background_image_mobile": "shopify://shop_images/tangerine_shirt_front.jpg"
       }
     },
     "product-photography-section": {
@@ -35,7 +36,7 @@
 
         "image_4": "shopify://shop_images/tangerine_shirt_shoulder_closeup.jpg",
         "text_4": "Strategic Shoulder Seams",
-        "subtext_4": "Built to move with your body",
+        "subtext_4": "Built to move with your body"
       }
     },
     "tech-stack": {

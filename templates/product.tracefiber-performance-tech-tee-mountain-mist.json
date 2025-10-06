@@ -13,7 +13,8 @@
       "type": "custom-product-info-section",
       "settings": {
         "product": "tracefiber-performance-tech-tee-mountain-mist",
-        "background_image": "shopify://shop_images/mountain_mist_shirt_product_info_hero_back.png"
+        "background_image": "shopify://shop_images/mountain_mist_shirt_hero.jpg",
+        "background_image_mobile": "shopify://shop_images/mountain_mist_shirt_front.jpg"
       }
     },
     "product-photography-section": {
@@ -25,7 +26,7 @@
         "text_1": "TraceFiber Mesh Material",
         "subtext_1": "Small perforations everywhere, keeping you cool",
 
-        "image_2": "shopify://shop_images/mountain_mist_shirt_back.jpg",
+        "image_2": "shopify://shop_images/mountain_mist_shirt_front.jpg",
         "text_2": "Athletic Fit",
         "subtext_2": "Perfect for any high intensity training",
 
@@ -35,7 +36,7 @@
 
         "image_4": "shopify://shop_images/mountain_mist_shirt_shoulder_closeup.jpg",
         "text_4": "Strategic Shoulder Seams",
-        "subtext_4": "Built to move with your body",
+        "subtext_4": "Built to move with your body"
       }
     },
     "tech-stack": {
