@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "terms-of-service-page": {
+      "type": "terms-of-service-page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "terms-of-service-page"
+  ]
+}

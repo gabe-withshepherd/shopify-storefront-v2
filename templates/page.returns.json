@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "returns-page": {
+      "type": "returns-page",
+      "settings": {}
+    }
+  },
+  "order": [
+    "returns-page"
+  ]
+}
