@@ -14,12 +14,13 @@
       "name": "Custom Hero Image",
       "settings": {
         // "custom_hero_image": "shopify://shop_images/CleanShot_2025-06-26_at_22.10.41_2x_0911b881-2aa4-49a7-a71d-22248a593724.jpg"
-        "custom_hero_image": "shopify://shop_images/potential_hero_image.jpg"
+        // "custom_hero_image": "shopify://shop_images/potential_hero_image.jpg"
+        "custom_hero_image": "shopify://shop_images/24_121_7pacific_03806.jpg"
       }
     },
-    "summer_25_collection_fe9dMF": {
-      "type": "summer-25-collection",
-      "name": "Summer '25 Collection",
+    "main_collection_fe9dMF": {
+      "type": "main-collection",
+      "name": "Main Collection",
       "settings": {
         "custom_grid_collection": "summer-25"
       }
@@ -31,7 +32,7 @@
         "video_url_1": "https://cdn.shopify.com/videos/c/o/v/a156e4e88aec47fa96892073a276450f.mp4",
         "image_2": "shopify://shop_images/social_sharing.jpg",
         "image_3": "shopify://shop_images/paul_screaming.jpg",
-        "image_4": "shopify://shop_images/fitness_stats_1.jpg"
+        "image_4": "shopify://shop_images/digital_map.png"
       }
     },
     "black_text_image_split_PNHLiU": {
@@ -40,13 +41,13 @@
       "settings": {
         "image": "shopify://shop_images/two_walking_to_workout_cropped.png",
         "background_image": "shopify://shop_images/Rectangle_47.png",
-        "background_video": "shopify://files/videos/202306071552 copy.mp4"
+        "video_url_2": "https://cdn.shopify.com/videos/c/o/v/10bb3b154ea542699c4f83e68a45a05f.mp4"
       }
     }
   },
   "order": [
     "custom_hero_image_kKQLfE",
-    "summer_25_collection_fe9dMF",
+    "main_collection_fe9dMF",
     "core_values_homepage_v2_JzVxzy",
     "black_text_image_split_PNHLiU"
   ]

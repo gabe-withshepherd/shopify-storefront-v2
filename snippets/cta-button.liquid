@@ -14,6 +14,7 @@
 {% assign button_text = text | default: 'Click Here' %}
 {% assign button_icon = icon | default: 'chevron-right' %}
 {% assign button_class = class | default: '' %}
+{% assign should_submit = should_submit | default: false %}
 
 {% if popover %}
   <button
@@ -21,6 +22,11 @@
     class="cta-button js-modal-open-{{ popover }} {{ button_class }}"
     data-popover-target="{{ popover }}"
   >
+    {{ button_text }}
+    {% render 'custom-icons', icon: 'chevron-right' %}
+  </button>
+{% elsif should_submit %}
+  <button type="submit" class="cta-button {{ button_class }}">
     {{ button_text }}
     {% render 'custom-icons', icon: button_icon %}
   </button>
@@ -40,9 +46,9 @@
     color: #fff !important;
     text-decoration: none;
     gap: 0.25rem;
-    padding: clamp(8px, 0.9vw, 12px);
-    border-radius: 4px;
-    font-weight: 600;
+    padding: clamp(6px, 0.6vw, 10px);
+    border-radius: 2px;
+    font-weight: 500;
     font-size: clamp(14px, 3vw, 1.2rem);
     letter-spacing: 0.03em;
     transition: background 0.3s ease, color 0.3s ease;

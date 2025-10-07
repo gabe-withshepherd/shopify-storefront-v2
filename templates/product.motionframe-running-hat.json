@@ -12,31 +12,9 @@
     "custom-product-info-section": {
       "type": "custom-product-info-section",
       "settings": {
-        "product": "tracefiber-performance-tech-tee-tangerine",
-        "background_image": "shopify://shop_images/tangerine_shirt_hero.jpg",
-        "background_image_mobile": "shopify://shop_images/tangerine_shirt_front.jpg"
-      }
-    },
-    "product-photography-section": {
-      "type": "product-photography-section",
-      "settings": {
-        "product": "tracefiber-performance-tech-tee-tangerine",
-
-        "image_1": "shopify://shop_images/tangerine_shirt_back_top_right.jpg",
-        "text_1": "TraceFiber Mesh Material",
-        "subtext_1": "Small perforations everywhere, keeping you cool",
-
-        "image_2": "shopify://shop_images/tangerine_shirt_back.jpg",
-        "text_2": "Athletic Fit",
-        "subtext_2": "Perfect for any high intensity training",
-
-        "image_3": "shopify://shop_images/tangerine_shirt_stretch.jpg",
-        "text_3": "4-Way Stretch",
-        "subtext_3": "Durable and Flexible Fabric",
-
-        "image_4": "shopify://shop_images/tangerine_shirt_shoulder_closeup.jpg",
-        "text_4": "Strategic Shoulder Seams",
-        "subtext_4": "Built to move with your body"
+        "product": "motionframe-running-hat-white",
+        "background_image": "shopify://shop_images/hat_product_info_hero.png",
+        "background_image_mobile": "shopify://shop_images/hat_side_profile.jpg"
       }
     },
     "tech-stack": {
@@ -59,7 +37,6 @@
   },
   "order": [
     "custom-product-info-section",
-    "product-photography-section",
     "tech-stack",
     "bottom-product-photography",
     "related-products"

@@ -13,7 +13,7 @@
       "type": "custom-product-info-section",
       "settings": {
         "product": "airrail-6-performance-shorts-mint",
-        "background_image": "shopify://shop_images/mint_short_product_info_hero.png",
+        "background_image": "shopify://shop_images/mint_shorts_product_info_hero2.jpg",
         "background_image_mobile": "shopify://shop_images/mint_short_back_305e6309-b8b2-4197-a9ae-755d1bf14e52.jpg"
       }
     },
@@ -43,7 +43,7 @@
 
         "image_6": "shopify://shop_images/mint_short_waistband_392fc6a2-a5d2-4f5d-a958-89ad14215931.jpg",
         "text_6": "Lightweight Construction",
-        "subtext_6": "Bonded Seams for featherweight comfort",
+        "subtext_6": "Bonded Seams for featherweight comfort"
       }
     },
     "tech-stack": {

@@ -7,6 +7,11 @@
   {% assign form_id = 'product-form-' | append: product.id %}
 {% endif %}
 
+{% assign is_hat = false %}
+{% if product.type contains 'Hat' %}
+  {% assign is_hat = true %}
+{% endif %}
+
 <section class="custom-product-info-section">
   {% if product %}
     <div
@@ -34,7 +39,7 @@
           "
         ></div>
         <!-- Product Details Left Side -->
-        <div class="product-details">
+        <div class="product-details{% if is_hat %} hat-product{% endif %}">
           <h1 class="product-title">{{ product.title }}</h1>
 
           <span class="price">{{ product.price | money_without_trailing_zeros }} USD</span>
@@ -50,35 +55,65 @@
           </div>
 
           <!-- Size Selector -->
-          {% assign size_option = product.options_by_name.Size %}
-          {% if size_option %}
+          {% if is_hat %}
             <div class="size-selector">
               <div class="size-header">
                 <div class="size-option-label">SIZE</div>
-                <a href="#" class="size-guide">SIZE GUIDE</a>
               </div>
               <div class="size-options">
-                {% assign size_map = 'Small:S,Medium:M,Large:L,Extra Large:XL' | split: ',' %}
-                {% for size in size_option.values %}
-                  {% assign display_size = size %}
-                  {% for size_pair in size_map %}
-                    {% assign pair = size_pair | split: ':' %}
-                    {% if pair[0] == size %}
-                      {% assign display_size = pair[1] %}
-                      {% break %}
-                    {% endif %}
-                  {% endfor %}
-                  <input
-                    form="{{ form_id }}"
-                    type="radio"
-                    id="size-{{ size | handleize }}"
-                    name="options[Size]"
-                    value="{{ size }}"
-                    data-variant-input
-                  >
-                  <label for="size-{{ size | handleize }}" class="size-option">{{ display_size }}</label>
-                {% endfor %}
+                <input
+                  form="{{ form_id }}"
+                  type="radio"
+                  id="size-one-size"
+                  name="options[Size]"
+                  value="One Size"
+                  data-variant-input
+                  checked
+                  disabled
+                >
+                <label for="size-one-size" class="size-option hat-size-option">One Size</label>
               </div>
+            </div>
+          {% else %}
+            {% assign size_option = product.options_by_name.Size %}
+            {% if size_option %}
+              <div class="size-selector">
+                <div class="size-header">
+                  <div class="size-option-label">SIZE</div>
+                  {% comment %} <a href="#" class="size-guide">SIZE GUIDE</a> {% endcomment %}
+                </div>
+                <div class="size-options">
+                  {% assign size_map = 'Small:S,Medium:M,Large:L,Extra Large:XL' | split: ',' %}
+                  {% for size in size_option.values %}
+                    {% assign display_size = size %}
+                    {% for size_pair in size_map %}
+                      {% assign pair = size_pair | split: ':' %}
+                      {% if pair[0] == size %}
+                        {% assign display_size = pair[1] %}
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                    <input
+                      form="{{ form_id }}"
+                      type="radio"
+                      id="size-{{ size | handleize }}"
+                      name="options[Size]"
+                      value="{{ size }}"
+                      data-variant-input
+                    >
+                    <label for="size-{{ size | handleize }}" class="size-option">{{ display_size }}</label>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          {% endif %}
+
+          <!-- Model Size Info -->
+          {% assign model_size_text = '' %}
+          {% capture model_size_text %}{% render 'product-model-sizes', product_handle: product.handle %}{% endcapture %}
+          {% if model_size_text != blank %}
+            <div class="model-size-info">
+              {{ model_size_text }}
             </div>
           {% endif %}
 
@@ -92,6 +127,7 @@
             >
             <button type="submit" class="btn-add-to-cart" data-add-to-cart>
               <span data-add-to-cart-text>ADD TO CART</span>
+              <span class="btn-add-to-cart__slashes">//</span>
             </button>
           {% endform %}
         </div>
@@ -150,8 +186,12 @@
     justify-content: flex-start;
     align-items: space-between;
     gap: 16px;
-    margin-left: 50px;
+    margin-left: 80px;
     z-index: 1;
+  }
+
+  .product-details.hat-product {
+    height: 425px;
   }
 
   .product-title {
@@ -208,6 +248,17 @@
     text-decoration: underline;
     font-weight: 400;
   }
+
+  .model-size-info {
+    font-size: 13px;
+    font-style: italic;
+    color: #666;
+    font-weight: 400;
+    line-height: 1.4;
+    padding: 0px;
+    margin: 0px;
+  }
+
   .size-options {
     display: flex;
     flex-direction: row;
@@ -246,6 +297,17 @@
     border-color: var(--selected-color, #000);
   }
 
+  .hat-size-option {
+    cursor: not-allowed !important;
+    pointer-events: none;
+  }
+
+  input[type='radio']:disabled:checked + .hat-size-option {
+    background: var(--selected-color, #000);
+    color: #fff;
+    border-color: var(--selected-color, #000);
+  }
+
   .btn-add-to-cart {
     position: absolute;
     bottom: 0;
@@ -253,15 +315,36 @@
     width: 100%;
     padding: 16px 24px;
     color: #fff;
-    background: var(--selected-color, #000);
-    border: none;
+    background: #000;
+    border: 1px solid transparent;
+    /* border: none; */
     font-size: 16px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+    font-weight: 500;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Barlow', sans-serif !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-add-to-cart__slashes {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-add-to-cart:hover {
+    background-color: #000000bc;
+    border: 1px solid transparent;
+  }
+
+  .btn-add-to-cart:hover .btn-add-to-cart__slashes {
+    transform: rotate(180deg);
   }
 
   /* Mobile Responsiveness */
@@ -289,7 +372,7 @@
     .product-details {
       position: relative;
       width: 100%;
-      height: 520px;
+      height: 550px;
       background-color: white;
       margin: 0px;
       border-radius: 8px;
@@ -307,15 +390,27 @@
     }
 
     .btn-add-to-cart {
-      background: var(--colorCta);
+      background: #cb5c28;
+    }
+
+    .btn-add-to-cart:hover {
+      background-color: #a84920;
+      border: 1px solid transparent;
     }
   }
 
-  @media (max-width: 550px) {
+  @media (max-width: 600px) {
     .product-details {
-      height: 600px;
+      height: 580px;
     }
   }
+
+  @media (max-width: 500px) {
+    .product-details {
+      height: 625px;
+    }
+  }
+
   /* Color Swatch Styles */
   .product-page-color-swatch-container {
     position: relative;

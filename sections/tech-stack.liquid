@@ -1,3 +1,50 @@
+{% assign is_shirt = false %}
+{% assign is_shorts = false %}
+{% assign is_hat = false %}
+
+{% comment %} Check product type or tags to determine product category {% endcomment %}
+{% if product.type contains 'Shirt' %}
+  {% assign is_shirt = true %}
+{% elsif product.type contains 'Shorts' %}
+  {% assign is_shorts = true %}
+{% elsif product.type contains 'Hat' %}
+  {% assign is_hat = true %}
+{% endif %}
+
+{% comment %} Define content for Row 1 based on product type {% endcomment %}
+{% if is_shirt %}
+  {% assign row1_title = 'TRACEFIBER MESH MATERIAL' %}
+  {% assign row1_description = 'Small perforations for maximum airflow' %}
+{% elsif is_shorts %}
+  {% assign row1_title = 'LASER-CUT PERFORATIONS' %}
+  {% assign row1_description = 'Precision Venting where you need it most' %}
+{% elsif is_hat %}
+  {% assign row1_title = 'LASER-CUT PERFORATIONS' %}
+  {% assign row1_description = 'Precision Venting where you need it most' %}
+{% else %}
+  {% assign row1_title = 'LASER-CUT PERFORATIONS' %}
+  {% assign row1_description = 'Precision Venting where you need it most' %}
+{% endif %}
+
+{% comment %} Define content for Row 2 based on product type {% endcomment %}
+{% if is_shirt %}
+  {% assign row2_title = 'STRATEGIC SEAMS' %}
+  {% assign row2_description = 'Engineered to move with you. No friction.' %}
+  {% assign row2_icon = 'grip-tape-icon.svg' %}
+{% elsif is_shorts %}
+  {% assign row2_title = '0% FRICTION' %}
+  {% assign row2_description = 'Built to glide. but held in place by Grip-Tape Liners' %}
+  {% assign row2_icon = 'grip-tape-icon.svg' %}
+{% elsif is_hat %}
+  {% assign row2_title = '0% FRICTION' %}
+  {% assign row2_description = 'Built to glide. but held in place by Grip-Tape Liners' %}
+  {% assign row2_icon = 'grip-tape-icon.svg' %}
+{% else %}
+  {% assign row2_title = '0% FRICTION' %}
+  {% assign row2_description = 'Built to glide. but held in place by Grip-Tape Liners' %}
+  {% assign row2_icon = 'grip-tape-icon.svg' %}
+{% endif %}
+
 <section class="tech-stack">
   <div class="tech-stack">
     <div class="page-width">
@@ -7,10 +54,10 @@
         <!-- Row 1 -->
         <div class="tech-stack__row">
           <div class="tech-stack__col tech-stack__col-title">
-            <h3>LASER-CUT PERFORATIONS</h3>
+            <h3>{{ row1_title }}</h3>
           </div>
           <div class="tech-stack__col tech-stack__col-description">
-            <p>Precision Venting where you need it most</p>
+            <p>{{ row1_description }}</p>
           </div>
 
           <div class="tech-stack__col tech-stack__col-icon">
@@ -27,25 +74,27 @@
         <div class="tech-stack__divider"></div>
 
         <!-- Row 2 -->
-        <div class="tech-stack__row">
-          <div class="tech-stack__col tech-stack__col-title">
-            <h3>0% FRICTION</h3>
+        {% unless is_hat %}
+          <div class="tech-stack__row">
+            <div class="tech-stack__col tech-stack__col-title">
+              <h3>{{ row2_title }}</h3>
+            </div>
+            <div class="tech-stack__col tech-stack__col-description">
+              <p>{{ row2_description }}</p>
+            </div>
+            <div class="tech-stack__col tech-stack__col-icon">
+              <img
+                src="{{ 'grip-tape-icon.svg' | asset_url }}"
+                alt="Grip tape icon"
+                width="100"
+                height="100"
+              >
+            </div>
           </div>
-          <div class="tech-stack__col tech-stack__col-description">
-            <p>Built to glide. but held in place by Grip-Tape Liners</p>
-          </div>
-          <div class="tech-stack__col tech-stack__col-icon">
-            <img
-              src="{{ 'grip-tape-icon.svg' | asset_url }}"
-              alt="Grip tape icon"
-              width="100"
-              height="100"
-            >
-          </div>
-        </div>
 
-        <!-- Divider -->
-        <div class="tech-stack__divider"></div>
+          <!-- Divider -->
+          <div class="tech-stack__divider"></div>
+        {% endunless %}
 
         <!-- Row 3 -->
         <div class="tech-stack__row">
@@ -73,7 +122,16 @@
           <div class="tech-stack__col tech-stack__col-title">
             <div class="tech-stack__col-title-container">
               <h3>MATERIALS</h3>
-              <p>5% Elastane, 95% Polyester</p>
+              {% if is_shorts %}
+                <p>Shell: 92% Polyester, 8% Elastane</p>
+                <p>Inner Short: 82% Recycled Polyester, 18% Elastane</p>
+              {% elsif is_hat %}
+                <p>100% Polyester</p>
+              {% elsif is_shirt %}
+                <p>84% Polyester, 16% Elastane</p>
+              {% else %}
+                <p>84% Polyester, 16% Elastane</p>
+              {% endif %}
             </div>
           </div>
           <div class="tech-stack__col tech-stack__col-title">
@@ -206,7 +264,7 @@
 
   @media (max-width: 768px) {
     .tech-stack {
-      padding: 40px 0;
+      padding: 20px 0;
     }
 
     .tech-stack__row {

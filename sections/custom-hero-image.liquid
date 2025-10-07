@@ -3,6 +3,7 @@
     class="custom-hero-image{% if section.settings.custom_hero_image != blank %} has-ratio{% else %} custom-hero-image--fallback{% endif %}"
     style="background-image: url('{{ section.settings.custom_hero_image | image_url }}');{% if section.settings.custom_hero_image != blank %} padding-bottom: {{ 100 | divided_by: section.settings.custom_hero_image.aspect_ratio }}%;{% endif %}"
   >
+    <div class="custom-hero-overlay"></div>
     <div class="custom-hero-content">
       <div class="intro-content">
         <div class="intro-badge">
@@ -59,6 +60,17 @@
     background-repeat: no-repeat;
   }
 
+  /* Contrast overlay - only covers the image */
+  .custom-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.10);
+    pointer-events: none;
+  }
+
   /* When we know the image ratio, we use padding-bottom to create the correct height */
   .custom-hero-image.has-ratio {
     height: 0;
@@ -96,7 +108,7 @@
   }
 
   .intro-badge {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(60, 59, 59, 0.389);
     padding: clamp(6px, 1.5vw, 12px) clamp(8px, 2vw, 12px);
     border-radius: 4px;
     font-size: clamp(12px, 2.5vw, 16px);
@@ -112,8 +124,8 @@
   .intro-logo-image {
     width: clamp(90vw, 90vw, 90vw);
     height: auto;
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin-left: -20px;
     display: block;
   }
   .intro-text {
@@ -143,6 +155,7 @@
 
     .intro-logo-image {
       width: clamp(95vw, 95vw, 95vw);
+      margin-left: -10px;
     }
 
     .hero-cta-custom {

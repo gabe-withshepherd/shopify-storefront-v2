@@ -1,15 +1,14 @@
 <section class="related-products-section">
   <div class="page-width">
     <div class="default-title-header">
-      <h2 class="default-title-header-title">PLANNING ON SWEATING MORE?</h2>
+      <h2 class="default-title-header-title">PLANNING TO SWEAT MORE?</h2>
       <p class="default-title-header-subtitle">Shop more of what you need to get you through those sessions.</p>
     </div>
 
     <div class="related-products-grid">
-      {% comment %} Specific products: mint shorts, mountain mist shirt, and midnight shorts {% endcomment %}
       {% render 'product-cell', product_handle: 'airrail-6-performance-shorts-mint' %}
       {% render 'product-cell', product_handle: 'tracefiber-performance-tech-tee-mountain-mist' %}
-      {% render 'product-cell', product_handle: 'motionframe-running-hat' %}
+      {% render 'product-cell', product_handle: 'motionframe-running-hat-white' %}
     </div>
   </div>
 </section>
@@ -18,6 +17,7 @@
   .related-products-section {
     padding: 1rem 0.5rem;
     font-family: 'Barlow', sans-serif;
+    margin-bottom: 3rem;
   }
 
   .default-title-header {
@@ -47,8 +47,32 @@
 
   @media (max-width: 768px) {
     .related-products-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      overflow-y: hidden; /* hide vertical scrollbar */
+      white-space: nowrap;
       gap: 1rem;
+    }
+
+    .related-products-grid > * {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+    }
+
+    .related-products-grid::-webkit-scrollbar {
+      height: 2px;
+      flex: 1;
+    }
+
+    .related-products-grid::-webkit-scrollbar-track {
+      background: lightgrey;
+      border-radius: 2px;
+    }
+
+    .related-products-grid::-webkit-scrollbar-thumb {
+      background: black;
+      border-radius: 2px;
     }
 
     .color-swatches-container {
@@ -56,15 +80,7 @@
       gap: 4px;
     }
   }
-
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .related-products-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
 </style>
-
-<script defer src="{{ 'summer-25-collection.js' | asset_url}}"></script>
 
 {% schema %}
 {

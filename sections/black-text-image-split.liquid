@@ -3,43 +3,45 @@
 {% endcomment %}
 
 <section class="split-section">
-  <div class="split-section__inner">
-    <div
-      class="split-section__text"
-      style="
-        {% if section.settings.background_image %}
-          background-image: url({{ section.settings.background_image | image_url }});
+  <div class="page-width">
+    <div class="split-section__inner">
+      <div class="split-section__video-container">
+        {% if section.settings.video_url_2 contains '.mp4' or section.settings.video_url_2 contains '.MP4' %}
+          <video
+            class="split-section__video"
+            src="{{ section.settings.video_url_2 }}"
+            loop
+            muted
+            playsinline
+            autoplay
+            poster="{% if section.settings.video_poster_1 != blank %}{{ section.settings.video_poster_1 | image_url }}{% endif %}"
+          ></video>
         {% endif %}
-        background-size: cover;
-        background-position: center;
-      "
-    >
-      <div class="split-section__text-content">
-        <div class="split-section__text-content-title">
-          TESTED IN TRAINING.<br>
-          REFINED BY COMMUNITY.
-        </div>
-        <p class="split-section__subtext">
-          We think everyone builds a stronger version of themselves and of their community when you sweat together.
-        </p>
+        <div class="split-section__text">
+          <div class="split-section__text-content">
+            <div class="split-section__text-content-title">
+              TESTED IN TRAINING.<br>
+              REFINED BY COMMUNITY.
+            </div>
+            <p class="split-section__subtext">
+              We think everyone builds a stronger version of themselves and of their community when you sweat together.
+            </p>
 
-        {% render 'cta-button',
-          popover: 'newsletter-membership-popover',
-          text: 'JOIN THE MEMBERSHIP',
-          class: 'split-section__button'
-        %}
+            {% render 'cta-button', popover: 'newsletter-membership-popover', text: 'JOIN THE MEMBERSHIP' %}
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="split-section__image">
-      {% if section.settings.image %}
-        {%- render 'image-element',
-          img: section.settings.image,
-          img_width: 2400,
-          loading: 'lazy',
-          classes: 'split-image',
-          sizes: '(min-width: 768px) 400px, 100vw'
-        -%}
-      {% endif %}
+      <div class="split-section__image">
+        {% if section.settings.image %}
+          {%- render 'image-element',
+            img: section.settings.image,
+            img_width: 2400,
+            loading: 'lazy',
+            classes: 'split-image',
+            sizes: '(min-width: 768px) 400px, 100vw'
+          -%}
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>
@@ -60,13 +62,31 @@
     width: 100%;
   }
 
+  .split-section__video-container {
+    position: relative;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .split-section__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   .split-section__text {
     color: #fff;
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: left;
+    z-index: 1;
   }
 
   .split-section__text::before {
@@ -115,8 +135,9 @@
       grid-template-columns: 1fr;
     }
 
-    .split-section__text {
+    .split-section__video-container {
       order: 2;
+      min-height: 400px;
     }
 
     .split-section__image {
@@ -140,12 +161,7 @@
 {% comment %}
   Include the newsletter popover that will be triggered by the button
 {% endcomment %}
-{% render 'newsletter-popover',
-  id: 'newsletter-membership-popover',
-  title: 'JOIN THE MEMBERSHIP',
-  text: 'Be the first to know about exclusive offers, new products, and community events. Join our membership today!',
-  button_text: 'SIGN UP'
-%}
+{% render 'newsletter-popover', id: 'newsletter-membership-popover' %}
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -166,14 +182,15 @@
       "label": "Right Side Image"
     },
     {
+      "type": "text",
+      "id": "video_url_2",
+      "label": "Background Video URL",
+      "info": "Upload a video file for the left section background"
+    },
+    {
       "type": "image_picker",
       "id": "background_image",
       "label": "Left Side Background Image"
-    },
-    {
-      "type": "video",
-      "id": "background_video",
-      "label": "Left Side Background Video (.mp4)"
     }
   ],
   "presets": [

@@ -1,5 +1,5 @@
 <section class="product-photography-section">
-  <div class="product-photography-section__container">
+  <div class="page-width">
     <div class="product-photography-section__title">PRODUCT DETAILS</div>
     <div class="product-photography-section__gallery">
       {% if section.settings.image_1 %}
@@ -132,12 +132,6 @@
     font-family: 'Barlow', sans-serif;
   }
 
-  .product-photography-section__container {
-    margin: 0 auto;
-    padding: 0 1.5rem;
-    overflow: hidden;
-  }
-
   .product-photography-section__title {
     color: #fff;
     text-align: left;
@@ -150,8 +144,7 @@
     display: flex;
     gap: 0.8rem;
     overflow-x: auto;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
 
   .product-photography-section__gallery::-webkit-scrollbar {
@@ -164,10 +157,6 @@
 
   .product-photography-section__gallery::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.3);
-  }
-
-  .product-photography-section__gallery::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
   }
 
   .product-photography-section__item {
@@ -207,13 +196,19 @@
     font-weight: 400;
   }
 
-  @media (max-width: 768px) {
+  @media screen and (max-width: 768px) {
+    .product-photography-section__gallery > * {
+      flex: 0 0 280px;
+      scroll-snap-align: center;
+    }
     .product-photography-section__item {
-      width: 400px;
+      width: 320px;
+      height: 500px;
     }
 
     .product-photography-section__image {
-      height: 550px;
+      width: 320px;
+      height: 450px;
     }
   }
 </style>
