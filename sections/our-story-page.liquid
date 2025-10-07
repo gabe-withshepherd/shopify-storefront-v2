@@ -1,0 +1,617 @@
+{% comment %}
+  Our Story Page Section
+  Includes: Hero, Mission Statement, Founder Story, and Core Values
+{% endcomment %}
+
+<section class="our-story-page">
+  {% comment %} Hero Section {% endcomment %}
+  <div class="our-story-hero">
+    <div
+      class="our-story-hero-image"
+      style="background-image: url('{{ section.settings.hero_image | image_url }}');"
+    >
+      <div class="our-story-hero-overlay"></div>
+      <div class="our-story-hero-content">
+        <h1 class="our-story-hero-title">{{ section.settings.hero_title }}</h1>
+        <div class="our-story-hero-buttons">
+          {% if section.settings.hero_button_1_text != blank %}
+            <a href="{{ section.settings.hero_button_1_url }}" class="our-story-hero-button">
+              {{ section.settings.hero_button_1_text }}
+            </a>
+          {% endif %}
+          {% if section.settings.hero_button_2_text != blank %}
+            <a href="{{ section.settings.hero_button_2_url }}" class="our-story-hero-button">
+              {{ section.settings.hero_button_2_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} Mission Statement Section {% endcomment %}
+  <div class="our-story-mission">
+    <div class="page-width">
+      <div class="our-story-mission-container">
+        <div class="our-story-mission-content">
+          <h2 class="our-story-mission-title">{{ section.settings.mission_title }}</h2>
+          <div class="our-story-mission-box">
+            {% if section.settings.mission_image != blank %}
+              <img
+                src="{{ section.settings.mission_image | image_url }}"
+                alt="{{ section.settings.mission_title }}"
+                class="our-story-mission-image"
+                loading="lazy"
+                ,
+                width="400"
+                ,
+                height="600"
+              >
+            {% endif %}
+            <div class="our-story-mission-text">
+              {{ section.settings.mission_text }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} Founder Story Section {% endcomment %}
+  <div class="our-story-founder">
+    <div class="page-width">
+      <h2 class="our-story-founder-title">{{ section.settings.story_title }}</h2>
+      <div class="our-story-founder-container">
+        {% if section.settings.story_image != blank %}
+          <div class="our-story-founder-image-wrapper">
+            <img
+              src="{{ section.settings.story_image | image_url }}"
+              alt="{{ section.settings.story_title }}"
+              class="our-story-founder-image"
+              loading="lazy"
+              ,
+              width="400"
+              ,
+              height="600"
+            >
+          </div>
+        {% endif %}
+        <div class="our-story-founder-content">
+          <div class="our-story-founder-text">
+            {{ section.settings.story_text }}
+          </div>
+          {% if section.settings.founder_name != blank %}
+            <div class="our-story-founder-signature">
+              <strong>{{ section.settings.founder_name }}</strong>
+              {% if section.settings.founder_title != blank %}
+                <br>
+                <span class="our-story-founder-role">{{ section.settings.founder_title }}</span>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% comment %} Core Values Section {% endcomment %}
+  <div class="our-story-values">
+    <div class="page-width">
+      <h2 class="our-story-values-title">{{ section.settings.values_title }}</h2>
+      <p class="our-story-values-subtitle">{{ section.settings.values_subtitle }}</p>
+
+      <div class="our-story-values-grid">
+        {% for i in (1..4) %}
+          {% assign value_number = 'value_' | append: i | append: '_number' %}
+          {% assign value_title = 'value_' | append: i | append: '_title' %}
+          {% assign value_description = 'value_' | append: i | append: '_description' %}
+
+          <div class="our-story-value-item">
+            <div class="our-story-value-number">{{ section.settings[value_number] }}</div>
+            <h3 class="our-story-value-title">{{ section.settings[value_title] }}</h3>
+            <p class="our-story-value-description">{{ section.settings[value_description] }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .our-story-page {
+    width: 100%;
+  }
+
+  /* Hero Section */
+  .our-story-hero {
+    width: 100%;
+    position: relative;
+  }
+
+  .our-story-hero-image {
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .our-story-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+  }
+
+  .our-story-hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .our-story-hero-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .our-story-hero-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .our-story-hero-button {
+    font-family: 'Barlow', sans-serif;
+    background-color: #ff6b35;
+    color: #fff;
+    padding: 12px 32px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.05em;
+  }
+
+  .our-story-hero-button:hover {
+    background-color: #fff;
+    color: #000;
+  }
+
+  /* Mission Statement Section */
+  .our-story-mission {
+    padding: 80px 20px;
+    background-color: #fff;
+  }
+
+  .our-story-mission-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .our-story-mission-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 0.03em;
+  }
+
+  .our-story-mission-box {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .our-story-mission-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .our-story-mission-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  /* Founder Story Section */
+  .our-story-founder {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+  }
+
+  .our-story-founder-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+    letter-spacing: 0.03em;
+  }
+
+  .our-story-founder-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .our-story-founder-image-wrapper {
+    width: 100%;
+  }
+
+  .our-story-founder-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+
+  .our-story-founder-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .our-story-founder-text {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333;
+  }
+
+  .our-story-founder-signature {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.1rem;
+    color: #000;
+  }
+
+  .our-story-founder-role {
+    font-size: 0.95rem;
+    color: #666;
+  }
+
+  /* Core Values Section */
+  .our-story-values {
+    padding: 80px 20px;
+    background-color: #1a1a1a;
+    color: #fff;
+  }
+
+  .our-story-values-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 0.03em;
+    text-align: center;
+  }
+
+  .our-story-values-subtitle {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 60px;
+    color: #ccc;
+  }
+
+  .our-story-values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .our-story-value-item {
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+  }
+
+  .our-story-value-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+  }
+
+  .our-story-value-number {
+    font-family: 'Barlow', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ff6b35;
+    margin-bottom: 15px;
+  }
+
+  .our-story-value-title {
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    letter-spacing: 0.05em;
+  }
+
+  .our-story-value-description {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+  }
+
+  /* Responsive Design */
+  @media screen and (max-width: 768px) {
+    .our-story-hero-content {
+      padding: 20px;
+    }
+
+    .our-story-hero-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .our-story-hero-button {
+      text-align: center;
+    }
+
+    .our-story-mission {
+      padding: 60px 20px;
+    }
+
+    .our-story-mission-box {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .our-story-founder {
+      padding: 60px 20px;
+    }
+
+    .our-story-founder-container {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .our-story-values {
+      padding: 60px 20px;
+    }
+
+    .our-story-values-grid {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Our Story Page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Hero Section"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image"
+    },
+    {
+      "type": "text",
+      "id": "hero_title",
+      "label": "Hero Title",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_1_text",
+      "label": "Button 1 Text",
+      "default": "EXPLORE OUR VALUES"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_1_url",
+      "label": "Button 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_2_text",
+      "label": "Button 2 Text",
+      "default": "EXPERIENCE OUR VISION"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_2_url",
+      "label": "Button 2 URL"
+    },
+    {
+      "type": "header",
+      "content": "Mission Statement Section"
+    },
+    {
+      "type": "text",
+      "id": "mission_title",
+      "label": "Mission Title",
+      "default": "FITNESS IS MORE THAN MOVEMENT, IT'S MOMENTUM"
+    },
+    {
+      "type": "image_picker",
+      "id": "mission_image",
+      "label": "Mission Image"
+    },
+    {
+      "type": "richtext",
+      "id": "mission_text",
+      "label": "Mission Text",
+      "default": "<p>The best growth happens when you sweat together. We exist to inspire each other through movement, mindset, and the power of community. Every product, every session, and every rep is designed to fuel progress together.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Founder's Story Section"
+    },
+    {
+      "type": "text",
+      "id": "story_title",
+      "label": "Story Section Title",
+      "default": "OUR STORY"
+    },
+    {
+      "type": "image_picker",
+      "id": "story_image",
+      "label": "Founder/Story Image"
+    },
+    {
+      "type": "richtext",
+      "id": "story_text",
+      "label": "Story Text",
+      "default": "<p>Fitness opens doors for us. Fitness shows us that there's more out there, more to see, more to chase, more to become.</p><p>For me, it was the thing that changed everything. It brought me to California to play for a D1 volleyball court, introduced me to my girlfriend on a volleyball court, and took me skiing across some of the most awe-inspiring places in the world. Wherever life led, fitness brought connection through groups big and small that trained hard, showed up, and pushed one another further.</p><p>Through it all, one truth stuck: the discipline we build in training makes every other part of life better. That's why 7Pacific exists. To create the kind of gear that keeps up with your pursuit, and a community that reminds us we're not in it alone.</p>"
+    },
+    {
+      "type": "text",
+      "id": "founder_name",
+      "label": "Founder Name",
+      "default": "Gabriel Dalessandro"
+    },
+    {
+      "type": "text",
+      "id": "founder_title",
+      "label": "Founder Title",
+      "default": "Founder & CEO"
+    },
+    {
+      "type": "header",
+      "content": "Core Values Section"
+    },
+    {
+      "type": "text",
+      "id": "values_title",
+      "label": "Values Section Title",
+      "default": "OUR VALUES"
+    },
+    {
+      "type": "text",
+      "id": "values_subtitle",
+      "label": "Values Subtitle",
+      "default": "What We Believe Drives How We Train"
+    },
+    {
+      "type": "header",
+      "content": "Value 1"
+    },
+    {
+      "type": "text",
+      "id": "value_1_number",
+      "label": "Value Number",
+      "default": "01"
+    },
+    {
+      "type": "text",
+      "id": "value_1_title",
+      "label": "Value Title",
+      "default": "LOVE THE JOURNEY"
+    },
+    {
+      "type": "textarea",
+      "id": "value_1_description",
+      "label": "Value Description",
+      "default": "The destination is short lived. All the fun happens on the ride there."
+    },
+    {
+      "type": "header",
+      "content": "Value 2"
+    },
+    {
+      "type": "text",
+      "id": "value_2_number",
+      "label": "Value Number",
+      "default": "02"
+    },
+    {
+      "type": "text",
+      "id": "value_2_title",
+      "label": "Value Title",
+      "default": "WHAT GETS MEASURED GETS IMPROVED"
+    },
+    {
+      "type": "textarea",
+      "id": "value_2_description",
+      "label": "Value Description",
+      "default": "Know where you're starting and how you want to get there."
+    },
+    {
+      "type": "header",
+      "content": "Value 3"
+    },
+    {
+      "type": "text",
+      "id": "value_3_number",
+      "label": "Value Number",
+      "default": "03"
+    },
+    {
+      "type": "text",
+      "id": "value_3_title",
+      "label": "Value Title",
+      "default": "PLAN FOR THE LONG TERM"
+    },
+    {
+      "type": "textarea",
+      "id": "value_3_description",
+      "label": "Value Description",
+      "default": "Nothing great is built in a day. Have the confidence to take it the distance."
+    },
+    {
+      "type": "header",
+      "content": "Value 4"
+    },
+    {
+      "type": "text",
+      "id": "value_4_number",
+      "label": "Value Number",
+      "default": "04"
+    },
+    {
+      "type": "text",
+      "id": "value_4_title",
+      "label": "Value Title",
+      "default": "WE WIN OR WE LEARN. WE NEVER FAIL."
+    },
+    {
+      "type": "textarea",
+      "id": "value_4_description",
+      "label": "Value Description",
+      "default": "When something doesn't work out, we figure out why and come back more experienced."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Our Story Page",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
