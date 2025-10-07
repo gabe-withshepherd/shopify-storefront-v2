@@ -12,29 +12,9 @@
     "our-story-page": {
       "type": "our-story-page",
       "settings": {
-        "hero_title": "ABOUT US",
-        "hero_button_1_text": "EXPLORE OUR VALUES",
-        "hero_button_2_text": "EXPERIENCE OUR VISION",
-        "mission_title": "FITNESS IS MORE THAN MOVEMENT, IT'S MOMENTUM",
-        "mission_text": "<p>The best growth happens when you sweat together. We exist to inspire each other through movement, mindset, and the power of community. Every product, every session, and every rep is designed to fuel progress together.</p>",
-        "story_title": "OUR STORY",
-        "story_text": "<p>Fitness opens doors for us. Fitness shows us that there's more out there, more to see, more to chase, more to become.</p><p>For me, it was the thing that changed everything. It brought me to California to play for a D1 volleyball court, introduced me to my girlfriend on a volleyball court, and took me skiing across some of the most awe-inspiring places in the world. Wherever life led, fitness brought connection through groups big and small that trained hard, showed up, and pushed one another further.</p><p>Through it all, one truth stuck: the discipline we build in training makes every other part of life better. That's why 7Pacific exists. To create the kind of gear that keeps up with your pursuit, and a community that reminds us we're not in it alone.</p>",
-        "founder_name": "Gabriel Dalessandro",
-        "founder_title": "Founder & CEO",
-        "values_title": "OUR VALUES",
-        "values_subtitle": "What We Believe Drives How We Train",
-        "value_1_number": "01",
-        "value_1_title": "LOVE THE JOURNEY",
-        "value_1_description": "The destination is short lived. All the fun happens on the ride there.",
-        "value_2_number": "02",
-        "value_2_title": "WHAT GETS MEASURED GETS IMPROVED",
-        "value_2_description": "Know where you're starting and how you want to get there.",
-        "value_3_number": "03",
-        "value_3_title": "PLAN FOR THE LONG TERM",
-        "value_3_description": "Nothing great is built in a day. Have the confidence to take it the distance.",
-        "value_4_number": "04",
-        "value_4_title": "WE WIN OR WE LEARN. WE NEVER FAIL.",
-        "value_4_description": "When something doesn't work out, we figure out why and come back more experienced."
+        "hero_image": "shopify://shop_images/our_story_hero_image.jpg",
+        "mission_image": "shopify://shop_images/our_mission2.jpg",
+        "our_story_image": "shopify://shop_images/our_founder.jpg"
       }
     }
   },
