@@ -74,6 +74,15 @@
           -%}
         </div>
       {%- endfor -%}
+
+      <div class="grid__item footer__item--support">
+        {%- style -%}
+          .footer__item--support {
+            width: 25%;
+          }
+        {%- endstyle -%}
+        {%- render 'footer-support' -%}
+      </div>
     </div>
 
     {%- if show_selectors -%}
@@ -116,6 +125,20 @@
   .footer__powered-by,
   .footer__powered-by a {
     color: #fff !important;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
 </style>
 

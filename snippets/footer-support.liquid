@@ -1,0 +1,30 @@
+<h2 class="h4 footer__title small--hide">Support</h2>
+<button
+  type="button"
+  class="h4 footer__title collapsible-trigger collapsible-trigger-btn medium-up--hide"
+  aria-controls="Footer-Support"
+>
+  Support
+  {%- render 'collapsible-icons' -%}
+</button>
+<div id="Footer-Support" class="collapsible-content collapsible-content--small">
+  <div class="collapsible-content__inner">
+    <div class="footer__collapsible">
+      <ul class="no-bullets site-footer__linklist">
+        <li><a href="/pages/terms-of-service">Terms of Service</a></li>
+        <li><a href="/pages/contact-us">Contact Us</a></li>
+        <li><a href="/pages/returns">Returns</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .footer__title {
+    color: #fff;
+    font-size: 14px;
+  }
+  .footer__collapsible {
+    color: #fff;
+  }
+</style>
