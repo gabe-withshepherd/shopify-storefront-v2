@@ -99,6 +99,14 @@
       {%- endunless -%}
     {%- endif -%}
 
+    <div class="footer__links-section">
+      <ul class="footer__links-list">
+        <li><a href="/pages/terms-of-service" class="footer__link">Terms of Service</a></li>
+        <li><a href="/pages/contact-us" class="footer__link">Contact Us</a></li>
+        <li><a href="/pages/returns" class="footer__link">Returns</a></li>
+      </ul>
+    </div>
+
     {%- if section.settings.show_copyright -%}
       <p class="footer__small-text">
         &copy; {{ 'now' | date: '%Y' }}
@@ -116,6 +124,56 @@
   .footer__powered-by,
   .footer__powered-by a {
     color: #fff !important;
+  }
+
+  .footer__links-section {
+    margin: 30px 0 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .footer__links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .footer__links-list li {
+    display: inline-block;
+  }
+
+  .footer__links-list li:not(:last-child)::after {
+    content: '|';
+    margin-left: 10px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .footer__link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer__link:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .footer__links-list {
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .footer__links-list li:not(:last-child)::after {
+      display: none;
+    }
   }
 </style>
 
