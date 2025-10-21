@@ -17,8 +17,8 @@
         "announcement-0": {
           "type": "announcement",
           "settings": {
-            "text": "Free shipping",
-            "link_text": "On all orders over $100",
+            "text": "Free Shipping on orders over $200",
+            "link_text": "",
             "link": ""
           }
         }
@@ -26,7 +26,7 @@
       "block_order": [
         "announcement-0"
       ],
-      "disabled": true,
+      "disabled": false,
       "settings": {
         "announcement_compact": true
       }

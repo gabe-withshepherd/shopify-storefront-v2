@@ -1,9 +1,17 @@
 <style>
-  {%- if settings.color_announcement == settings.color_body_bg -%}
-    .announcement-bar {
-      border-bottom: 1px solid;
-    }
-  {%- endif -%}
+  .announcement-bar {
+    background-color: #000 !important;
+    color: #fff !important;
+    padding: 8px 0 !important;
+    border-bottom: none !important;
+  }
+  .announcement-bar a,
+  .announcement-bar a:visited,
+  .announcement-bar a:hover,
+  .announcement-bar .announcement-text,
+  .announcement-bar .announcement-link-text {
+    color: #fff !important;
+  }
 </style>
 
 {%- render 'announcement-bar', section: section -%}
